@@ -1,4 +1,4 @@
-1:root {
+:root {
     --primary-color: #3A57D2;
     --secondary-color: #2A3338;
     --bg-light: #f8fbfe;
@@ -21,7 +21,8 @@ body {
 }
 
 .container {
-    max-width: var(--container-max);    margin: 0 auto;
+    max-width: var(--container-max);
+    margin: 0 auto;
     padding: 0 40px;
 }
 
