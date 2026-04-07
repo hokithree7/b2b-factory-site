@@ -1,0 +1,348 @@
+1:root {
+    --primary-color: #3A57D2;
+    --secondary-color: #2A3338;
+    --bg-light: #f8fbfe;
+    --text-main: #333;
+    --text-muted: #666;
+    --container-max: 1440px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: var(--container-max);    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header */
+.header-song {
+    background: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-song .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul a:hover {
+    color: var(--primary-color);
+}
+
+.inquiry-btn {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://shopcdnpro.grainajz.com/category/67765/2912/0b9c730f24ffdc54e7cc6137ac352700/1920x550-banner%281%29.png');
+    background-size: cover;
+    background-position: center;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero .description {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn.primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.btn.secondary {
+    background: #fff;
+    color: var(--secondary-color);
+    margin-left: 15px;
+}
+
+/* Sections */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Product Cards */
+.product-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.product-card h3 {
+    margin-bottom: 10px;
+}
+
+.view-more {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 700;
+    display: block;
+    margin-top: 15px;
+}
+
+/* OEM Section */
+.oem-section {
+    background: var(--bg-light);
+}
+
+.oem-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.check-list {
+    list-style: none;
+    margin: 30px 0;
+}
+
+.check-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.check-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: 900;
+    font-size: 20px;
+}
+
+/* Trust Section */
+.logo-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.cert-card img {
+    height: 60px;
+    opacity: 0.8;
+}
+
+.doc-image img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* Inquiry Section */
+.inquiry-info h2 {
+    margin-bottom: 20px;
+}
+
+.contact-methods {
+    margin: 20px 0;
+}
+
+.sample-kit-img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+
+.inquiry-form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+form button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+/* Footer */
+.arshine2-foot {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    gap: 60px;
+}
+
+.footer-col h3 {
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.newsletter-form button {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 40px;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+    .grid-3, .grid-2, .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+}
