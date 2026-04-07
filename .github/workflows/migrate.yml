@@ -1,3 +1,54 @@
+name: Full Site Migration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Migrate Pages
+        run: |
+          urls=(
+            "https://www.hlktape.com/ | index.html"
+            "https://www.hlktape.com/about-us | about-us/index.html"
+            "https://www.hlktape.com/custom | custom/index.html"
+            "https://www.hlktape.com/products | products/index.html"
+            "https://www.hlktape.com/nasal-strips | nasal-strips/index.html"
+            "https://www.hlktape.com/mouth-tape | mouth-tape/index.html"
+            "https://www.hlktape.com/newsblog | newsblog/index.html"
+            "https://www.hlktape.com/contact-us | contact-us/index.html"
+            "https://www.hlktape.com/privacy | privacy/index.html"
+            "https://www.hlktape.com/application/sleep-mouthtape | application/sleep-mouthtape/index.html"
+            "https://www.hlktape.com/application/tira-nasal | application/tira-nasal/index.html"
+            "https://www.hlktape.com/application/tiras-nasales | application/tiras-nasales/index.html"
+            "https://www.hlktape.com/application/custom-nasal-strip-supplier | application/custom-nasal-strip-supplier/index.html"
+            "https://www.hlktape.com/application/mouth-tape-oem | application/mouth-tape-oem/index.html"
+            "https://www.hlktape.com/application/custom-size-mouth-tape | application/custom-size-mouth-tape/index.html"
+            "https://www.hlktape.com/application/nasal-strip-manufacturer | application/nasal-strip-manufacturer/index.html"
+            "https://www.hlktape.com/ar/ | ar/index.html"
+            "https://www.hlktape.com/nl/ | nl/index.html"
+            "https://www.hlktape.com/fr/ | fr/index.html"
+            "https://www.hlktape.com/de/ | de/index.html"
+            "https://www.hlktape.com/it/ | it/index.html"
+            "https://www.hlktape.com/ru/ | ru/index.html"
+            "https://www.hlktape.com/es/ | es/index.html"
+            "https://www.hlktape.com/mouth-tape1 | mouth-tape1/index.html"
+            "https://www.hlktape.com/nasal-strips1 | nasal-strips1/index.html"
+            "https://www.hlktape.com/transparent-breathe-right-nasal-strips-nose-tape-for-better-sleep-anti-snoring-goede-nachtrust-hlk | transparent-breathe-right-nasal-strips-nose-tape-for-better-sleep-anti-snoring-goede-nachtrust-hlk/index.html"
+            "https://www.hlktape.com/sweatproof-nasal-strips-adhesive-nose-tape-for-athletic-performance-sports-gym-ce-transparent-for-breathing-and-sleep-hlk | sweatproof-nasal-strips-adhesive-nose-tape-for-athletic-performance-sports-gym-ce-transparent-for-breathing-and-sleep-hlk/index.html"
+            "https://www.hlktape.com/sleep-nose-strips-waterproof-breathing-anti-snoring-breate-right-nasal-strips-new-arrival-hlk-manufactur | sleep-nose-strips-waterproof-breathing-anti-snoring-breathe-right-nasal-strips-new-arrival-hlk-manufacturer/index.html"
+            "https://www.hlktape.com/scented-nasal-strips-lavender-mint-camomile-eucalypt-transparent-nose-tape-breatiK\]Ú\ËZÈØÙ[Y[\Ø[\Ý\Ë[][\[Z[XØ[[ÛZ[KY]XØ[\][Ü\[[ÜÙK]\KXX]K\]Ú\ËZËÚ[^[ÎËÝÝÝËÝ\KÛÛKÜÛZ][K[ÛÛÝ[[\Ø[\Ý\ËYÜX]\XX][Ë\ÛY\]Ø]\ÛÙX[K\ÛÜ[ËXÝ\ÝÛKXÛÛÜ[\XÚØYÙKLH[Z][K[ÛÛÝ[[\Ø[\Ý\ËYÜX]\XX][Ë\ÛY\]Ø]\ÛÙX[K\ÛÜ[ËXÝ\ÝÛKXÛÛÜ[\XÚØYÙKLKÚ[^[ÎËÝÝÝËÝ\KÛÛKÜ\ÛÛ[^YX[K\ÛÜ[Ë[\Ø[\Ý\ËYÜ\ÛY\X[X]]XË]\ÙKXÝ\ÝÛKXX]XK[ÜÙK]\\ËYÜXÛÛYÜXK[YÚ[YK]\ÙKZÈ\ÛÛ[^YX[K\ÛÜ[Ë[\Ø[\Ý\ËYÜ\ÛY\X[X]]XË]\ÙKXÝ\ÝÛKXX]XK[ÜÙK]\\ËYÜXÛÛYÜXK[YÚ[YK]\ÙKZËÚ[^[ÎËÝÝÝËÝ\KÛÛKÛÜÙK]\KYÜX]\XX][ËX[\ÛY\[ËZ\Ø[\Ù[XË\ÛÙ\ØYKZ[[YYX]K\[YYXÝ\ÝÛZ^YXÝ]KXÛÛÜ[\]\ZÈÜÙK]\KYÜX]\XX][ËX[\ÛY\[ËZ\Ø[\Ù[XË\ÛÙ\ØYKZ[[YYX]K\[YYXÝ\ÝÛZ^YXÝ]KXÛÛÜ[\]\ZËÚ[^[ÎËÝÝÝËÝ\KÛÛKÛ\Ø[\Ý\ËYÜX]\XX][Ë\ÛY\][Ü\[XÛX\\KXÝ\ÝÛK\XÚØYÙKZÈ\Ø[\Ý\ËYÜX]\XX][Ë\ÛY\][Ü\[XÛX\\KXÝ\ÝÛK\XÚØYÙKZËÚ[^[ÎËÝÝÝËÝ\KÛÛKÛYYXØ[YÜYK[\Ø[\Ý\Ë[]^YYK\ØÙ[YY^K\Ý[Ý[ÜÙK]\\ËYÜX]\XX][ËX[\ÛÜ[ËZÝ\KÚ[^[ÎËÝÝÝËÝ\KÛÛKÚ\Ø[\Ù[XË][[]Y[\Ø[\Ý\ËK\Ù[Ú]]K\ÚÚ[YY[K\[Y]\Ë[\Ø[XÛÛÙ\Ý[ÛKZ[\Ý\ËXX][ËZÈ\Ø[\Ù[XË][[]Y[\Ø[\Ý\ËK\Ù[Ú]]K\ÚÚ[YY[K\[Y]\Ë[\Ø[XÛÛÙ\Ý[ÛKZ[\Ý\ËXX][ËZËÚ[^[ÎËÝÝÝËÝ\KÛÛKÚËY^K\Ý[Ý]Ø]\ÛÙ[\Ø[\Ý\ËXÙX\ÝYX]\XX]MNK\ÜÜË[\Ø[\Ý\\Ë[Ù[KÛÙKZÝ\HËY^K\Ý[Ý]Ø]\ÛÙ[\Ø[\Ý\ËXÙX\ÝYX]\XX]MNK\ÜÜË[\Ø[\Ý\^Ë[Ù[KÛÙKZÝ\KÚ[^[ÎËÝÝÝËÝ\KÛÛKÙÙ[K[\Ø[\Ý\ËYÜ\ÜÜËX[[YÚ[YK\ÛY\\\ÛÛ[^YX[K\ÛÜ[Ë[ÜÙK\]Ú\ËZËLHÙ[K[\Ø[\Ý\ËYÜ\ÜÜËX[[YÚ[YK\ÛY\\\ÛÛ[^YX[K\ÛÜ[Ë[ÜÙK\]Ú\ËZËLKÚ[^[ÎËÝÝÝËÝ\KÛÛKY^K\Ý[Ý]Ø]\ÛÙ[\Ø[\Ý\ËXKZËKXÙKXÙ\YYYMNK[[K\ÜÜK\ÛY\XX][Ë]\K[Ù[KÛÙH^K\Ý[Ý]Ø]\ÛÙ[\Ø[\Ý\ËXKZËKXÙKXÙ\YYYMNK[[K\ÜÜK\ÛY\XX][Ë]\K[Ù[KÛÙKÚ[^[ÎËÝÝÝËÝ\KÛÛKØÝ\ÝÛZ^Y[ÜÙK\Ý\Ë[Û]ÛÝ[XX]K\YÚ[ÜÙK\]ÚYÜX]\XX][Ë[ÜÙK\\Ý\ZÈÝ\ÝÛZ^Y[ÜÙK\Ý\Ë[Û]ÛÝ[XX]K\YÚ[\ÙK\]ÚYÜX]\XX][Ë[ÜÙK\\Ý\ZËÚ[^[ÎËÝÝÝËÝ\KÛÛKØÛÛYÜY][\Ø[\Ý\ËYÜXÛÛÙ\Ý[ÛK\ÛÜ[ËKZ\Ø[\Ù[XË[]^YYK\ÝÙX]ÛÙY^K\Ý[ÝZÈÛÛYÜY][\Ø[\Ý\ËYÜXÛÛÙ\Ý[ÛK\ÛÜ[ËVöÆÆW&vVæ2ÖÆFWÖg&VR×7vVG&ööbÖWG&×7G&VæwFÖÆ²öæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒö'VÆ²×7÷'BÖ&Æ6²Öæ6Â×7G&2Ö'&VFR×&vBÖæ÷6R×FR×F6ÖçF×6æ÷&ær×fVçFÆFöâÖf÷"Ö'&VFærÖÆ²Â'VÆ²×7÷'BÖ&Æ6²Öæ6Â×7G&2Ö'&VFR×&vBÖæ÷6R×FR×F6ÖçF×6æ÷&ær×fVçFÆFöâÖf÷"Ö'&VFærÖÆ²öæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒö'&VFærÖæB×6æ÷&ærÖæ6Â×7G&2Ö7W7FöÖ¦VBÖ'&VFR×&vBÖæ÷6R×Æ7FW"Ö'VÆ²Ö&WGFW"Ö'&VFÖÆ²Ó##RÂ'&VFærÖæB×6æ÷&ærÖæ6Â×7G&2Ö7W7FöÖ¦VBÖ'&VFR×&vBÖæ÷6R×Æ7FW"Ö'VÆ²Ö&WGFW"Ö'&VFÖÆ²Ó##RöæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒö'&VFR×&vBÖæ6Â×7G&2Öf÷"Ö&WGFW"×6ÆVWær×7F÷×6æ÷&ærÖÆFWÖg&VR×7÷'G2Öæ÷6R×F6×FRÖ'&VFærÖÆ²Ó##RÂ'&VFR×&vBÖæ6Â×7G&2Öf÷"Ö&WGFW"×6ÆVWær×7F÷×6æ÷&ærÖÆFWÖg&VR×7÷'G2Öæ÷6R×F6×FRÖ'&VFærÖÆ²Ó##RöæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒö&WGFW"Ö'&VFÖæ6Â×7G&2ÖçF×6æ÷&ærÓcc×7÷'G2Öæ6Â×7G&W2ÖöVÒööFÒÖÆ·FRÂ&WGFW"Ö'&VFÖæ6Â×7G&2ÖçF×6æ÷&ærÓcc×7÷'G2Öæ6Â×7G&W2ÖöVÒööFÒÖÆ·FRöæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒöçF×6æ÷&ærÖæ÷6R×7G&2Öf÷"Ö&WGFW"Ö'&VFær×7÷'G2Öæ6Â×7G&2Öf÷"ÖFÆWFW2Ö7W7FöÒÖÆ²ÂçF×6æ÷&ærÖæ÷6R×7G&2Öf÷"Ö&WGFW"Ö'&VFær×7÷'G2Öæ6Â×7G&2Öf÷"ÖFÆWFW2Ö7W7FöÒÖÆ²öæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒ÷&öGV7BÖÆ²×&VÖVÒÖÖFW&ÂÖ&VWG×&V7WBÖçF×w&æ¶ÆR×&fFRÖÆ&VÂÖ¶æW6öÆöwÖF÷V&ÆRÖ6âÖÆgFærÖÆgBÖf6R×FRÖf÷"×w&æ¶ÆW2Öf6RÂ&öGV7BÖÆ²×&VÖVÒÖÖFW&ÂÖ&VWG×&V7WBÖçF×w&æ¶ÆR×&fFRÖÆ&VÂÖ¶æW6öÆöwÖF÷V&ÆRÖ6âÖÆgFærÖÆgBÖf6R×FRÖf÷"×w&æ¶ÆW2Öf6RöæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒöÆ²ÓbÖâÓÖæ÷W&6ær×6Æ6öæRÖÖ÷WF×FRÒÒ×fFÖâÖÆöRÖ6÷ÒÖ6öÆÆvVâÖægW6VBÂÆ²ÓbÖâÓÖæ÷W&6ær×6Æ6öæRÖÖ÷WF×FRÒÒ×fFÖâÖÆöRÖ6÷ÒÖ6öÆÆvVâÖægW6VBöæFWæFÖÂ ¢&GG3¢ò÷wwræÆ·FRæ6öÒ÷&öGV7BÖÆ²Ö7W7FöÖ¦VBÖÆ×6RÖöÆÆW&vVæ2ÖG&övVÂÖÖ÷WF×6ÆVW×FR×6ögBÖFW6fRÖ'&VFær×7F÷×6æ÷&ærÖÖö7GW&¦ær×F6W2Â&öGV7BÖÆ²Ö7W7FöÖ¦VBÖÆ×6RÖöÆÆW&vVæ2ÖG&övVÂÖÖ÷WF×6ÆVW×FR×6ögBÖFW6fRÖ'&VFær×7F÷×6æ÷&ærÖÖö7GW&¦æuÁÑ¡Ì½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½ÁÉ½ÕÐµ¡±¬µµ¹Ñ¥µ¹½ÍµÍÑÉ¥ÀµÉÑ¡µ½½ÍÐµ½áå¸µÉÕµÍ¹½É¥¹µ¥µÁÉ½ÙµÍ±ÀµÅÕ±¥ÑäµÍÝÐµÉÍ¥ÍÑ¹Ðµµ¹Ñ¥µ¹Í°µÍÑÉ¥ÁÌðÁÉ½ÕÐµ¡±¬µµ¹Ñ¥µ¹½ÍµÍÑÉ¥ÀµÉÑ¡µ½½ÍÐµ½áå¸µÉÕµÍ¹½É¥¹µ¥µÁÉ½ÙµÍ±ÀµÅÕ±¥ÑäµÍÝÐµÉÍ¥ÍÑ¹Ðµµ¹Ñ¥µ¹Í°µÍÑÉ¥ÁÌ½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½¸µÁÉµÍ±ÌµÁ½ÝÈµÉ½ÝÑ µ½Èµ¥°µÑÁµÉ¹Ìð¸µÁÉµÍ±ÌµÁ½ÝÈµÉ½ÝÑ µ½Èµ¥°µÑÁµÉ¹Ì½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½½´µ¹½ÍµÍÑÉ¥ÁÌµÁÉ½ÕÉµ¹ÐµÉ¥Í¬µ½¹ÑÉ½°µÕ¥´°ð½´µ¹½ÍµÍÑÉ¥ÁÌµÁÉ½ÕÉµ¹ÐµÉ¥Í¬µ½¹ÑÉ½°µÕ¥´½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½Ý¡äµÍÑÉÑ¥µµÑÉ¥°µ½µ¥¹Ñ¥½¸µ¥¸µ¥°µÁÑ¡ÌµµÑÑÉÌðÝ¡äµÍÑÉÑ¥µµÑÉ¥°µ½µ¥¹Ñ¥½¸µ¥¸µ¥°µÁÑ¡ÌµµÑÑÉÌ½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½¡½ÜµÑ¼µ¡½½ÍµÑ¡µÉ¥¡Ðµµ½ÕÑ µÑÁµÍÕÁÁ±¥Èµ½Èµå½ÕÈµÕÍ¥¹ÍÌÐÈÀð¡½ÜµÑ¼µ¡½½ÍµÑ¡µÉ¥¡Ðµµ½ÕÑ µÑÁµÍÕÁÁ±¥Èµ½Èµå½ÕÈµÕÍ¥¹ÍÌÐÈÀ½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½ÍÑµÁµ¹½ÍµÍÑÉ¥ÁÌµ¡½ÜµÍµ±°µÁÉ¥¹ÑÌµ½µµÍ½¥°µÕÉÉ¹äµ½Èµå½ÕÑ¡Õ°µÉ¹ÌðÍÑµÁµ¹½ÍµÍÑÉ¥ÁÌµ¡½ÜµÍµ±°µÁÉ¥¹ÑÌµ½µµÍ½¥°µÕÉÉ¹äµ½Èµå½ÕÑ¡Õ°µÉ¹Ì½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½Éµ¹Í°µÍÑÉ¥ÁÌµÍÕ¥Ñ±µ½ÈµÑ¡µÉ½ÍÌµ½ÉÈµµ½µµÉµµÉ­ÐðÉµ¹Í°µÍÑÉ¥ÁÌµÍÕ¥Ñ±µ½ÈµÑ¡µÉ½ÍÌµ½ÉÈµµ½µµÉµµÉ­Ð½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½¥¹Ù¹Ñ½ÉäµÁ±¹¹¥¹µ½ÈµÍÑ¹Éµ¹µÁÉµ¥Õ´µ¹Í°µÍÑÉ¥ÁÌð¥¹Ù¹Ñ½ÉäµÁ±¹¹¥¹µ½ÈµÍÑ¹Éµ¹µÁÉµ¥Õ´µ¹Í°µÍÑÉ¥ÁÌ½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½¹Í°µÍÑÉ¥ÀµµÑÉ¥°µÕ¥µ¹½¸µÝ½Ù¸µÉ¥µÁ´µÍÑ¥¸ð¹Í°µÍÑÉ¥ÀµµÑÉ¥°µÕ¥µ¹½¸µÝ½Ù¸µÉ¥µÁ´µÍÑ¥¸½¥¹à¹¡Ñµ°(¡ÑÑÁÌè¼½ÝÝÜ¹¡±­ÑÁ¹½´½½µµ½¸µ¡±±¹Ìµ¥¸µµÑÁµÁÁ±¥Ñ¥½¹Ìµtechnical-and-after-sales-perspective | common-challenges-in-face-tape-applications-a-technical-and-after-sales-perspective/index.html"
+            "https://www.hlktape.com/the-engineering-behind-nasal-strip-manufacturing-from-material-science-to-high-speed-production | the-engineering-behind-nasal-strip-manufacturing-from-material-science-to-high-speed-production/index.html"
+            "https://www.hlktape.com/scented-nasal-strips-combining-better-breathing-with-aromatherapy-for-stress-relief | scented-nasal-strips-combining-better-breathing-with-aromatherapy-for-stress-relief/index.html"
+            "https://www.hlktape.com/mouth-tape-a-growing-innovation-in-sleep-and-personal-care | mouth-tape-a-growing-innovation-in-sleep-and-personal-care/index.html"
+          )
+
           for entry in "${urls[@]}"; do
             url=$(echo $entry | cut -d "|" -f 1 | xargs)
             path=$(echo $entry | cut -d "|" -f 2 | xargs)
