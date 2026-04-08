@@ -1,9 +1,7 @@
-name: Full Site Migration v9 - Final Form Fix
-
+name: Full Site Migration v10 - Ajax Form Integration
 
 on:
   workflow_dispatch:
-
 
 jobs:
   migrate:
@@ -14,8 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-
-      - name: Migrate, Localize and Fix UI
+      - name: Migrate, Localize and Fix
         run: |
           cat << 'EOF' > migrate.py
           import os, requests, re, json, time, hashlib
@@ -59,7 +56,7 @@ jobs:
               return url
 
           flag_sprite = download_asset("https://shopcdnpro.grainajz.com/tpl-common/common/images/flags.png", "images")
-          core_fonts = ["https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff2", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.ttf", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.woff2", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.woff", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.ttf"]
+          core_fonts = ["https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff2", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.ttf"]
           local_fonts = [download_asset(f, "fonts") for f in core_fonts]
 
           for url in urls:
@@ -67,25 +64,34 @@ jobs:
               path = parsed.path
               target = "index.html" if not path or path == "/" else path.strip("/") + "/index.html"
               os.makedirs(os.path.dirname(target) if os.path.dirname(target) else ".", exist_ok=True)
+              
               print(f"Syncing: {url}")
               r = requests.get(url, headers=headers, timeout=30)
               html = r.text
               
-              # 1. UI Patch: Hide Search + Fix Flags Dropdown + Font-Face
+              # 1. UI 修正：移除 Search，修复国旗下拉，强制显示
               ui_patch = f'''
               <style>
-              .search-song.search-box-only {{ display: none !important; }}
-              .header-lang .lang-selector i {{ background-image: url("{flag_sprite}") !important; background-size: 240px auto !important; }}
+              .search-song.search-box-only, .search-box-only, .song-search-form {{ display: none !important; }}
+              .header-lang .lang-selector i {{ background-image: url("{flag_sprite}") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }}
               .header-lang .lang-selector:hover .lang-box {{ display: block !important; opacity: 1 !important; visibility: visible !important; }}
-              .lang-selector .current-lang {{ cursor: pointer !important; padding: 10px !important; }}
-              @font-face {{ font-family: "qico"; src: url("{local_fonts[0]}") format("woff2"), url("{local_fonts[1]}") format("woff"), url("{local_fonts[2]}") format("truetype"); }}
-              @font-face {{ font-family: "iconfont"; src: url("{local_fonts[3]}") format("woff2"), url("{local_fonts[4]}") format("woff"), url("{local_fonts[5]}") format("truetype"); }}
+              .lang-selector .current-lang {{ cursor: pointer !important; }}
+              @font-face {{ font-family: "iconfont"; src: url("{local_fonts[0]}") format("woff2"), url("{local_fonts[1]}") format("woff"), url("{local_fonts[2]}") format("truetype"); }}
               .skiptranslate, .goog-te-banner-frame {{ display: none !important; }}
               </style>
               '''
               html = html.replace('</head>', ui_patch + '</head>')
               
-              # 2. Localize Assets
+              # 2. 字段名补全 (Formspree 必需)
+              for old, new in [('id="inquiry_email"', 'name="email" id="inquiry_email"'), 
+                               ('id="inquiry_name"', 'name="name" id="inquiry_name"'), 
+                               ('id="inquiry_message"', 'name="message" id="inquiry_message"'),
+                               ('id="inquiry_mobile"', 'name="phone" id="inquiry_mobile"'),
+                               ('id="inquiry_code"', 'name="country_code" id="inquiry_code"'),
+                               ('id="fileInput"', 'name="attachment" id="fileInput"')]:
+                  html = html.replace(old, new)
+              
+              # 3. 本地化资源
               for img in re.findall(r'src="([^"]*?\.(?:png|jpg|jpeg|gif|svg|webp)[^"]*?)"', html, re.I):
                   html = html.replace(f'src="{img}"', f'src="{download_asset(urljoin(url, img), "images")}"')
               for css in re.findall(r'href="([^"]*?\.css[^"]*?)"', html, re.I):
@@ -93,46 +99,38 @@ jobs:
               for js in re.findall(r'src="([^"]*?\.js[^"]*?)"', html, re.I):
                   html = html.replace(f'src="{js}"', f'src="{download_asset(urljoin(url, js), "js")}"')
 
-              # 3. Form & Dropdown Overhaul
-              html = html.replace('<select id="inquiry_code"', '<select name="country_code" id="inquiry_code"')
-              html = html.replace('<option class="bs-title-option" value=""></option>', '<option value="" disabled selected>Code</option>')
-              for old, new in [('id="inquiry_email"', 'name="email" id="inquiry_email"'), ('id="inquiry_name"', 'name="name" id="inquiry_name"'), ('id="inquiry_mobile"', 'name="phone" id="inquiry_mobile"'), ('id="inquiry_message"', 'name="message" id="inquiry_message"'), ('id="fileInput"', 'name="attachment" id="fileInput"')]:
-                  html = html.replace(old, new)
-              html = re.sub(r'<form([^>]*)action="[^"]*"', r'<form \1 action="https://formspree.io/f/maqlkzwa" method="POST"', html)
-              html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/maqlkzwa" method="POST"')
-
-              # 4. Global Link/Domain Clean
-              html = html.replace('https://www.hlktape.com/', '/')
-              
-              # 5. The "Aggressive Form Cleaner" Script
-              fix_js = """
+              # 4. 接入 Formspree AJAX SDK (根据您的文档指南)
+              ajax_fix = """
+              <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
               <script>
-              (function() {
-                  var cleanForms = function() {
-                      document.querySelectorAll("form").forEach(function(form) {
-                          if (form.getAttribute('data-cleaned') === 'true') return;
+              window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+              document.addEventListener("DOMContentLoaded", function() {
+                  setTimeout(function() {
+                      document.querySelectorAll("form").forEach(function(form, index) {
+                          form.id = "inquiry-form-" + index;
                           form.action = "https://formspree.io/f/maqlkzwa";
                           form.method = "POST";
-                          form.onsubmit = null;
+                          // 强制解除所有旧脚本的绑定
                           var newForm = form.cloneNode(true);
-                          newForm.setAttribute('data-cleaned', 'true');
                           form.parentNode.replaceChild(newForm, form);
+                          // 使用 Formspree AJAX 初始化
+                          formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
                       });
-                  };
-                  // Run multiple times to beat late-loading scripts
-                  cleanForms(); 
-                  setTimeout(cleanForms, 500); 
-                  setTimeout(cleanForms, 2000);
-                  setTimeout(cleanForms, 5000);
-              })();
+                  }, 2000);
+              });
               </script>
               """
-              html = html.replace('</body>', fix_js + '</body>')
+              html = html.replace('</body>', ajax_fix + '</body>')
+              html = html.replace('https://www.hlktape.com/', '/')
+              
               with open(target, "w", encoding="utf-8") as f: f.write(html)
           EOF
           python3 migrate.py
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "Migration Bot"
+          git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Full Site Migration v9 - Form Overhaul" || echo "No changes to commit"
+          git commit -m "Ajax form integration, search removed, language flags fixed v10" || echo "No changes"
           git push
