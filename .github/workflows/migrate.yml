@@ -74,27 +74,27 @@ jobs:
             "https://www.hlktape.com/scented-nasal-strips-combining-better-breathing-with-aromatherapy-for-stress-relief | scented-nasal-strips-combining-better-breathing-with-aromatherapy-for-stress-relief/index.html"
             "https://www.hlktape.com/mouth-tape-a-growing-innovation-in-sleep-and-personal-care | mouth-tape-a-growing-innovation-in-sleep-and-personal-care/index.html"
           )
-          for entry in \"${urls[@]}\"; do
-            url=$(echo $entry | cut -d \"|\" -f 1 | xargs)
-            path=$(echo $entry | cut -d \"|\" -f 2 | xargs)
-            echo \"Downloading $url to $path...\"
-            mkdir -p $(dirname \"$path\")
-            curl -L \"$url\" -o \"$path\"
-            sed -i \"s|https://www.hlktape.com/|/|g\" \"$path\"
-            python3 -c \"
+          for entry in "${urls[@]}"; do
+            url=$(echo $entry | cut -d "|" -f 1 | xargs)
+            path=$(echo $entry | cut -d "|" -f 2 | xargs)
+            echo "Downloading $url to $path..."
+            mkdir -p $(dirname "$path")
+            curl -L "$url" -o "$path"
+            sed -i "s|https://www.hlktape.com/|/|g" "$path"
+            python3 -c "
           import sys, re
           path = sys.argv[1]
           with open(path, 'r', encoding='utf-8') as f:
               content = f.read()
-          content = re.sub(r'<form\\s+([^>]*)action=\\\"[^\\\"]*\\\"', r'<form \\1 action=\\\"https://formspree.io/f/mjvndzoy\\\" method=\\\"POST\\\"', content)
+          content = re.sub(r'<form\\s+([^>]*)action=\\"[^\\"]*\\"', r'<form \\1 action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"', content)
           with open(path, 'w', encoding='utf-8') as f:
               f.write(content)
-          \" \"$path\"
+          " "$path"
           done
       - name: Commit and Push
         run: |
-          git config --global user.name \"Migration Bot\"
-          git config --global user.email \"bot@hlktape.com\"
+          git config --global user.name "Migration Bot"
+          git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m \"Fix inquiry forms\" || echo \"No changes to commit\"
+          git commit -m "Fix inquiry forms" || echo "No changes to commit"
           git push
