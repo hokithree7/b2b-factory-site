@@ -15,7 +15,7 @@ jobs:
       - name: Migrate and Clean Pages
         run: |
           cat << 'EOF' > migrate.py
-          import os, requests, re, json
+          import os, requests, re, json, time
           from urllib.parse import urlparse
 
           urls = [
@@ -80,6 +80,7 @@ jobs:
               os.makedirs(os.path.dirname(target) if os.path.dirname(target) else '.', exist_ok=True)
               
               print(f'Fetching {url}...')
+              time.sleep(1)
               try:
                   r = requests.get(url, headers=headers, timeout=30)
                   html = r.text
@@ -88,15 +89,24 @@ jobs:
                   html = re.sub(r'<link[^>]*lang_selector2_[^>]*>', '', html)
                   html = re.sub(r'<div[^>]*lang-selector[^>]*>.*?</div>', '', html, flags=re.DOTALL)
                   
-                  # 2. Redirect all forms to Formspree + Inject name attributes
-                  html = re.sub(r'<form\\s+([^>]*)action=\\"[^\\"]*\\"', r'<form \\1 action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"', html)
-                  html = html.replace('action=\\"javaScript:void(0)\\"', 'action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"')
+                  # 2. Form Fixes (More precise)
+                  # Set form action and method
+                  html = re.sub(r'<form\s+([^>]*)action=\"[^\"]*\"', r'<form \1 action=\"https://formspree.io/f/mjvndzoy\" method=\"POST\"', html)
+                  html = html.replace('action=\"javaScript:void(0)\"', 'action=\"https://formspree.io/f/mjvndzoy\" method=\"POST\"')
                   
-                  # Fix File Input name
-                  html = html.replace('id=\\"fileInput\\"', 'id=\\"fileInput\\" name=\\"attachment\\"')
-                  
-                  # 3. Fix Social Links (YouTube)
-                  html = html.replace('www.youtube.com/@HLKTape', 'https://www.youtube.com/@HLKTape')
+                  # Ensure the file input itself has name=\"attachment\"
+                  # Replace any input type=\"file\" that doesn't have a name
+                  html = re.sub(r'<input\s+([^>]*)type=\"file\"(?! [^>]*name=)', r'<input \1 type=\"file\" name=\"attachment\"', html)
+                  # If it already has an empty name, fix it
+                  html = html.replace('name=\"\" type=\"file\"', 'name=\"attachment\" type=\"file\"')
+                  html = html.replace('type=\"file\" name=\"\"', 'type=\"file\" name=\"attachment\"')
+
+                  # 3. YouTube Link Fix (Avoid double https://)
+                  # First remove all protocols, then add the correct one
+                  html = html.replace('https://https://', 'https://')
+                  html = html.replace('http://https://', 'https://')
+                  html = html.replace('\"www.youtube.com/@HLKTape\"', '\"https://www.youtube.com/@HLKTape\"')
+                  html = html.replace('\"https://www.youtube.com/@HLKTape\"', '\"https://www.youtube.com/@HLKTape\"') # Noop for sanity
                   
                   # 4. Clean up internal absolute links
                   html = html.replace('https://www.hlktape.com/', '/')
