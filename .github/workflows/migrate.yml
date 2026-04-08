@@ -14,7 +14,7 @@ jobs:
 
       - name: Migrate and Clean Pages
         run: |
-          python3 -c "
+          cat << 'EOF' > migrate.py
           import os, requests, re, json
           from urllib.parse import urlparse
 
@@ -80,49 +80,53 @@ jobs:
               os.makedirs(os.path.dirname(target) if os.path.dirname(target) else '.', exist_ok=True)
               
               print(f'Fetching {url}...')
-              r = requests.get(url, headers=headers)
-              html = r.text
-              
-              # 1. Neutralize Xiaoman popup and hijackers
-              html = re.sub(r'<link[^>]*lang_selector2_[^>]*>', '', html)
-              html = re.sub(r'<div[^>]*lang-selector[^>]*>.*?</div>', '', html, flags=re.DOTALL)
-              
-              # 2. Redirect all forms to Formspree + Inject name attributes
-              html = re.sub(r'<form\\s+([^>]*)action=\\"[^\\"]*\\"', r'<form \\1 action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"', html)
-              html = html.replace('action=\\"javaScript:void(0)\\"', 'action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"')
-              
-              # Fix File Input name
-              html = html.replace('id=\\"fileInput\\"', 'id=\\"fileInput\\" name=\\"attachment\\"')
-              
-              # 3. Fix Social Links (YouTube)
-              html = html.replace('www.youtube.com/@HLKTape', 'https://www.youtube.com/@HLKTape')
-              
-              # 4. Clean up internal absolute links
-              html = html.replace('https://www.hlktape.com/', '/')
-              
-              # 5. Inject JS Hijack Fixer
-              fix_script = """
-              <script>
-              document.addEventListener(\"DOMContentLoaded\", function() {
-                  setTimeout(function() {
-                      document.querySelectorAll(\"form\").forEach(function(form) {
-                          var newForm = form.cloneNode(true);
-                          form.parentNode.replaceChild(newForm, form);
-                      });
-                  }, 1500);
-              });
-              </script>
-              """
-              html = html.replace('</body>', fix_script + '</body>')
-              
-              with open(target, 'w', encoding='utf-8') as f:
-                  f.write(html)
-          "
+              try:
+                  r = requests.get(url, headers=headers, timeout=30)
+                  html = r.text
+                  
+                  # 1. Neutralize Xiaoman popup and hijackers
+                  html = re.sub(r'<link[^>]*lang_selector2_[^>]*>', '', html)
+                  html = re.sub(r'<div[^>]*lang-selector[^>]*>.*?</div>', '', html, flags=re.DOTALL)
+                  
+                  # 2. Redirect all forms to Formspree + Inject name attributes
+                  html = re.sub(r'<form\\s+([^>]*)action=\\"[^\\"]*\\"', r'<form \\1 action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"', html)
+                  html = html.replace('action=\\"javaScript:void(0)\\"', 'action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"')
+                  
+                  # Fix File Input name
+                  html = html.replace('id=\\"fileInput\\"', 'id=\\"fileInput\\" name=\\"attachment\\"')
+                  
+                  # 3. Fix Social Links (YouTube)
+                  html = html.replace('www.youtube.com/@HLKTape', 'https://www.youtube.com/@HLKTape')
+                  
+                  # 4. Clean up internal absolute links
+                  html = html.replace('https://www.hlktape.com/', '/')
+                  
+                  # 5. Inject JS Hijack Fixer
+                  fix_script = """
+                  <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                      setTimeout(function() {
+                          document.querySelectorAll("form").forEach(function(form) {
+                              var newForm = form.cloneNode(true);
+                              form.parentNode.replaceChild(newForm, form);
+                          });
+                      }, 1500);
+                  });
+                  </script>
+                  """
+                  html = html.replace('</body>', fix_script + '</body>')
+                  
+                  with open(target, 'w', encoding='utf-8') as f:
+                      f.write(html)
+              except Exception as e:
+                  print(f'Error processing {url}: {e}')
+          EOF
+          python3 migrate.py
 
       - name: Commit and Push
         run: |
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Comprehensive migration v2 with form fixes" || echo "No changes"
+          git commit -m "Comprehensive migration with heredoc" || echo "No changes to commit"
           git push
