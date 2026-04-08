@@ -476,7 +476,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
+  <style>.lang-selector.header-lang{display:inline-block !important;opacity:1 !important;pointer-events:auto !important;}.lang-selector img{width:24px !important;height:auto !important;object-fit:contain !important;}.lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -1144,7 +1144,7 @@ Skin type (oily, dry...</p>
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#c2b1a3aea7b1afa3aca3a5a7b082aaaea9b6a3b2a7eca1adaf" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#7201131e17011f131c13151700321a1e19061302175c111d1f" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1274,7 +1274,7 @@ Skin type (oily, dry...</p>
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#6c1f0d00091f010d020d0b091e2c040007180d1c09420f0301"><span class="__cf_email__" data-cfemail="3e4d5f525b4d535f505f595b4c7e5652554a5f4e5b105d5153">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#fa899b969f89979b949b9d9f88ba9296918e9b8a9fd4999597"><span class="__cf_email__" data-cfemail="ec9f8d80899f818d828d8b899eac848087988d9c89c28f8381">[email&#160;protected]</span></a>
       </p>
       <p>
         WhatsApp: <a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
@@ -1338,7 +1338,7 @@ Skin type (oily, dry...</p>
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1452,19 +1452,16 @@ Skin type (oily, dry...</p>
 <script src="/assets/js/d132806b2a3f16c05af7bc241b75d20b.js" defer></script>
 
     <script>
-    (function() {
-        var clean = function() {
-            document.querySelectorAll("form").forEach(function(f) {
-                if (f.action.indexOf("formspree") === -1) {
-                    f.action = "https://formspree.io/f/maqlkzwa";
-                    f.method = "POST";
-                    f.onsubmit = null; 
-                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll("form").forEach(function(form) {
+                form.action = "https://formspree.io/f/maqlkzwa";
+                form.method = "POST";
+                var newForm = form.cloneNode(true);
+                form.parentNode.replaceChild(newForm, form);
             });
-        };
-        setTimeout(clean, 500); setTimeout(clean, 2000);
-    })();
+        }, 1500);
+    });
     </script>
     </body>
 </html>

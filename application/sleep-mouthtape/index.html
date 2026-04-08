@@ -451,7 +451,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
+  <style>.lang-selector.header-lang{display:inline-block !important;opacity:1 !important;pointer-events:auto !important;}.lang-selector img{width:24px !important;height:auto !important;object-fit:contain !important;}.lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; }</style></head>
   <body>
       <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6D672RK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1145,7 +1145,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#deb9bbb1acb9bba9abf0b9b49eb9b3bfb7b2f0bdb1b3" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#6007050f12070517154e070a20070d01090c4e030f0d" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1275,7 +1275,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#dfb8bab0adb8baa8aaf1b8b59fb8b2beb6b3f1bcb0b2"><span class="__cf_email__" data-cfemail="385f5d574a5f5d4f4d165f52785f55595154165b5755">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#197e7c766b7e7c6e6c377e73597e74787075377a7674"><span class="__cf_email__" data-cfemail="90f7f5ffe2f7f5e7e5bef7fad0f7fdf1f9fcbef3fffd">[email&#160;protected]</span></a>
       </p>
       <p>
         Mobile: <a>+86-18876210077</a>
@@ -1339,7 +1339,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1451,19 +1451,16 @@
   
   
     <script>
-    (function() {
-        var clean = function() {
-            document.querySelectorAll("form").forEach(function(f) {
-                if (f.action.indexOf("formspree") === -1) {
-                    f.action = "https://formspree.io/f/maqlkzwa";
-                    f.method = "POST";
-                    f.onsubmit = null; 
-                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll("form").forEach(function(form) {
+                form.action = "https://formspree.io/f/maqlkzwa";
+                form.method = "POST";
+                var newForm = form.cloneNode(true);
+                form.parentNode.replaceChild(newForm, form);
             });
-        };
-        setTimeout(clean, 500); setTimeout(clean, 2000);
-    })();
+        }, 1500);
+    });
     </script>
     </body>
 </html>

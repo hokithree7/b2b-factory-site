@@ -480,7 +480,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
+  <style>.lang-selector.header-lang{display:inline-block !important;opacity:1 !important;pointer-events:auto !important;}.lang-selector img{width:24px !important;height:auto !important;object-fit:contain !important;}.lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -1674,7 +1674,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#82f1e3eee7f1efe3ece3e5e7f0c2eaeee9f6e3f2e7ace1edef" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#8efdefe2ebfde3efe0efe9ebfccee6e2e5faeffeeba0ede1e3" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1848,7 +1848,7 @@
       <p>Add: رقم 299 شارع Xingxian، منطقة Licheng، مدينة Quanzhou</p>
       <p>هاتف:<a href="tel:+86-19805957675">+86-19805957675</a>
       </p>
-      <p>البريد الإلكتروني:<a href="/cdn-cgi/l/email-protection#9ceffdf0f9eff1fdf2fdfbf9eedcf4f0f7e8fdecf9b2fff3f1"><span class="__cf_email__" data-cfemail="ee9d8f828b9d838f808f898b9cae8682859a8f9e8bc08d8183">[email&#160;protected]</span></a>
+      <p>البريد الإلكتروني:<a href="/cdn-cgi/l/email-protection#f182909d94829c909f90969483b1999d9a85908194df929e9c"><span class="__cf_email__" data-cfemail="0370626f66706e626d62646671436b6f68776273662d606c6e">[email&#160;protected]</span></a>
       </p>
       <p>واتساب:<a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
       </p>
@@ -1911,7 +1911,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>معلومات</h5>
       <p>اشترك لتلقي نشرتنا الإخبارية الأسبوعية</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="عنوان البريد الإلكتروني">
         </div>
@@ -2082,19 +2082,16 @@
 <script src="/assets/js/d132806b2a3f16c05af7bc241b75d20b.js" defer></script>
 
     <script>
-    (function() {
-        var clean = function() {
-            document.querySelectorAll("form").forEach(function(f) {
-                if (f.action.indexOf("formspree") === -1) {
-                    f.action = "https://formspree.io/f/maqlkzwa";
-                    f.method = "POST";
-                    f.onsubmit = null; 
-                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll("form").forEach(function(form) {
+                form.action = "https://formspree.io/f/maqlkzwa";
+                form.method = "POST";
+                var newForm = form.cloneNode(true);
+                form.parentNode.replaceChild(newForm, form);
             });
-        };
-        setTimeout(clean, 500); setTimeout(clean, 2000);
-    })();
+        }, 1500);
+    });
     </script>
     </body>
 </html>

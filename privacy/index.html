@@ -476,7 +476,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
+  <style>.lang-selector.header-lang{display:inline-block !important;opacity:1 !important;pointer-events:auto !important;}.lang-selector img{width:24px !important;height:auto !important;object-fit:contain !important;}.lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; }</style></head>
 
   <body class="home">
       <!-- Google Tag Manager (noscript) -->
@@ -867,7 +867,7 @@
 <h2 id="vQThm" style="font-size: 24px; line-height: 32px; margin: 21px 0px 5px;"><strong><span class="ne-text" style="color: #3d3d3d;">How you can reach us</span></strong></h2>
 <p id="ub9f2680c" class="ne-p" style="margin: 0px; padding: 0px; min-height: 24px;"><span class="ne-text" style="color: #3d3d3d;">If you would like to ask about, make a request relating to, or complain about how we process your personal information, please contact us, or email us at the address below.</span></p>
 <p class="ne-p" style="margin: 0px; padding: 0px; min-height: 24px;"><span class="ne-text" style="color: #3d3d3d;">Name:</span><span style="color: #3d3d3d;" class="ne-text">Quanzhou Honglinkai New Material Co., Ltd.</span></p>
-<p id="u7b28a0ff" class="ne-p" style="margin: 0px; padding: 0px; min-height: 24px;"><span class="ne-text" style="color: #3d3d3d;">Email address: <a href="/cdn-cgi/l/email-protection#3453515b46535143411a535e745359555d581a575b59" aria-label="email"><span class="__cf_email__" data-cfemail="88efede7faefedfffda6efe2c8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></a> </span></p>
+<p id="u7b28a0ff" class="ne-p" style="margin: 0px; padding: 0px; min-height: 24px;"><span class="ne-text" style="color: #3d3d3d;">Email address: <a href="/cdn-cgi/l/email-protection#9bfcfef4e9fcfeeceeb5fcf1dbfcf6faf2f7b5f8f4f6" aria-label="email"><span class="__cf_email__" data-cfemail="5136343e23363426247f363b11363c30383d7f323e3c">[email&#160;protected]</span></a> </span></p>
 </div></div>
           <!-- sectionEnd: privacy_1739339375613369 -->
         
@@ -888,7 +888,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#7201131e17011f131c13151700321a1e19061302175c111d1f"><span class="__cf_email__" data-cfemail="0e7d6f626b7d636f606f696b7c4e6662657a6f7e6b206d6163">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#6b180a070e18060a050a0c0e192b0307001f0a1b0e45080406"><span class="__cf_email__" data-cfemail="a2d1c3cec7d1cfc3ccc3c5c7d0e2cacec9d6c3d2c78cc1cdcf">[email&#160;protected]</span></a>
       </p>
       <p>
         WhatsApp: <a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
@@ -952,7 +952,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1064,19 +1064,16 @@
   
   
     <script>
-    (function() {
-        var clean = function() {
-            document.querySelectorAll("form").forEach(function(f) {
-                if (f.action.indexOf("formspree") === -1) {
-                    f.action = "https://formspree.io/f/maqlkzwa";
-                    f.method = "POST";
-                    f.onsubmit = null; 
-                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
-                }
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll("form").forEach(function(form) {
+                form.action = "https://formspree.io/f/maqlkzwa";
+                form.method = "POST";
+                var newForm = form.cloneNode(true);
+                form.parentNode.replaceChild(newForm, form);
             });
-        };
-        setTimeout(clean, 500); setTimeout(clean, 2000);
-    })();
+        }, 1500);
+    });
     </script>
     </body>
 </html>
