@@ -1,0 +1,250 @@
+/*#arshine2-banner .tit {*/
+/*  border: 1px solid var(--color-primary);*/
+/*  display: inline-block;*/
+/*  border-radius: 24px;*/
+/*  position: absolute;*/
+/*  top: calc(50% - 130px);*/
+/*  left: calc(50% - 90px);*/
+/*  background: var(--color-primary);*/
+/*  transition: all 0.3s ease 0s;*/
+/*}*/
+
+/*#arshine2-banner .tit a {*/
+/*  font-size: 18px;*/
+/*  color: #333;*/
+/*  line-height: 48px;*/
+/*  padding: 0 12px 0 24px;*/
+/*}*/
+
+/*#arshine2-banner .tit a i {*/
+/*  display: inline-block;*/
+/*  width: 28px;*/
+/*  height: 28px;*/
+/*  line-height: 28px;*/
+/*  background: var(--color-primary);*/
+/*  border-radius: 50%;*/
+/*  text-align: center;*/
+/*  color: #fff;*/
+/*  margin-left: 15px;*/
+/*}*/
+
+/*#arshine2-banner .tit:hover {*/
+/*  background: var(--color-primary);*/
+/*}*/
+
+/*#arshine2-banner .tit:hover a {*/
+/*  color: var(--bg-color);*/
+/*}*/
+
+/*#arshine2-banner .tit:hover a i {*/
+/*  color: var(--color-primary);*/
+/*  background: var(--bg-color);*/
+/*}*/
+
+#arshine2-banner a {
+  position: relative;
+  display: block;
+  width: 100%;
+  /*aspect-ratio: 3 / 1;*/
+}
+
+#arshine2-banner a img {
+  width: 100%;
+  object-fit: cover;
+  /*aspect-ratio: 3 / 1;*/
+}
+
+#arshine2-banner .swiper-slide {
+  position: relative;
+}
+
+#arshine2-banner .swiper-pagination {
+  bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#arshine2-banner .swiper-pagination-bullet {
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background: var(--bg-color);
+  border-radius: 50%;
+  opacity: 1;
+  position: relative;
+}
+
+#arshine2-banner .swiper-pagination-bullet-active {
+  width: 14px;
+  height: 14px;
+  border: 4px solid var(--color-primary);
+  background: var(--bg-color);
+}
+
+#arshine2-banner .txt {
+  position: absolute;
+  left: 20%;
+  top: 0;
+  width: 50%;
+}
+
+#arshine2-banner .txt h2 {
+  font-size: 38px;
+  padding: 30px 0 0;
+  color: var(--color-primary);
+}
+
+#arshine2-banner .txt p {
+  font-size: 24px;
+}
+
+#arshine2-banner .txt p.desc {
+  font-size: 16px;
+  width: 40%;
+}
+
+#arshine2-banner .txt h3 {
+  font-size: 32px;
+  padding: 30px 0 0;
+  background-image: linear-gradient(to bottom, #ec428c, #32d1d3);
+  color: var(--color-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#arshine2-banner .txt .pics {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+#arshine2-banner .txt .pics img {
+  width: 60px;
+}
+
+#arshine2-banner .more-button {
+  margin-top: 30px;
+  width: 120px;
+  height: 40px;
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+
+@media screen and (max-width:1440px) {
+  #arshine2-banner .txt h2 {
+  }
+
+  #arshine2-banner .txt h3 {
+    font-size: 28px;
+    padding: 30px 0 0;
+  }
+  
+  #arshine2-banner .txt p {
+    font-size: 18px;
+  }
+  #arshine2-banner .txt .pics {
+    margin-top: 20px;
+  }
+  
+  #arshine2-banner .more-button {
+     margin-top: 20px;
+  }
+  #arshine2-banner .txt p.desc {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width:992px) {
+  #arshine2-banner .txt h2 {
+    font-size: 32px;
+  }
+
+  #arshine2-banner .txt h3 {
+    font-size: 22px;
+    padding: 20px 0 0;
+  }
+  
+  #arshine2-banner .txt p {
+    font-size: 16px;
+  }
+  #arshine2-banner .txt .pics {
+    margin-top: 14px;
+  }
+  #arshine2-banner .txt .pics img {
+    width: 40px;
+  }
+  #arshine2-banner .more-button {
+     margin-top: 24px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  #arshine2-banner .txt h2 {
+    font-size: 22px;
+    padding: 28px 0 0;
+  }
+
+  #arshine2-banner .txt h3 {
+    font-size: 18px;
+    padding: 20px 0 0;
+  }
+  
+  #arshine2-banner .txt p {
+    font-size: 14px;
+    display: none;
+  }
+  #arshine2-banner .txt .pics {
+    margin-top: 8px;
+  }
+  #arshine2-banner .txt .pics img {
+    width: 30px;
+  }
+  #arshine2-banner .more-button {
+    margin-top: 8px;
+    width: 120px;
+    height: 22px;
+    line-height: 22px;
+  }
+  #arshine2-banner .txt p.desc {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width:400px) {
+  #arshine2-banner .txt h2 {
+    font-size: 16px;
+    padding: 10px 0 4px;
+  }
+
+  #arshine2-banner .txt h3 {
+    font-size: 14px;
+    padding: 8px 0 4px;
+  }
+  
+  #arshine2-banner .txt p {
+    font-size: 12px;
+  }
+  #arshine2-banner .txt .pics {
+    margin-top: 6px;
+  }
+  #arshine2-banner .txt .pics img {
+    width: 18px;
+  }
+  #arshine2-banner .more-button {
+    margin-top: 6px;
+    width: 120px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+  }
+   #arshine2-banner .more-button i {
+   line-height: 16px;
+    font-size: 12px;
+   }
+}

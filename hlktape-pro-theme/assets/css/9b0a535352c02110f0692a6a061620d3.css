@@ -1,0 +1,94 @@
+.indexB-arshine {
+  background: #fff;
+  padding: 50px 0;
+}
+
+.indexB-arshine ul {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.indexB-arshine ul li {
+  text-align: center;
+}
+
+.indexB-arshine ul li h5 {
+  color: var(--color-primary);
+  font-size: 60px;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+}
+
+
+.indexB-arshine ul li h5::after {
+  content: attr(date-txt);
+  position: absolute;
+  right: -15px;
+  top: 5px;
+  color: var(--color-primary);
+  font-size: 25px;
+}
+
+.indexB-arshine ul li h5::after {
+  right: -45px;
+}
+
+.indexB-arshine ul li p {
+  font-size: 24px;
+  color: #333;
+  line-height: 24px;
+  margin: 5px 0 0;
+}
+
+@media screen and (max-width: 1441px) {
+  .indexB-arshine ul li h5 {
+    font-size: 50px;
+  }
+
+  .indexB-arshine ul li p {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .indexB-arshine {
+    padding: 15px 0;
+  }
+
+  .indexB-arshine ul li {
+    width: 50%;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .indexB-arshine ul li h5::after {
+    font-size: 18px;
+  }
+
+  .indexB-arshine ul li h5::after {
+    right: -20px;
+  }
+
+  .indexB-arshine ul li h5 {
+    font-size: 44px;
+  }
+
+  .indexB-arshine ul li p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .indexB-arshine ul li h5 {
+    font-size: 36px;
+  }
+
+  .indexB-arshine ul li h5 {
+    font-size: 40px;
+  }
+}

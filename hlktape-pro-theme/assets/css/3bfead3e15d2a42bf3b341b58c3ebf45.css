@@ -1,0 +1,209 @@
+.rightint-inquiry .inquirbox span {
+  color: #000;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.rightint-inquiry .inquirbox .row {
+  margin-bottom: 16px;
+}
+
+.rightint-inquiry .inquirbox .row > div {
+  margin-bottom: 16px;
+}
+
+.rightint-inquiry .inquirbox input[type="text"],
+.rightint-inquiry .inquirbox textarea {
+  padding: 10px 10px;
+  font-size: 16px;
+  border: 1px solid #d2d2cf;
+  width: 100%;
+  line-height: 22px;
+  text-align: left;
+  color: #666;
+  box-sizing: border-box;
+}
+
+.rightint-inquiry .inquirbox textarea {
+  max-width: 100%;
+  width: 100%;
+  resize: none;
+}
+
+.rightint-inquiry .inquirbox .red {
+  color: #f00;
+  font-weight: bold;
+}
+
+.rightint-inquiry .inquirbox .yzm {
+  width: 70%;
+  margin-right: 10px;
+}
+
+.rightint-inquiry .inquirbox img {
+  cursor: pointer;
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.rightint-inquiry .inquirbox .submit {
+  margin: 0 auto;
+  width: 150px;
+  line-height: 42px;
+  background: var(--color-primary);
+  border-radius: var(--button-radius);
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.rightint-inquiry .inquirbox .submit:hover {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background: none;
+}
+
+.rightint-inquiry {
+  padding: 60px 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  background: #f4f4f4;
+}
+.rightint-inquiry .pic {
+  width: 45.26%;
+}
+.rightint-inquiry .pic .pic-text{
+  padding: 20px;
+}
+.rightint-inquiry .pic .pic-text a{
+    color: var(--color-primary);
+    font-weight: 600;
+}
+.rightint-inquiry .right {
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 0 110px;
+}
+.rightint-inquiry .right .inqury_title_box {
+    padding: 0 20px;
+}
+.rightint-inquiry .right .inqury_title_text{
+  margin-bottom: 0!important;
+}
+.rightint-inquiry .right .inqury-form .input-wrap{
+      padding: 12px 10px 0px 10px;
+}
+.rightint-inquiry h5 {
+  font-size: 48px;
+  color: #030303;
+  line-height: 1;
+  font-weight: 600;
+}
+.rightint-inquiry p {
+  font-size: 18px;
+  color: #000;
+  font-weight: 300;
+  margin: 20px 0 0;
+}
+
+.rightint-inquiry .inquirbox {
+  margin: 40px 0 0;
+}
+.rightint-inquiry .inquirbox input[type="text"],
+.rightint-inquiry .inquirbox textarea {
+  padding: 10px 0;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid #d2d2cf;
+  width: 100%;
+  line-height: 22px;
+  text-align: left;
+  color: #666;
+}
+.rightint-inquiry .inquirbox .submit {
+  margin: 0 auto 0 0;
+  width: 250px;
+  height: 50px;
+}
+
+@media screen and (max-width: 1441px) {
+  .rightint-inquiry h5 {
+    font-size: 44px;
+  }
+
+  .rightint-inquiry .right {
+    padding: 0 40px;
+  }
+  .rightint-inquiry .inquirbox {
+    margin: 30px 0 0;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .rightint-inquiry h5 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1281px) {
+  .rightint-inquiry h5 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .rightint-inquiry h5 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .rightint-inquiry h5 {
+    font-size: 28px;
+  }
+
+  .rightint-inquiry {
+    display: block;
+  }
+  .rightint-inquiry .pic {
+    width: 100%;
+  }
+  .rightint-inquiry .right {
+    padding: 15px;
+  }
+  .rightint-inquiry h5 {
+    text-align: center;
+  }
+  .rightint-inquiry p {
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0 0;
+  }
+  .rightint-inquiry .inquirbox {
+    margin: 20px 0 0;
+  }
+  .rightint-inquiry .inquirbox .submit {
+    margin: 0 auto;
+    width: 180px;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .rightint-inquiry h5 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .rightint-inquiry h5 {
+    font-size: 22px;
+  }
+}

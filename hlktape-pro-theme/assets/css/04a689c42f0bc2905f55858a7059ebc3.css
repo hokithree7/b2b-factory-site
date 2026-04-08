@@ -1,0 +1,202 @@
+.witr_section_title_inner h1,
+.witr_section_title_inner h2,
+.witr_section_title_inner h3 {
+  font-size: 30px;
+  margin: auto;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.witr_section_title_inner h2 {
+  color: #888;
+  font-size: 18px;
+  margin: 0;
+  display: inline-block;
+}
+.witr_section_title_inner h1 span,
+.witr_section_title_inner h2 span,
+.witr_section_title_inner h3 span,
+.witr_section_title_inner p span,
+.witr_section_title_inner p span a {
+  color: var(--color-primary);
+}
+
+.witr_section_title {
+  margin-bottom: 45px;
+}
+.witr_section_title_inner p {
+  width: 100%;
+  padding: 10px 0 0 0;
+}
+.witr_section_title_inner.text-center p {
+  width: 66%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.witr_btn {
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  margin-right: 15px;
+  z-index: 2;
+  transition: 1s;
+  padding: 16px 40px;
+  color: #fff;
+  display: inline-block;
+  background: var(--color-primary);
+}
+.witr_btn:hover {
+  background: #555;
+  color: #fff;
+}
+
+/* ===== 4. About Area CSS ===== */
+.bt_about_area {
+  padding: 30px 0 30px 0;
+}
+.icon-list-item i {
+  color: var(--color-primary);
+  /* float: left; */
+  overflow: hidden;
+  /* margin-top: 5px; */
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: bottom;
+}
+.icon-list-icon + .icon-list-text {
+  align-self: center;
+  display: inherit;
+}
+.ab_cont_inner .witr_btn {
+  margin-top: 46px;
+}
+.ab_cont_inner {
+  margin-bottom: 20px;
+}
+.ab_cont_inner .witr_section_title {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .witr_section_title_inner.text-center p,
+  .witr_section_title_inner.text-left p,
+  .witr_section_title_inner.text-right p {
+    width: 87%;
+  }
+  .title_in_area {
+    width: 100%;
+  }
+
+  .witr_section_title_inner h1,
+  .witr_section_title_inner h3 {
+    font-size: 34px;
+  }
+
+  /* about area css */
+  .ab_witr_content {
+    margin: 0;
+  }
+  .ab_midd_cont {
+    padding: 0;
+  }
+  .ab_cont_inner .witr_btn {
+    margin-top: 40px;
+  }
+
+  /* single_image */
+  .single_image {
+    left: 0 !important;
+  }
+  .single_image img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ab_cont_inner .witr_btn {
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* section_title */
+  .witr_section_title_inner h1,
+  .witr_section_title_inner h3 {
+    font-size: 30px;
+  }
+  .witr_section_title_inner.text-center p,
+  .witr_section_title_inner.text-left p,
+  .witr_section_title_inner.text-right p {
+    width: 90%;
+  }
+  .title_in_area {
+    width: 100%;
+  }
+
+  .slider_btn .witr_btn {
+    margin-top: 20px;
+  }
+
+  /* single_image */
+  .single_image {
+    left: 0 !important;
+  }
+  .single_image img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .witr_button_area {
+    margin-top: 15px;
+  }
+  .ab_cont_inner .witr_btn {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bt_about_area {
+    padding:  0;
+  }
+  .witr_section_title_inner h2 {
+    font-size: 17px !important;
+    padding-top: 10px;
+  }
+  .witr_section_title_inner p {
+    padding-top: 10px;
+  }
+  .witr_section_title {
+    text-align: center;
+  }
+  .witr_section_title .text-right {
+    text-align: center !important;
+  }
+  .title_btn {
+    margin: 30px 0 20px;
+  }
+  .witr_section_title_inner h1,
+  .witr_section_title_inner h2,
+  .witr_section_title_inner h3 {
+    font-size: 21px;
+  }
+
+  .slider_btn .witr_btn {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  /* section_title */
+  .witr_section_title_inner h1,
+  .witr_section_title_inner h2,
+  .witr_section_title_inner h3 {
+    font-size: 25px;
+  }
+  .witr_section_title_inner.text-center p,
+  .witr_section_title_inner.text-left p,
+  .witr_section_title_inner.text-right p {
+    width: 91%;
+  }
+}

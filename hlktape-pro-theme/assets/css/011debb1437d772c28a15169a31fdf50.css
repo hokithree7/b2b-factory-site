@@ -1,0 +1,289 @@
+:root {
+  --bobo-company-intro-p: 100px 0;
+  --bobo-company-intro-title-size: 30px;
+}
+
+.bobo_company_intro {
+  padding: var(--bobo-company-intro-p);
+}
+
+.bobo_company_intro .txt h2 {
+  font-size: var(--bobo-company-intro-title-size);
+  line-height: 1em;
+  margin-top: 0.3333em;
+  margin-bottom: 0.5em;
+}
+
+.bobo_company_intro .box .pic {
+  padding-left: 0;
+  padding-right: 26px;
+}
+
+.bobo_company_intro .box .pic-box {
+  position: relative;
+}
+
+.bobo_company_intro .box .pic img {
+  aspect-ratio: 668 / 408;
+  object-fit: contain;
+}
+
+.bobo_company_intro .pic .tips {
+  position: absolute;
+  background: #00000057 no-repeat right 23px center;
+  opacity: 0.8;
+  left: 0;
+  bottom: -30px;
+  width: 235px;
+  padding: 40px 23px 40px 30px;
+  text-align: left;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.bobo_company_intro .pic .tips em {
+  font-size: 20px;
+  color: #fff
+}
+
+.bobo_company_intro .pic .tips span {
+  font-size: 76px;
+  color: #fff;
+  font-weight: 700;
+  display: block;
+  margin: 10px 0 0
+}
+
+.bobo_company_intro .pic .tips p {
+  font-size: 20px;
+  line-height: 36px;
+  color: #fff;
+  margin: 4px 0 0
+}
+
+.bobo_company_intro .box .txt {
+  padding-left: 26px;
+  padding-right: 0;
+}
+
+.bobo_company_intro .txt em {
+  font-size: 16px;
+  color: var(--color-primary);
+  font-weight: 600
+}
+
+.bobo_company_intro .txt h3 {
+  margin: 17px 0 0;
+  font-size: 36px;
+  font-weight: 700
+}
+
+.bobo_company_intro .txt .t {
+  margin: 15px 0 0;
+  font-size: 18px;
+  word-wrap: break-word;
+}
+
+.bobo_company_intro .txt .t p {
+  line-height: 36px;
+}
+
+.bobo_company_intro .txt .t strong {
+  color: var(--color-primary);
+}
+
+.bobo_company_intro .txt .more {
+  margin: 25px auto 0 0;
+  width: 194px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  background: var(--color-primary);
+  border-radius: var(--button-radius);
+}
+
+/*.bobo_company_intro .txt .more:hover {*/
+/*  background: none;*/
+/*  color: var(--color-primary);*/
+/*  border: 1px solid var(--color-primary);*/
+/*}*/
+
+@media screen and (max-width: 1500px) {
+  :root {
+    --bobo-company-intro-p: 85px 0;
+    --bobo-company-intro-title-size: 32px;
+  }
+
+  .bobo_company_intro .box .pic {
+    padding-right: 22px;
+  }
+  .bobo_company_intro .box .txt {
+    padding-left: 22px;
+  }
+  .bobo_company_intro .txt .t {
+    font-size: 16px;
+    line-height: 1.6
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  :root {
+    --bobo-company-intro-p: 70px 0;
+    --bobo-company-intro-title-size: 28px;
+  }
+
+  .bobo_company_intro .box .pic {
+    padding-right: 18px;
+  }
+  .bobo_company_intro .box .txt {
+    padding-left: 18px;
+  }
+  .bobo_company_intro .txt h3 {
+    font-size: 32px;
+    margin: 15px 0 0;
+  }
+
+  .bobo_company_intro .pic .tips {
+    width: 215px;
+    padding: 35px 20px 35px 25px;
+  }
+
+  .bobo_company_intro .txt .t {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  :root {
+    --bobo-company-intro-p: 55px 0;
+    --bobo-company-intro-title-size: 24px;
+  }
+
+  .bobo_company_intro .box .txt {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  :root {
+    --bobo-company-intro-p: 70px 0;
+    --bobo-company-intro-title-size: 32px;
+  }
+  .bobo_company_intro .box .pic {
+    padding-right: 0;
+  }
+  .bobo_company_intro .box .pic img{
+    width: 100%;
+    height: auto;
+    max-height: unset;
+  }
+  .bobo_company_intro .box .txt {
+    padding-top: 20px;
+    padding-left: 0;
+    text-align: center;
+  }
+  .bobo_company_intro .txt .t {
+    margin-top: 10px;
+  }
+  .bobo_company_intro .box .txt p {
+    text-align: left;
+  }
+  .bobo_company_intro .box .txt h2 {
+    margin-top: 10px;
+  }
+  .bobo_company_intro .txt .more {
+    margin: 20px auto 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --bobo-company-intro-p: 55px 0;
+    --bobo-company-intro-title-size: 28px;
+  }
+  .bobo_company_intro .row {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .bobo_company_intro .box .txt {
+    padding-top: 0;
+  }
+  .bobo_company_intro .box .txt h2 {
+    margin-top: 10px;
+  }
+  .bobo_company_intro .txt .t p {
+    line-height: 1.8em;
+  }
+
+  .bobo_company_intro .box {
+    -webkit-flex-direction: column;
+    flex-direction: column
+  }
+
+  .bobo_company_intro .pic {
+    width: 100%;
+    text-align: center
+  }
+
+  .bobo_company_intro .pic .tips {
+    background-size: auto 135px;
+    background-position: right 18px center;
+    left: 0;
+    bottom: 0;
+    width: 180px;
+    padding: 20px 18px
+  }
+
+  .bobo_company_intro .pic .tips em {
+    font-size: 17px
+  }
+
+  .bobo_company_intro .pic .tips span {
+    font-size: 50px
+  }
+
+  .bobo_company_intro .pic .tips p {
+    font-size: 17px;
+    line-height: 30px
+  }
+
+  .bobo_company_intro .txt {
+    width: 100%;
+    margin: 25px 0 0;
+    text-align: center
+  }
+
+  .bobo_company_intro .txt em {
+    font-size: 14px
+  }
+
+  .bobo_company_intro .txt .t {
+    margin: 15px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left
+  }
+
+  .bobo_company_intro .txt .more {
+    margin: 20px auto 0;
+    width: 170px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 15px
+  }
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    --bobo-company-intro-p: 30px 0;
+    --bobo-company-intro-title-size: 24px;
+  }
+  .bobo_company_intro .txt h3 {
+    font-size: 24px
+  }
+}

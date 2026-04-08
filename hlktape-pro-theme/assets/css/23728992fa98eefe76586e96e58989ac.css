@@ -1,0 +1,119 @@
+.lang-selector {
+  display: inline-block;
+  position: relative;
+  width: 96px;
+}
+
+.lang-selector .current-lang {
+  line-height: 1;
+  height: 40px;
+  cursor: pointer;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 8px 9px;
+}
+
+.lang-selector .current-lang img {
+  height: 23px;
+  width: 30px;
+  object-fit: none;
+  border-radius: 3px;
+}
+
+.lang-selector .current-lang em {
+  margin: 0 5px;
+  font-size: 15px;
+  line-height: 1.1;
+  color: inherit;
+  text-transform: uppercase;
+  font-style: inherit;
+}
+
+.lang-selector .current-lang i {
+  font-size: 12px;
+  color: inherit;
+  line-height: 1;
+}
+
+.lang-selector .lang-box {
+  position: absolute;
+  right: 0;
+  top: 42px;
+  z-index: 1000;
+  width: 184px;
+  padding: 10px 0;
+  background: #fff;
+  transform: translate3d(0, 10px, 0);
+  -webkit-transform: translate3d(0, 10px, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease 0s;
+  box-shadow: 0 0 10px rgba(63, 62, 62, 0.2);
+  border-radius: 5px;
+}
+
+.lang-selector .lang-box::before {
+  content: '';
+  position: absolute;
+  right: 37px;
+  top: -8px;
+  overflow: hidden;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+  border-left: 8px solid transparent;
+  display: block;
+}
+
+.lang-selector ul {
+  text-align: left;
+  font-size: 0;
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.lang-selector ul li {
+  display: inline-block;
+  box-sizing: border-box;
+  width: calc(50% - 20px);
+  padding: 5px 0;
+  margin: 0 10px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.lang-selector ul li:last-child {
+  border: none;
+}
+
+.lang-selector ul li a {
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.lang-selector ul li a:hover {
+  color: var(--color-primary) !important;
+}
+
+.lang-selector ul li img {
+  height: 23px;
+  width: 30px;
+  object-fit: none;
+  vertical-align: middle;
+  margin-right: 6px;
+  border-radius: 3px;
+}
+
+.lang-selector:hover .lang-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}

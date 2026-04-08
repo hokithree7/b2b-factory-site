@@ -1,0 +1,297 @@
+.desy-about2 {
+  padding: 25px 0 70px 0;
+}
+
+.desy-about2 .box {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.desy-about2 .pic {
+  width: 58%;
+  display: block;
+  overflow: hidden;
+}
+
+.desy-about2 .v {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+.desy-about2 .v>img {
+  display: block;
+  /* width: 100%; */
+      margin: 0 auto;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+
+.desy-about2 .v:hover>img {
+  transform: scale(1.01);
+  -webkit-transform: scale(1.01);
+}
+
+.desy-about2 .v .play {
+  position: absolute;
+  z-index: 10;
+  left: calc(50% - 44px);
+  top: calc(50% - 44px);
+  width: 88px;
+  height: 88px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+.desy-about2 .v .play::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  animation: scale2 2s linear infinite;
+}
+
+.desy-about2 .v:hover::after {
+  opacity: 1;
+}
+
+.desy-about2 .pic p {
+  font-size: 24px;
+  color: #333;
+  margin: 90px 0 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.desy-about2 .pic p a {
+  text-decoration: underline;
+}
+
+.desy-about2 .txt {
+  -webkit-flex: 1;
+  flex: 1;
+  text-align: left;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.desy-about2 .txt h3 {
+  font-size: 32px;
+  color: var(--title-text-color);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.desy-about2 .txt p {
+  margin: 20px 24px 0 0;
+  font-size: 20px;
+  color: #666;
+  line-height: 40px;
+}
+
+.desy-about2 .txt .more {
+  margin: 50px auto 0;
+  color: #fff;
+  font-size: 15px;
+  width: 184px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 25px;
+  background: var(--color-primary);
+  display: inline-block;
+  text-align: center;
+}
+
+.desy-about2 .txt .more:hover {
+  background: var(--color-second);
+}
+
+.desy-about2 .list {
+  margin-top: -200px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+.desy-about2 .list .view {
+  width: 460px;
+  position: relative;
+}
+
+.desy-about2 .list .view .arrow-left,
+.desy-about2 .list .view .arrow-right {
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  width: 28px;
+  height: 50px;
+  z-index: 10;
+  text-align: center;
+}
+
+.desy-about2 .list .view .arrow-left {
+  left: 0;
+}
+
+.desy-about2 .list .view .arrow-right {
+  right: 0;
+}
+
+.desy-about2 .list .view .arrow-left i,
+.desy-about2 .list .view .arrow-right i {
+  color: #fff;
+  font-size: 15px;
+  line-height: 50px;
+}
+
+.desy-about2 .list .preview {
+  width: 58%;
+  overflow: hidden;
+}
+
+.desy-about2 .list .preview .swiper-slide {
+  cursor: pointer;
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.desy-about2 .list .preview .swiper-slide::after {
+  display: none;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.desy-about2 .list .preview .swiper-slide .pic {
+  position: relative;
+}
+
+.desy-about2 .list .preview .swiper-slide img {
+  width: 100%;
+}
+
+.desy-about2 .list .preview .swiper-slide.active-nav::after {
+  display: block;
+}
+
+@media screen and (max-width:1440px) {
+  .desy-about2 .txt h3 {
+    font-size: 24px;
+  }
+
+  .desy-about2 {
+    padding: 0;
+  }
+  
+  .desy-about2 .list {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  .desy-about2 .list {
+    margin-top: -120px;
+  }
+
+  .desy-about2 .list .view {
+    width: 400px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .desy-about2 .txt h3 {
+    font-size: 28px;
+  }
+
+  .desy-about2 {
+    padding: 0;
+  }
+
+  .desy-about2 .box {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .desy-about2 .pic {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .desy-about2 .txt {
+    padding: 0 10px 20px;
+  }
+
+  .desy-about2 .txt p {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .desy-about2 .txt .more {
+    margin: 20px auto 0;
+    font-size: 15px;
+    width: 140px;
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .desy-about2 .list {
+    width: 460px;
+    margin: 20px auto 0;
+    display: block;
+  }
+
+  .desy-about2 .list .view {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .desy-about2 .list .preview {
+    width: 100%;
+    margin: 20px 0 0;
+  }
+
+  .desy-about2 .v .play {
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .desy-about2 .txt h3 {
+    font-size: 25px;
+  }
+
+  .desy-about2 .list {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .desy-about2 .txt h3 {
+    font-size: 24px;
+  }
+}

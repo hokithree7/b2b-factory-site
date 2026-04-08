@@ -1,0 +1,66 @@
+.arshine-sidebanner {
+  position: relative;
+}
+
+.arshine-sidebanner h1,
+.arshine-sidebanner h2 {
+  font-size: 36px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+      color: var(--color-primary);
+      /* display: none; */
+}
+
+.arshine-sidebanner h3 {
+  font-size: 36px;
+  position: absolute;
+  top: 65%;
+  transform: translateY(-50%);
+      color: #000;
+}
+
+.arshine-sidebanner img {
+  width: 100%;
+}
+
+.arshine-path {
+  padding-top: 37px;
+}
+
+.arshine-path p {
+  color: #666;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.arshine-path p a {
+  color: #666;
+}
+@media screen and (max-width: 992px) {
+  .arshine-sidebanner h1,
+  .arshine-sidebanner h2 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .arshine-sidebanner h1,
+  .arshine-sidebanner h2 {
+    font-size: 28px;
+  }
+
+  .arshine-path p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-sidebanner h1,
+  .arshine-sidebanner h2 {
+    font-size: 24px;
+  }
+}
