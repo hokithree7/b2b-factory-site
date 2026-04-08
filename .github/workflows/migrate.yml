@@ -1,4 +1,4 @@
-name: Full Site Migration v16 - One-Click Demo Content
+name: Full Site Migration v17 - Reliable WP Porter
 
 on:
   workflow_dispatch:
@@ -12,93 +12,71 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate One-Click Demo XML
+      - name: Generate Split XML Files
         run: |
-          cat << 'EOF' > wp_demo_gen.py
-          import os, re, hashlib
-          from datetime import datetime
+          cat << 'EOF' > wp_split_gen.py
+          import os, re, datetime
 
-          # 配置
-          base_site_url = "https://b2b-factory-site-hlk.pages.dev" # 作为导入源
-          xml_file = "full_demo_content.xml"
+          def get_xml_item(title, content, ptype, pid, source_url=None):
+              date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
+              item = f"""
+              <item>
+                  <title><![CDATA[{title}]]></title>
+                  <link>http://localhost/?p={pid}</link>
+                  <pubDate>{date}</pubDate>
+                  <dc:creator><![CDATA[admin]]></dc:creator>
+                  <guid isPermaLink="false">http://localhost/?p={pid}</guid>
+                  <description></description>
+                  <content:encoded><![CDATA[{content}]]></content:encoded>
+                  <wp:post_id>{pid}</wp:post_id>
+                  <wp:post_type><![CDATA[{ptype}]]></wp:post_type>
+                  <wp:status><![CDATA[publish]]></wp:status>
+              """
+              if source_url:
+                  item += f"<wp:attachment_url><![CDATA[{source_url}]]></wp:attachment_url>\n"
+              item += "</item>"
+              return item
 
-          xml_header = f"""<?xml version="1.0" encoding="UTF-8" ?>
-          <rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
-          <channel>
-          <title>HLK Tape Full Demo</title>
-          <link>{base_site_url}</link>
-          <description>B2B Factory Site Demo Content</description>
-          <wp:wxr_version>1.2</wp:wxr_version>
-          """
-          xml_footer = "</channel></rss>"
+          base_site = "https://b2b-factory-site-hlk.pages.dev"
+          header = f'<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/"><channel><title>HLK Migration</title><wp:wxr_version>1.2</wp:wxr_version>'
+          footer = "</channel></rss>"
 
-          items = []
+          pages_items = []
+          media_items = []
+          id_counter = 5000
 
-          # 1. 扫描所有本地化后的资源 (图片、视频) 准备导入媒体库
-          media_map = {}
+          # 1. 扫描附件
           for root, dirs, files in os.walk("assets"):
               for file in files:
-                  if any(file.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.mp4']):
-                      rel_path = os.path.join(root, file).replace("\\", "/")
-                      source_url = f"{base_site_url}/{rel_path}"
-                      attachment_id = abs(hash(rel_path)) % 1000000
-                      
-                      media_item = f"""
-                      <item>
-                          <title><![CDATA[{file}]]></title>
-                          <wp:post_id>{attachment_id}</wp:post_id>
-                          <wp:post_type>attachment</wp:post_type>
-                          <wp:status>inherit</wp:status>
-                          <wp:attachment_url><![CDATA[{source_url}]]></wp:attachment_url>
-                      </item>"""
-                      items.append(media_item)
-                      media_map[rel_path] = attachment_id
+                  if any(file.endswith(ex) for ext in ['.jpg','.jpeg','.png','.gif','.webp','.mp4']):
+                      id_counter += 1
+                      rel = os.path.join(root, file).replace("\\", "/")
+                      media_items.append(get_xml_item(file, "", "attachment", id_counter, f"{base_site}/{rel}"))
 
-          # 2. 扫描所有 HTML 页面 (产品、文章)
+          # 2. 扫描页面内容
           for root, dirs, files in os.walk("."):
               for file in files:
                   if file == "index.html" and "assets" not in root and root != ".":
+                      id_counter += 1
                       path = root.strip("./")
-                      full_path = os.path.join(root, file)
-                      
-                      with open(full_path, "r", encoding="utf-8") as f:
+                      with open(os.path.join(root, file), "r", encoding="utf-8") as f:
                           html = f.read()
-                      
-                      # 提取 Title & Content
                       title = re.search(r"<title>(.*?)</title>", html)
                       title = title.group(1).replace(" | HLK Tape", "") if title else path
-                      
-                      # 提取主 Body (剥离 header/footer)
-                      body_content = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
-                      content = body_content.group(1) if body_content else html
-                      
-                      # 修正内容中的资源链接为 WordPress 相对路径或占位符
-                      # (WP 导入后会自动处理 attachment_url)
-                      
-                      post_type = "post" if "newsblog" in path else "page"
-                      
-                      post_item = f"""
-                      <item>
-                          <title><![CDATA[{title}]]></title>
-                          <pubDate>{datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate>
-                          <dc:creator>admin</dc:creator>
-                          <wp:post_type>{post_type}</wp:post_type>
-                          <wp:status>publish</wp:status>
-                          <content:encoded><![CDATA[{content}]]></content:encoded>
-                      </item>"""
-                      items.append(post_item)
+                      content = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
+                      content = content.group(1) if content else html
+                      ptype = "post" if "newsblog" in path else "page"
+                      pages_items.append(get_xml_item(title, content, ptype, id_counter))
 
-          with open(xml_file, "w", encoding="utf-8") as f:
-              f.write(xml_header + "\n".join(items) + xml_footer)
-
-          print(f"Successfully generated {xml_file}")
+          with open("hlk_pages.xml", "w", encoding="utf-8") as f: f.write(header + "\n".join(pages_items) + footer)
+          with open("hlk_media.xml", "w", encoding="utf-8") as f: f.write(header + "\n".join(media_items) + footer)
           EOF
-          python3 wp_demo_gen.py
+          python3 wp_split_gen.py
 
       - name: Commit and Push
         run: |
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
-          git add full_demo_content.xml
-          git commit -m "Generate Full Demo Content XML v16" || echo "No changes"
+          git add hlk_pages.xml hlk_media.xml
+          git commit -m "Generate Split XML for Reliable Import v17" || echo "No changes"
           git push
