@@ -38,7 +38,7 @@ jobs:
               return item
 
           base_site = "https://b2b-factory-site-hlk.pages.dev"
-          header = f'<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/"><channel><title>HLK Migration</title><wp:wxr_version>1.2</wp:wxr_version>'
+          header = '<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/"><channel><title>HLK Migration</title><wp:wxr_version>1.2</wp:wxr_version>'
           footer = "</channel></rss>"
 
           pages_items = []
@@ -48,7 +48,7 @@ jobs:
           # 1. 扫描附件
           for root, dirs, files in os.walk("assets"):
               for file in files:
-                  if any(file.endswith(ex) for ext in ['.jpg','.jpeg','.png','.gif','.webp','.mp4']):
+                  if any(file.lower().endswith(ext) for ext in ['.jpg','.jpeg','.png','.gif','.webp','.mp4']):
                       id_counter += 1
                       rel = os.path.join(root, file).replace("\\", "/")
                       media_items.append(get_xml_item(file, "", "attachment", id_counter, f"{base_site}/{rel}"))
@@ -61,10 +61,10 @@ jobs:
                       path = root.strip("./")
                       with open(os.path.join(root, file), "r", encoding="utf-8") as f:
                           html = f.read()
-                      title = re.search(r"<title>(.*?)</title>", html)
-                      title = title.group(1).replace(" | HLK Tape", "") if title else path
-                      content = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
-                      content = content.group(1) if content else html
+                      title_match = re.search(r"<title>(.*?)</title>", html)
+                      title = title_match.group(1).replace(" | HLK Tape", "") if title_match else path
+                      content_match = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
+                      content = content_match.group(1) if content_match else html
                       ptype = "post" if "newsblog" in path else "page"
                       pages_items.append(get_xml_item(title, content, ptype, id_counter))
 
@@ -78,5 +78,5 @@ jobs:
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add hlk_pages.xml hlk_media.xml
-          git commit -m "Generate Split XML for Reliable Import v17" || echo "No changes"
+          git commit -m "Fix typo and generate Split XML v17" || echo "No changes"
           git push
