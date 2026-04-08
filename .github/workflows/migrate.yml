@@ -81,20 +81,13 @@ jobs:
             mkdir -p $(dirname "$path")
             curl -L "$url" -o "$path"
             sed -i "s|https://www.hlktape.com/|/|g" "$path"
-            python3 -c "
-          import sys, re
-          path = sys.argv[1]
-          with open(path, 'r', encoding='utf-8') as f:
-              content = f.read()
-          content = re.sub(r'<form\\s+([^>]*)action=\\"[^\\"]*\\"', r'<form \\1 action=\\"https://formspree.io/f/mjvndzoy\\" method=\\"POST\\"', content)
-          with open(path, 'w', encoding='utf-8') as f:
-              f.write(content)
-          " "$path"
+            # Update form actions
+            sed -i 's|<form [^>]*action="[^"]*"|<form action="https://formspree.io/f/mjvndzoy" method="POST"|g' "$path"
           done
       - name: Commit and Push
         run: |
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Fix inquiry forms" || echo "No changes to commit"
+          git commit -m "Update form actions to Formspree" || echo "No changes to commit"
           git push
