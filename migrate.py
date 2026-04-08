@@ -18,29 +18,40 @@ headers = {"User-Agent": "Mozilla/5.0"}
 asset_map = {}
 
 def download_asset(url, subfolder):
-    if not url or url.startswith('data:') or url.startswith('javascript:') or url.startswith('/assets/'): return url
+    if not url or any(x in url for x in ['data:', 'javascript:', 'base64']): return url
+    # Clean URL for mapping
     clean_url = url.split('?')[0].split('#')[0]
     if clean_url in asset_map: return asset_map[clean_url]
+    
     try:
         parsed = urlparse(url)
-        ext = os.path.splitext(parsed.path)[1].split('?')[0]
+        ext = os.path.splitext(parsed.path)[1]
         if not ext: ext = ".bin"
         filename = hashlib.md5(url.encode()).hexdigest() + ext
         local_dir = os.path.join("assets", subfolder)
         os.makedirs(local_dir, exist_ok=True)
         local_path = os.path.join(local_dir, filename)
-        r = requests.get(url, headers=headers, timeout=30)
+        
+        print(f"  Asset: {url}")
+        r = requests.get(url, headers=headers, timeout=20)
         if r.status_code == 200:
             with open(local_path, 'wb') as f: f.write(r.content)
+            # Return absolute path from root
             rel_path = f"/assets/{subfolder}/{filename}"
             asset_map[clean_url] = rel_path
             return rel_path
     except: pass
     return url
 
-flag_sprite = download_asset("https://shopcdnpro.grainajz.com/tpl-common/common/images/flags.png", "images")
-core_fonts = ["https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff2", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff", "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.ttf"]
-local_fonts = [download_asset(f, "fonts") for f in core_fonts]
+def process_css(css_content, base_url):
+    # Find all url() in CSS and localize them
+    urls_in_css = re.findall(r'url\s*\(\s*[\'"]?([^\'"\)]+)[\'"]?\s*\)', css_content)
+    for u in urls_in_css:
+        full_u = urljoin(base_url, u)
+        sub = "fonts" if any(x in u for x in ['.woff', '.ttf', '.eot', '.svg']) else "images"
+        local_u = download_asset(full_u, sub)
+        css_content = css_content.replace(u, local_u)
+    return css_content
 
 for url in urls:
     parsed = urlparse(url)
@@ -48,62 +59,56 @@ for url in urls:
     target = "index.html" if not path or path == "/" else path.strip("/") + "/index.html"
     os.makedirs(os.path.dirname(target) if os.path.dirname(target) else ".", exist_ok=True)
     
-    print(f"Syncing: {url}")
+    print(f"Processing Page: {url}")
     r = requests.get(url, headers=headers, timeout=30)
     html = r.text
     
-    # 1. UI 修正：移除 Search，修复国旗下拉，强制显示
-    ui_patch = f'''
-    <style>
-    .search-song.search-box-only, .search-box-only, .song-search-form {{ display: none !important; }}
-    .header-lang .lang-selector i {{ background-image: url("{flag_sprite}") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }}
-    .header-lang .lang-selector:hover .lang-box {{ display: block !important; opacity: 1 !important; visibility: visible !important; }}
-    .lang-selector .current-lang {{ cursor: pointer !important; }}
-    @font-face {{ font-family: "iconfont"; src: url("{local_fonts[0]}") format("woff2"), url("{local_fonts[1]}") format("woff"), url("{local_fonts[2]}") format("truetype"); }}
-    .skiptranslate, .goog-te-banner-frame {{ display: none !important; }}
-    </style>
-    '''
-    html = html.replace('</head>', ui_patch + '</head>')
-    
-    # 2. 字段名补全 (Formspree 必需)
-    for old, new in [('id="inquiry_email"', 'name="email" id="inquiry_email"'), 
-                     ('id="inquiry_name"', 'name="name" id="inquiry_name"'), 
-                     ('id="inquiry_message"', 'name="message" id="inquiry_message"'),
-                     ('id="inquiry_mobile"', 'name="phone" id="inquiry_mobile"'),
-                     ('id="inquiry_code"', 'name="country_code" id="inquiry_code"'),
-                     ('id="fileInput"', 'name="attachment" id="fileInput"')]:
-        html = html.replace(old, new)
-    
-    # 3. 本地化资源
+    # 1. Localize Images
     for img in re.findall(r'src="([^"]*?\.(?:png|jpg|jpeg|gif|svg|webp)[^"]*?)"', html, re.I):
         html = html.replace(f'src="{img}"', f'src="{download_asset(urljoin(url, img), "images")}"')
-    for css in re.findall(r'href="([^"]*?\.css[^"]*?)"', html, re.I):
-        html = html.replace(f'href="{css}"', f'href="{download_asset(urljoin(url, css), "css")}"')
+    
+    # 2. Localize & Process CSS
+    for css_url in re.findall(r'href="([^"]*?\.css[^"]*?)"', html, re.I):
+        full_css_url = urljoin(url, css_url)
+        # Special handling for CSS content
+        try:
+            css_r = requests.get(full_css_url, headers=headers, timeout=20)
+            if css_r.status_code == 200:
+                processed_css = process_css(css_r.text, full_css_url)
+                # Save processed CSS locally
+                ext = ".css"
+                filename = hashlib.md5(full_css_url.encode()).hexdigest() + ext
+                css_local_path = os.path.join("assets/css", filename)
+                os.makedirs("assets/css", exist_ok=True)
+                with open(css_local_path, 'w', encoding='utf-8') as f: f.write(processed_css)
+                html = html.replace(f'href="{css_url}"', f'href="/assets/css/{filename}"')
+        except: pass
+
+    # 3. Localize Scripts
     for js in re.findall(r'src="([^"]*?\.js[^"]*?)"', html, re.I):
         html = html.replace(f'src="{js}"', f'src="{download_asset(urljoin(url, js), "js")}"')
 
-    # 4. 接入 Formspree AJAX SDK (根据您的文档指南)
-    ajax_fix = """
+    # 4. Final Form & UI Fixes
+    ui_fix = '<style>.search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; } .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; } .lang-selector img { width: 24px !important; height: auto !important; }</style>'
+    html = html.replace('</head>', ui_fix + '</head>')
+    
+    # Formspree AJAX Injection
+    ajax_script = """
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
-            document.querySelectorAll("form").forEach(function(form, index) {
-                form.id = "inquiry-form-" + index;
-                form.action = "https://formspree.io/f/maqlkzwa";
-                form.method = "POST";
-                // 强制解除所有旧脚本的绑定
-                var newForm = form.cloneNode(true);
-                form.parentNode.replaceChild(newForm, form);
-                // 使用 Formspree AJAX 初始化
-                formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
+            document.querySelectorAll("form").forEach(function(form, i) {
+                form.id = "fs-form-" + i;
+                var nf = form.cloneNode(true); form.parentNode.replaceChild(nf, form);
+                formspree('initForm', { formElement: '#' + nf.id, formId: 'maqlkzwa' });
             });
-        }, 2000);
+        }, 1500);
     });
     </script>
     """
-    html = html.replace('</body>', ajax_fix + '</body>')
+    html = html.replace('</body>', ajax_script + '</body>')
     html = html.replace('https://www.hlktape.com/', '/')
     
     with open(target, "w", encoding="utf-8") as f: f.write(html)

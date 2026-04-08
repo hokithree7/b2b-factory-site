@@ -480,16 +480,7 @@
       
       </script>
     
-  
-    <style>
-    .search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; }
-    .header-lang .lang-selector i { background-image: url("/assets/images/55ec9ba593048fdad6f47cde3a907850.png") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }
-    .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; }
-    .lang-selector .current-lang { cursor: pointer !important; }
-    @font-face { font-family: "iconfont"; src: url("/assets/fonts/b0c902b045fdf3cbbd6d9a8784386987.woff2") format("woff2"), url("/assets/fonts/e49a63e035312df22f75222d44115a87.woff") format("woff"), url("/assets/fonts/53b43545624c66199a80eefa6e3d239a.ttf") format("truetype"); }
-    .skiptranslate, .goog-te-banner-frame { display: none !important; }
-    </style>
-    </head>
+  <style>.search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; } .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; } .lang-selector img { width: 24px !important; height: auto !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -772,7 +763,7 @@
                     Allegato
                   </div>
                   <div class="input-placeholder">Carica almeno un allegato</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1628,7 +1619,7 @@
                     Allegato
                   </div>
                   <div class="input-placeholder">Carica almeno un allegato</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1683,7 +1674,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#681b09040d1b050906090f0d1a280004031c09180d460b0705" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#eb988a878e98868a858a8c8e99ab8387809f8a9b8ec5888486" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1756,7 +1747,7 @@
                     Allegato
                   </div>
                   <div class="input-placeholder">Carica almeno un allegato</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1857,7 +1848,7 @@
       <p>Add: N.299 Xingxian Road, Distretto di Licheng, Città di Quanzhou</p>
       <p>Tel:<a href="tel:+86-19805957675">+86-19805957675</a>
       </p>
-      <p>E-mail:<a href="/cdn-cgi/l/email-protection#bbc8dad7dec8d6dad5dadcdec9fbd3d7d0cfdacbde95d8d4d6"><span class="__cf_email__" data-cfemail="b3c0d2dfd6c0ded2ddd2d4d6c1f3dbdfd8c7d2c3d69dd0dcde">[email&#160;protected]</span></a>
+      <p>E-mail:<a href="/cdn-cgi/l/email-protection#98ebf9f4fdebf5f9f6f9fffdead8f0f4f3ecf9e8fdb6fbf7f5"><span class="__cf_email__" data-cfemail="f083919c95839d919e91979582b0989c9b84918095de939f9d">[email&#160;protected]</span></a>
       </p>
       <p>Whatsapp:<a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
       </p>
@@ -2095,17 +2086,12 @@
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
-            document.querySelectorAll("form").forEach(function(form, index) {
-                form.id = "inquiry-form-" + index;
-                form.action = "https://formspree.io/f/maqlkzwa";
-                form.method = "POST";
-                // 强制解除所有旧脚本的绑定
-                var newForm = form.cloneNode(true);
-                form.parentNode.replaceChild(newForm, form);
-                // 使用 Formspree AJAX 初始化
-                formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
+            document.querySelectorAll("form").forEach(function(form, i) {
+                form.id = "fs-form-" + i;
+                var nf = form.cloneNode(true); form.parentNode.replaceChild(nf, form);
+                formspree('initForm', { formElement: '#' + nf.id, formId: 'maqlkzwa' });
             });
-        }, 2000);
+        }, 1500);
     });
     </script>
     </body>

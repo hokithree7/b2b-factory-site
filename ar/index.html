@@ -480,16 +480,7 @@
       
       </script>
     
-  
-    <style>
-    .search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; }
-    .header-lang .lang-selector i { background-image: url("/assets/images/55ec9ba593048fdad6f47cde3a907850.png") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }
-    .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; }
-    .lang-selector .current-lang { cursor: pointer !important; }
-    @font-face { font-family: "iconfont"; src: url("/assets/fonts/b0c902b045fdf3cbbd6d9a8784386987.woff2") format("woff2"), url("/assets/fonts/e49a63e035312df22f75222d44115a87.woff") format("woff"), url("/assets/fonts/53b43545624c66199a80eefa6e3d239a.ttf") format("truetype"); }
-    .skiptranslate, .goog-te-banner-frame { display: none !important; }
-    </style>
-    </head>
+  <style>.search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; } .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; } .lang-selector img { width: 24px !important; height: auto !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -772,7 +763,7 @@
                     مرفق
                   </div>
                   <div class="input-placeholder">يرجى تحميل على الأقل مرفق واحد</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1628,7 +1619,7 @@
                     مرفق
                   </div>
                   <div class="input-placeholder">يرجى تحميل على الأقل مرفق واحد</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1683,7 +1674,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#ff8c9e939a8c929e919e989a8dbf9793948b9e8f9ad19c9092" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#c5b6a4a9a0b6a8a4aba4a2a0b785ada9aeb1a4b5a0eba6aaa8" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1756,7 +1747,7 @@
                     مرفق
                   </div>
                   <div class="input-placeholder">يرجى تحميل على الأقل مرفق واحد</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1857,7 +1848,7 @@
       <p>Add: رقم 299 شارع Xingxian، منطقة Licheng، مدينة Quanzhou</p>
       <p>هاتف:<a href="tel:+86-19805957675">+86-19805957675</a>
       </p>
-      <p>البريد الإلكتروني:<a href="/cdn-cgi/l/email-protection#e695878a83958b878887818394a68e8a8d92879683c885898b"><span class="__cf_email__" data-cfemail="1063717c75637d717e7177756250787c7b647160753e737f7d">[email&#160;protected]</span></a>
+      <p>البريد الإلكتروني:<a href="/cdn-cgi/l/email-protection#7704161b12041a161916101205371f1b1c031607125914181a"><span class="__cf_email__" data-cfemail="3645575a53455b575857515344765e5a5d425746531855595b">[email&#160;protected]</span></a>
       </p>
       <p>واتساب:<a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
       </p>
@@ -2095,17 +2086,12 @@
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
-            document.querySelectorAll("form").forEach(function(form, index) {
-                form.id = "inquiry-form-" + index;
-                form.action = "https://formspree.io/f/maqlkzwa";
-                form.method = "POST";
-                // 强制解除所有旧脚本的绑定
-                var newForm = form.cloneNode(true);
-                form.parentNode.replaceChild(newForm, form);
-                // 使用 Formspree AJAX 初始化
-                formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
+            document.querySelectorAll("form").forEach(function(form, i) {
+                form.id = "fs-form-" + i;
+                var nf = form.cloneNode(true); form.parentNode.replaceChild(nf, form);
+                formspree('initForm', { formElement: '#' + nf.id, formId: 'maqlkzwa' });
             });
-        }, 2000);
+        }, 1500);
     });
     </script>
     </body>

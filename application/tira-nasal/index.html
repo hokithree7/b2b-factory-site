@@ -451,16 +451,7 @@
       
       </script>
     
-  
-    <style>
-    .search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; }
-    .header-lang .lang-selector i { background-image: url("/assets/images/55ec9ba593048fdad6f47cde3a907850.png") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }
-    .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; }
-    .lang-selector .current-lang { cursor: pointer !important; }
-    @font-face { font-family: "iconfont"; src: url("/assets/fonts/b0c902b045fdf3cbbd6d9a8784386987.woff2") format("woff2"), url("/assets/fonts/e49a63e035312df22f75222d44115a87.woff") format("woff"), url("/assets/fonts/53b43545624c66199a80eefa6e3d239a.ttf") format("truetype"); }
-    .skiptranslate, .goog-te-banner-frame { display: none !important; }
-    </style>
-    </head>
+  <style>.search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; } .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; } .lang-selector img { width: 24px !important; height: auto !important; }</style></head>
   <body>
       <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6D672RK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -742,7 +733,7 @@
                     Attachment
                   </div>
                   <div class="input-placeholder">Please upload at least an attachment</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1037,7 +1028,7 @@
                     Attachment
                   </div>
                   <div class="input-placeholder">Please upload at least an attachment</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1156,7 +1147,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#f69193998491938183d8919cb6919b979f9ad895999b" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#cfa8aaa0bda8aab8bae1a8a58fa8a2aea6a3e1aca0a2" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1229,7 +1220,7 @@
                     Attachment
                   </div>
                   <div class="input-placeholder">Please upload at least an attachment</div>
-                  <input multiple type="file" name="attachment" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
+                  <input multiple type="file" id="fileInput" hidden data-max="3" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.stp,.step,.igs,.x_t,.dxf,.prt,.sldprt,.sat,.rar">
                   <input type="text" name="attachment" class="attachment-value" hidden>
                   <div id="uploadContainer" class="upload-container text-center">
                     <i class="iconfont iconfont-a-Uploadshangchuan icon-upload"></i>
@@ -1286,7 +1277,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#bed9dbd1ccd9dbc9cb90d9d4fed9d3dfd7d290ddd1d3"><span class="__cf_email__" data-cfemail="3d5a58524f5a584a48135a577d5a505c5451135e5250">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#80e7e5eff2e7e5f7f5aee7eac0e7ede1e9ecaee3efed"><span class="__cf_email__" data-cfemail="0364666c71646674762d646943646e626a6f2d606c6e">[email&#160;protected]</span></a>
       </p>
       <p>
         Mobile: <a>+86-18876210077</a>
@@ -1466,17 +1457,12 @@
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
-            document.querySelectorAll("form").forEach(function(form, index) {
-                form.id = "inquiry-form-" + index;
-                form.action = "https://formspree.io/f/maqlkzwa";
-                form.method = "POST";
-                // 强制解除所有旧脚本的绑定
-                var newForm = form.cloneNode(true);
-                form.parentNode.replaceChild(newForm, form);
-                // 使用 Formspree AJAX 初始化
-                formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
+            document.querySelectorAll("form").forEach(function(form, i) {
+                form.id = "fs-form-" + i;
+                var nf = form.cloneNode(true); form.parentNode.replaceChild(nf, form);
+                formspree('initForm', { formElement: '#' + nf.id, formId: 'maqlkzwa' });
             });
-        }, 2000);
+        }, 1500);
     });
     </script>
     </body>

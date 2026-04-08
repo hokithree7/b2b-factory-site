@@ -6,6 +6,6 @@
 #crmMailMask .crmMailMask-box{background:#fff;width:300px;border-radius:4px;max-width:98%;padding:25px 20px;}
 #crmMailMask .crmMailMask-box .crmMailMask-boxBot{margin-top:10px}
 #crmMailMask .crmMailMask-box .crmMailMask-boxBot button{line-height:1;border:0 none;padding:10px 15px;background:#135287;color:#fff;font-size:13px;text-transform:capitalize}
-button.submit .crm-submit-load{display:inline-block;width:24px;height:20px;background:url("https://okki-shop-dev.oss-cn-hangzhou.aliyuncs.com/tpl-common/common/images/small-load.gif") no-repeat center right;vertical-align:middle}
+button.submit .crm-submit-load{display:inline-block;width:24px;height:20px;background:url("/assets/images/331178ac20e0f3c1114244934fa02e5f.gif") no-repeat center right;vertical-align:middle}
 button.create-form-submit[disabled]{cursor:not-allowed !important;}
 .crm-body-clear{overflow:hidden!important}

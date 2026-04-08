@@ -1,4 +1,4 @@
-/* 表单样式 标题 */
+/* è¡¨åæ ·å¼ æ é¢ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury_title_box {
   padding: 20px;
 }
@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-/* 表单标签样式 */
+/* è¡¨åæ ç­¾æ ·å¼ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .input-wrap .input-label {
   width: 100%;
   color: #666;
@@ -55,7 +55,7 @@
   color: #8C8C8C;
 }
 
-/* 单行文本 */
+/* åè¡ææ¬ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .one-line-input {
   width: 100%;
   height: 36px;
@@ -90,7 +90,7 @@
   margin-top: 3px;
 }
 
-/* 多行文本 */
+/* å¤è¡ææ¬ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .textarea-input {
   width: 100%;
   padding: 8px 12px;
@@ -121,7 +121,7 @@
   border-color: var(--color-primary);
 }
 
-/* 单选和checkox */
+/* åéåcheckox */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form input[type="radio"],
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form input[type="checkbox"] {
   display: none;
@@ -189,7 +189,7 @@
   bottom: -4px;
 }
 
-/* 原生单选 */
+/* åçåé */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .singel-select select {
   width: 100%;
   height: 36px;
@@ -203,7 +203,7 @@
   border: 1px solid #F0150F;
 }
 
-/* 下拉多选 */
+/* ä¸æå¤é */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .dropdown-item:active {
   background-color: #f5f5f5 !important;
   color: #333;
@@ -223,7 +223,7 @@
   border: 1px solid #D9D9D9;
 }
 
-/* 附件 */
+/* éä»¶ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .attachment .input-placeholder {
   margin-bottom: 4px;
 }
@@ -330,7 +330,7 @@
   background-color: #F5F5F5 !important;
 }
 
-/* 隐藏箭头 */
+/* éèç®­å¤´ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury-form .phone-wrap input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
@@ -410,7 +410,7 @@
   color: #333333 !important;
 }
 
-/* 提交 */
+/* æäº¤ */
 .crm_inquiry_form_boxcustom_inquiry_form_1744007317884380 .inqury_submit {
   color: #fff;
   background-color: var(--color-primary);
@@ -490,7 +490,7 @@
   display: inline-block;
   width: 24px;
   height: 20px;
-  background: url("https://okki-shop.oss-cn-hangzhou.aliyuncs.com/tpl-common/common/images/small-load.gif") no-repeat center right;
+  background: url("/assets/images/7eca954e9825f02b85026d432db454b6.gif") no-repeat center right;
   vertical-align: middle
 }
 

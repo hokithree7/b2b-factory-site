@@ -1,8 +1,8 @@
-/* 旧版图库：为了保证已上线站点的图标正常，故保留 */
+/* æ§çå¾åºï¼ä¸ºäºä¿è¯å·²ä¸çº¿ç«ç¹çå¾æ æ­£å¸¸ï¼æä¿ç */
 @font-face {
   font-family: "qico"; /* Project id 884104 */
   font-display: swap;
-  src: url('fonts/iconfont/iconfont.woff2?t=1642673512172') format('woff2'), url('fonts/iconfont/iconfont.woff?t=1642673512172') format('woff'), url('fonts/iconfont/iconfont.ttf?t=1642673512172') format('truetype');
+  src: url('/assets/fonts/98bf1c036d4fc316ddacb78183056efc.woff2') format('woff2'), url('/assets/fonts/af0e0c7455eae55aa2bf06b1b7470a71.woff') format('woff'), url('/assets/fonts/3d7bd8743425a12ddd207d203e066b12.ttf') format('truetype');
 }
 
 .qico {
@@ -726,14 +726,14 @@
 }
 
 
-/* 新版本图标：后续新增、修改图标在此操作 */
+/* æ°çæ¬å¾æ ï¼åç»­æ°å¢ãä¿®æ¹å¾æ å¨æ­¤æä½ */
 
 @font-face {
   font-family: "iconfont"; /* Project id 4307571 */
   font-display: swap;
-  src: url('fonts/iconfont/iconfont-new.woff2?t=1750133006106') format('woff2'),
-       url('fonts/iconfont/iconfont-new.woff?t=1750133006106') format('woff'),
-       url('fonts/iconfont/iconfont-new.ttf?t=1750133006106') format('truetype');
+  src: url('/assets/fonts/13bee9ac058ccb4803ee1e260f1c501f.woff2') format('woff2'),
+       url('/assets/fonts/333363b9d8b7c647ad1981e9b8c97005.woff') format('woff'),
+       url('/assets/fonts/79851e0be02e314c75e79c97d2b2d4f3.ttf') format('truetype');
 }
 
 .iconfont {

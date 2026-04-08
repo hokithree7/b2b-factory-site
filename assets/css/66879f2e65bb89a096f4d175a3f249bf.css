@@ -47,8 +47,8 @@
 }
 .qili-universal .universalmsg input::placeholder,
 .qili-universal .universalmsg textarea::placeholder {
-    color: #5d5d5d !important;        /* 想要的颜色 */
-    opacity: 1;            /* Firefox 默认 opacity<1，需要重置 */
+    color: #5d5d5d !important;        /* æ³è¦çé¢è² */
+    opacity: 1;            /* Firefox é»è®¤ opacity<1ï¼éè¦éç½® */
 }
 .qili-universal .universalmsg .txt i {
   font-size: 24px;
