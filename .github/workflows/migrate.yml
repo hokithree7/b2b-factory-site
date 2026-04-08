@@ -1,4 +1,4 @@
-name: Full Site Migration v12 - WordPress Theme Generator
+name: Full Site Migration v13 - WP Content Porter
 
 on:
   workflow_dispatch:
@@ -12,74 +12,71 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate WordPress Theme
+      - name: Generate WP Import File
         run: |
-          cat << 'EOF' > wp_gen.py
-          import os, re
+          cat << 'EOF' > wp_content.py
+          import os, re, json
+          from datetime import datetime
 
-          theme_name = "hlktape-custom-theme"
-          wp_dir = os.path.join("wp-theme", theme_name)
-          os.makedirs(wp_dir, exist_ok=True)
+          xml_header = """<?xml version="1.0" encoding="UTF-8" ?>
+          <rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/">
+          <channel>
+          <title>HLK Tape Migration</title>
+          <wp:wxr_version>1.2</wp:wxr_version>
+          """
+          xml_footer = "</channel></rss>"
 
-          # 1. 创建 style.css (WP元数据)
-          with open(os.path.join(wp_dir, "style.css"), "w") as f:
-              f.write("/*\nTheme Name: HLK Tape B2B Theme\nAuthor: Accio Bot\nDescription: 1:1 Scraped B2B Factory Theme\nVersion: 1.0\n*/")
+          posts_xml = []
 
-          # 2. 读取当前 index.html 提取 Header 和 Footer
-          with open("index.html", "r", encoding="utf-8") as f:
-              html = f.read()
+          # 遍历所有已下载的页面
+          for root, dirs, files in os.walk("."):
+              for file in files:
+                  if file == "index.html" and root != ".":
+                      path = root.strip("./")
+                      full_path = os.path.join(root, file)
+                      
+                      with open(full_path, "r", encoding="utf-8") as f:
+                          html = f.read()
+                      
+                      # 提取 Title
+                      title_match = re.search(r"<title>(.*?)</title>", html)
+                      title = title_match.group(1).replace(" | HLK Tape", "") if title_match else path
+                      
+                      # 提取主内容 (尝试定位 <main> 或特定的 content div)
+                      content_match = re.search(r"<(main|article|div id=\"content\")[^>]*>(.*?)</\1>", html, re.DOTALL)
+                      content = content_match.group(2) if content_match else "Content not found"
+                      
+                      # 区分文章类型
+                      post_type = "post" if "newsblog" in path else "page"
+                      
+                      post_xml = f"""
+                      <item>
+                          <title>{title}</title>
+                          <link>http://localhost/{path}/</link>
+                          <pubDate>{datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate>
+                          <dc:creator>admin</dc:creator>
+                          <guid isPermaLink="false">http://localhost/?p={hash(path)}</guid>
+                          <description></description>
+                          <content:encoded><![CDATA[{content}]]></content:encoded>
+                          <wp:post_type>{post_type}</wp:post_type>
+                          <wp:status>publish</wp:status>
+                      </item>
+                      """
+                      posts_xml.append(post_xml)
 
-          # 拆分 Header (到 <main> 或第一个 section 之前)
-          parts = re.split(r'(<section|<main)', html, 1)
-          header_html = parts[0]
-          
-          # 拆分 Footer (从最后一个 <footer> 之后)
-          f_parts = re.split(r'(<footer)', html, 1)
-          if len(f_parts) > 1:
-              footer_html = "<footer" + f_parts[2]
-          else:
-              footer_html = "</body></html>"
+          with open("migration_posts.xml", "w", encoding="utf-8") as f:
+              f.write(xml_header + "\n".join(posts_xml) + xml_footer)
 
-          # 3. 适配路径 (改为 WP 动态路径)
-          header_html = header_html.replace('href="/assets/', 'href="<?php echo get_template_directory_uri(); ?>/assets/')
-          header_html = header_html.replace('src="/assets/', 'src="<?php echo get_template_directory_uri(); ?>/assets/')
-          footer_html = footer_html.replace('src="/assets/', 'src="<?php echo get_template_directory_uri(); ?>/assets/')
-
-          # 4. 写入 header.php
-          with open(os.path.join(wp_dir, "header.php"), "w") as f:
-              f.write("<?php wp_head(); ?>\n" + header_html)
-
-          # 5. 写入 footer.php
-          with open(os.path.join(wp_dir, "footer.php"), "w") as f:
-              f.write(footer_html + "\n<?php wp_footer(); ?>")
-
-          # 6. 写入 index.php (主循环)
-          index_php = """<?php get_header(); ?>
-          <main id="primary" class="site-main">
-              <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                      <div class="entry-content"><?php the_content(); ?></div>
-                  </article>
-              <?php endwhile; endif; ?>
-          </main>
-          <?php get_footer(); ?>"""
-          with open(os.path.join(wp_dir, "index.php"), "w") as f:
-              f.write(index_php)
-
-          # 7. 写入 functions.php
-          with open(os.path.join(wp_dir, "functions.php"), "w") as f:
-              f.write("<?php\nfunction hlk_theme_setup() {\n  add_theme_support( 'title-tag' );\n  add_theme_support( 'post-thumbnails' );\n}\nadd_action( 'after_setup_theme', 'hlk_theme_setup' );")
-
-          print("WordPress Theme structure generated in /wp-theme")
+          print("Generated migration_posts.xml")
           EOF
-          # 先运行之前的迁移脚本确保 index.html 是最新的
-          # (这里假设之前的脚本已经跑过，如果没有，需要在这里补上读取逻辑)
-          python3 wp_gen.py
+          # 假设之前的下载脚本已经把文件搬运到了当前目录
+          # (由于这是一个演示逻辑，我们需要在本地环境或CI中确保页面文件存在)
+          python3 wp_content.py
 
       - name: Commit and Push
         run: |
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
-          git add .
-          git commit -m "Generate WordPress Theme Template v12" || echo "No changes"
+          git add migration_posts.xml
+          git commit -m "Generate WordPress Import XML v13" || echo "No changes"
           git push
