@@ -1,0 +1,265 @@
+.br_ser_area2 {
+  /* padding: 0 0 90px; */padding: 0 !important;
+}
+.em-service-icon{
+  display: block;
+}
+.em_single_service_text{
+  display: flex;
+  align-items: center;
+}
+.service_top_text{
+  min-height: 150px;
+}
+.br_ser_area2 h3 a {
+  font-family: var(--title-font-family);
+  font-style: normal;
+  line-height: 1.2;
+  font-weight: 700;
+  transition: 0.5s;
+  font-size: 22px;
+  transition: 0.5s;
+  margin-bottom: 5px;
+  color: var(--title-text-color);
+}
+.br_ser_area2 .all_color_service {
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #f4f4f4;
+  padding: 53px 43px 50px 50px;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+.br_ser_area2 .witr_section_title {
+  margin-bottom: 48px;
+}
+.br_ser_area2 .em-service-icon img {
+  /* margin: 10px 40px 0 0; */
+  padding-right: 20px;
+}
+.br_ser_area2 .em-service-title h3 {
+  padding: 0;
+  margin: 0px 0px 15px 0px;
+}
+.br_ser_area2 .em-service-desc p {
+  line-height: 1.6;
+  transition: 0.5s;
+}
+.br_ser_area2 .all_color_service:hover {
+  /*background-image: url("./pics/f-1.jpg");*/
+}
+.br_ser_area2 .em-service:hover:before {
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  transition: 0.5s;
+}
+.br_ser_area2 .em-service:hover::before {
+  background: var(--color-primary);
+  opacity: 0.94;
+}
+.br_ser_area2 .em-service:hover {
+  position: relative;
+  backface-visibility: hidden;
+  z-index: 3;
+}
+.br_ser_area2 .em-service span {
+  transition: 0.5s;
+  background: none !important;
+}
+.br_ser_area2 .em-service:hover span {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.br_ser_area2 .witr_section_title {
+  position: relative;
+}
+.br_ser_area2 .witr_section_title {
+  margin-bottom: 50px;
+}
+
+.br_ser_area2 .witr_section_title_inner h2,
+.br_ser_area2 .witr_section_title_inner h3,
+.br_ser_area2 .witr_section_title_inner .title{
+  font-size: 40px;
+  margin: auto;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.br_ser_area2 .witr_section_title_inner h2 {
+  font-size: 16px;
+  display: inline-block;
+  position: relative;
+  padding-left: 38px;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+  display: none;
+}
+.br_ser_area2 .witr_section_title_inner h2 span,
+.br_ser_area2 .witr_section_title_inner h3 span,
+.br_ser_area2 .witr_section_title_inner .title span,
+.br_ser_area2 .witr_section_title_inner p span,
+.br_ser_area2 .witr_section_title_inner p span a {
+  color: var(--color-primary);
+}
+
+.br_ser_area2 .witr_section_title_inner p {
+  width: 100%;
+  padding: 8px 0 0 0;
+  margin-top: 10px;
+      color: #000;
+}
+.br_ser_area2 .witr_section_title_inner.text-center p {
+  width: 71%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.br_ser_area2 .witr_image_title {
+  max-width: 24px;
+  max-height: 24px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  position: absolute;
+  top: -7px;
+  left: 0;
+    display: none;
+}
+
+.br_ser_area2 .title_img_cent {
+  left: 45%;
+  transform: translateX(-50%);
+}
+.br_ser_area2 .em-service-title h3,
+.br_ser_area2 .em-service:hover .em-service-title h3 a,
+.br_ser_area2 .em-service:hover .em-service-desc {
+  color: #fff;
+}
+
+.br_ser_area2 .text-left .witr_ds_content_inner h2,
+.br_ser_area2 .text-left .witr_ds_content_inner h3,
+.br_ser_area2 .text-left .witr_slicks_title h4 {
+  width: 70%;
+  margin: 0 auto 7px 0;
+}
+
+.br_ser_area2 .text-left .witr_slider_thumb {
+  position: absolute;
+  right: -110px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.br_ser_area2 .text-left .em-slider-descript {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.br_ser_area2 .text-left .em_slider_s2_content {
+  margin-right: 25%;
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) {
+  .br_ser_area2 .text-left .witr_swiper_content h2,
+  .br_ser_area2 .text-left .witr_swiper_content h3{
+    width: 67%;
+  }
+  .br_ser_area2 .text-left .em_slider_s2_content {
+    margin-right: 10%;
+  }
+  .br_ser_area2 .text-left .witr_slider_thumb {
+    right: -35px;
+  }
+
+  .br_ser_area2 .text-left .witrscontainer h2,
+  .br_ser_area2 .text-left .witrscontainer h3,
+  .br_ser_area2 .text-left .witrscontainer p {
+    width: 51%;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .br_ser_area2 .all_color_service {
+    padding: 53px 30px 50px 30px;
+  }
+  .br_ser_area2 .witr_section_title_inner.text-center p,
+  .br_ser_area2 .witr_section_title_inner.text-left p {
+    width: 100%;
+  }
+  .br_ser_area2 .witr_section_title_inner.text-center p {
+    width: 71%;
+  }
+  .br_ser_area2 .title_img_cent {
+    left: 43%;
+  }
+  .br_ser_area2 .em-service {
+    padding: 30px 30px 50px 30px;
+  }
+  .br_ser_area2 .text-left .witr_swiper_content h2,
+  .br_ser_area2 .text-left .witr_swiper_content h3 {
+    width: 54%;
+  }
+
+  .br_ser_area2 .text-left .witr_ds_content_inner h2,
+  .br_ser_area2 .text-left .witr_ds_content_inner h3 {
+    width: 75%;
+  }
+  .br_ser_area2 .text-left .em_slider_s2_content {
+    margin-right: 10%;
+  }
+  .br_ser_area2 .text-left .witr_slider_thumb {
+    right: -157px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .br_ser_area2 .witr_section_title_inner h3,
+  .br_ser_area2 .witr_section_title_inner .title {
+    font-size: 30px;
+  }
+  .br_ser_area2 .witr_section_title_inner p {
+    width: 100%;
+  }
+  .br_ser_area2 .title_img_cent {
+    left: 41%;
+  }
+}
+@media (max-width: 767px) {
+  .br_ser_area2 {
+    padding: 0 0 30px;
+  }
+  .br_ser_area2 .all_color_service {
+    padding: 53px 30px 50px 30px;
+  }
+  .br_ser_area2 .witr_section_title {
+    text-align: center;
+  }
+  .br_ser_area2 .witr_section_title_inner h2 {
+    font-size: 16px !important;
+  }
+  .br_ser_area2 .witr_section_title_inner p {
+    padding-top: 10px;
+  }
+  .br_ser_area2 .witr_section_title_inner h2,
+  .br_ser_area2 .witr_section_title_inner h3,
+  .br_ser_area2 .witr_section_title_inner .title {
+    font-size: 21px;
+  }
+  .br_ser_area2 .title_img_cent {
+    left: 30%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .br_ser_area2 .witr_section_title_inner h2,
+  .br_ser_area2 .witr_section_title_inner h3,
+  .br_ser_area2 .witr_section_title_inner .title {
+    font-size: 25px;
+  }
+  .br_ser_area2 .witr_section_title_inner.text-center p,
+  .br_ser_area2 .witr_section_title_inner.text-left p {
+    width: 91%;
+  }
+}

@@ -1,0 +1,28 @@
+.bobo-keyword-box {
+    background-color: #f9f9f9;
+}
+.bobo-keyword-box {
+    padding: 40px 0;
+}
+.bobo-keyword-box h2{}
+.bobo-keyword-box ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.bobo-keyword-box ul li{
+    border: 2px solid #167FDF;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+}
+.bobo-keyword-box ul li .section_title{text-align: center; margin: 0;}
+.bobo-keyword-box ul li .section_title a{
+    text-decoration: none;
+}
+.bobo-keyword-box ul li .section_title a h2{
+    font-size: 16px;
+    margin: 0;
+}
+.bobo-keyword-box ul li:hover h2{
+    color: #167FDF;
+}

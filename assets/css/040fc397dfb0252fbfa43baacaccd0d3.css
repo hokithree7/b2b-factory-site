@@ -1,0 +1,88 @@
+.sidemenu {
+  margin: 0 0 15px;
+}
+
+.sidemenu > .title {
+  font-size: 22px;
+  padding: 10px 0;
+  font-weight: normal;
+}
+
+.sidemenu .menu-item {
+  position: relative;
+  border-top: 1px solid #efefef;
+}
+
+.sidemenu .menu-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  min-height: 46px;
+}
+
+.sidemenu .menu-item a {
+  display: block;
+  color: var(--title-text-color);
+}
+
+.sidemenu .menu-title {
+  line-height: 1.2;
+  text-transform: capitalize;
+  font-size: 18px;
+  color: inherit;
+  font-family: var(--font-family);
+  font-weight: inherit;
+}
+
+.sidemenu .menu-item a:hover {
+  color: var(--color-primary);
+}
+
+.sidemenu .menu-arrow {
+  margin-left: 10px;
+}
+
+.sidemenu .menu-arrow::before {
+  content: "\e692";
+  font-family: "iconfont" !important;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  line-height: 30px;
+  display: block;
+  text-align: center;
+  transition: transform 0.3s ease;
+  color: #A2A2A2;
+  cursor: pointer;
+}
+
+.sidemenu .menu-arrow:hover::before {
+  color: var(--color-primary);
+}
+
+.sidemenu .sub-menu-list,
+.sidemenu .third-menu-list {
+  display: none;
+}
+
+.sidemenu .sub-menu-item .menu-content,
+.sidemenu .third-menu-list,
+.sidemenu .third-menu-item .menu-content {
+  padding-left: 12px;
+}
+
+.sidemenu .menu-item.active > .menu-content > a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.sidemenu .menu-item.open > .menu-content > .menu-arrow::before {
+  transform: rotate(90deg);
+  color: var(--color-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .sidemenu {
+    display: none;
+  }
+}

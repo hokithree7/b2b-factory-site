@@ -1,0 +1,313 @@
+.arshine-contact.main {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.arshine-contact .global {
+  position: relative;
+  z-index: 20;
+}
+.arshine-contact .global .pic {
+  position: relative;
+}
+.arshine-contact .global .list .box a {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: block;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.arshine-contact .global .list .box {
+  position: absolute;
+}
+
+.arshine-contact .global .list .box .nr {
+  position: absolute;
+  z-index: 30;
+  left: -38px;
+  bottom: 20px;
+  border-radius: 10px;
+  padding: 15px 25px;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(1, 1, 1, 0.15);
+  transition: all 0.3s ease 0s;
+  display: none;
+}
+.arshine-contact .global .list .box .nr::before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  bottom: -30px;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border-width: 15px 15px;
+  border-style: dashed;
+  border-color: transparent;
+  border-top-style: solid;
+  border-top-color: #fff;
+}
+.arshine-contact .global .list .box .nr span {
+  font-size: 16px;
+  color: #333;
+}
+
+.arshine-contact .global .list .box:not(.box1):hover .nr {
+  display: block;
+  transform: translateY(-10px);
+  z-index: 100;
+}
+
+.arshine-contact .global .list .box1 .nr {
+  width: 600px;
+  bottom: 30px;
+  padding: 20px 27px;
+  -webkit-align-items: center;
+  align-items: center;
+  display: none;
+}
+.arshine-contact .global .list .box1.active .nr {
+  display: flex;
+}
+.arshine-contact .global .list .box1 .nr::before {
+  left: 30px;
+}
+.arshine-contact .global .list .box1 .nr .pic {
+  width: 146px;
+}
+.arshine-contact .global .list .box1 .nr .t {
+  -webkit-flex: 1;
+  flex: 1;
+  margin: 0 0 0 50px;
+}
+.arshine-contact .global .list .box1 .nr .t h5 {
+  font-size: 24px;
+  color: #333;
+  font-family: var(--font-family1);
+}
+.arshine-contact .global .list .box1 .nr .t p {
+  font-size: 16px;
+  color: #333;
+  line-height: 24px;
+  margin: 10px 0 0;
+}
+.arshine-contact .global .list .box1:hover .nr {
+  display: flex;
+}
+
+.arshine-contact .global .txt {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.arshine-contact .global .txt dl {
+  width: 460px;
+  background: rgba(235, 235, 235, 0.8);
+  padding: 15px 30px;
+  font-size: 16px;
+  color: #666;
+  border-left: 10px solid var(--color-primary);
+}
+.arshine-contact .global .txt dl + dl {
+  margin-top: 30px;
+}
+.arshine-contact .global .txt dl dt {
+  font-family: var(--font-family1);
+}
+.arshine-contact .global .txt dl dd {
+  line-height: 24px;
+  margin: 6px 0 0;
+}
+
+.arshine-contact .contact-info {
+  margin: 20px 0 0;
+  border-top: 1px solid #e0e0e0;
+  padding: 15px 0 0;
+}
+.arshine-contact .contact-info h3 {
+  font-size: 24px;
+  color: var(--color-primary);
+  font-family: var(--font-family1);
+}
+
+.arshine-contact .contact-info ul {
+  margin-top: 17px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.arshine-contact .contact-info ul li {
+  width: 58.8%;
+  line-height: 27px;
+  font-size: 20px;
+  color: #666;
+  background-repeat: no-repeat;
+  background-position: left center;
+  margin: 20px 0 0;
+}
+.arshine-contact .contact-info ul li:nth-child(2n) {
+  width: 41.2%;
+}
+
+.arshine-contact .contact-info ul li i {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+
+.arshine-contact .rtit {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.arshine-contact .rtit h2 {
+  font-size: 50px;
+  color: var(--color-primary);
+  line-height: 1;
+  font-family: var(--font-family1);
+}
+.arshine-contact .rtit h2::after {
+  content: "";
+  width: 40px;
+  height: 4px;
+  background: var(--color-primary);
+  margin: 15px auto 0;
+  display: block;
+}
+
+@media screen and (max-width: 1440px) {
+  .arshine-contact .rtit h2 {
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .arshine-contact .contact-info ul li {
+    font-size: 18px;
+  }
+  .arshine-contact .rtit h2 {
+    font-size: 44px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .arshine-contact .rtit h2 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1171px) {
+  .arshine-contact .contact-info ul li {
+    font-size: 17px;
+  }
+
+  .arshine-contact .rtit h2 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .arshine-contact .global .txt {
+    position: static;
+    margin: 20px 0 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+  .arshine-contact .global .txt dl {
+    width: 48%;
+    padding: 15px 20px;
+    border-left: 5px solid var(--color-primary);
+  }
+  .arshine-contact .global .txt dl + dl {
+    margin-top: 0;
+  }
+
+  .arshine-contact .global .list .box1 .nr {
+    width: 500px;
+    padding: 15px;
+  }
+  .arshine-contact .global .list .box1 .nr .pic {
+    width: 130px;
+  }
+  .arshine-contact .global .list .box1 .nr .t {
+    margin: 0 0 0 20px;
+  }
+  .arshine-contact .global .list .box1 .nr .t h5 {
+    font-size: 20px;
+  }
+  .arshine-contact .global .list .box1 .nr .t p {
+    font-size: 15px;
+  }
+
+  .arshine-contact .rtit h2 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arshine-contact.main {
+    padding-top: 25px;
+    padding-bottom: 30px;
+  }
+  
+  .arshine-contact .global .list .box a {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .arshine-contact .global .list .box1 .nr {
+    width: 250px;
+  }
+
+  .arshine-contact .global .txt {
+    display: block;
+  }
+  .arshine-contact .global .txt dl {
+    width: 100%;
+  }
+  .arshine-contact .global .txt dl + dl {
+    margin-top: 15px;
+  }
+
+  .arshine-contact .contact-info h3 {
+    font-size: 22px;
+  }
+
+  .arshine-contact .contact-info ul li {
+    width: 100%;
+    line-height: 24px;
+    font-size: 16px;
+    color: #666;
+    background-size: 20px;
+    margin: 15px 0 0;
+  }
+  .arshine-contact .contact-info ul li:nth-child(2n) {
+    width: 100%;
+  }
+
+  .arshine-contact .rtit h2 {
+    font-size: 28px;
+  }
+
+  .arshine-contact .rtit {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .arshine-contact .rtit h2 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-contact .rtit h2 {
+    font-size: 24px;
+  }
+}

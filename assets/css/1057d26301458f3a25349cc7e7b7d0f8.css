@@ -1,0 +1,85 @@
+.arshine-vr {
+  padding: 75px 0 0;
+  text-align: center;
+}
+.arshine-vr h3 {
+  font-size: 50px;
+  color: var(--color-primary);
+  line-height: 1;
+  font-family: var(--font-family1);
+  text-align: center;
+}
+.arshine-vr h3::after {
+  content: "";
+  background: var(--color-primary);
+  width: 40px;
+  height: 4px;
+  margin: 11px auto 0;
+  display: block;
+}
+.arshine-vr .pic {
+  margin: 50px 0 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 1441px) {
+  .arshine-vr h3 {
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .arshine-vr h3 {
+    font-size: 44px;
+  }
+ 
+  .arshine-vr .pic iframe {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 1281px) {
+  .arshine-vr h3 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1171px) {
+  .arshine-vr h3 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .arshine-vr h3 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arshine-vr h3 {
+    font-size: 28px;
+  }
+
+  .arshine-vr {
+    padding: 30px 0 0;
+  }
+  .arshine-vr .pic {
+    margin: 25px 0 0;
+  }
+  .arshine-vr .pic iframe {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .arshine-vr h3 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-vr h3 {
+    font-size: 24px;
+  }
+}

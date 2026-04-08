@@ -1,0 +1,537 @@
+.arshine-advantage {
+  padding: 75px 0;
+  background: #fff;
+}
+
+.arshine-advantage h3 {
+  font-size: 30px;
+  color: #000000;
+  line-height: 1;
+  text-align: center;
+}
+
+.arshine-advantage .content {
+  margin: 50px 0 0;
+}
+
+.arshine-advantage .item {
+  display: none;
+}
+
+.arshine-advantage .item.active {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.arshine-advantage .list {
+  -webkit-flex: 1;
+  flex: 1;
+  background: #f0f0f0;
+  padding: 0 0 0 30px;
+}
+
+.arshine-advantage .list .scrollbar-inner {
+  height: 530px;
+}
+
+.arshine-advantage .list ul {
+  padding: 30px 0 50px;
+}
+
+.arshine-advantage .list ul li {
+  display: -webkit-flex;
+  display: flex;
+  /* -webkit-align-items: center;
+  align-items: center; */
+  cursor: pointer;
+}
+
+.arshine-advantage .list ul li + li {
+  margin-top: 60px;
+}
+
+.arshine-advantage .list ul li .pic {
+  display: none;
+}
+
+.arshine-advantage .list ul li .ico {
+  width: 120px;
+  height: 100px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  /* -webkit-align-items: center;
+  align-items: center; */
+}
+
+.arshine-advantage .list ul li .ico img {
+}
+
+.arshine-advantage .list ul li .txt {
+  -webkit-flex: 1;
+  flex: 1;
+  margin: 0 0 0 22px;
+  color: #333;
+}
+
+.arshine-advantage .list ul li .txt h5 {
+  font-size: 24px;
+  margin-bottom: 50px;
+}
+
+.arshine-advantage .list ul li .txt p {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 5px 0 0;
+}
+
+.arshine-advantage .list ul li.active .ico {
+}
+
+.arshine-advantage .list ul li.active .txt {
+  color: var(--color-primary);
+}
+
+.arshine-advantage .item > .pic {
+  width: 844px;
+}
+
+.arshine-advantage .item > .pic ul {
+  width: 100%;
+  height: 100%;
+}
+
+.arshine-advantage .item > .pic ul li {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.arshine-advantage .item > .pic ul li img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+.arshine-advantage .tab {
+  border: 2px solid #f1f1f1;
+  border-top: none;
+}
+
+.arshine-advantage .tab ul {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.arshine-advantage .tab ul li {
+  width: 25%;
+  height: 118px;
+  font-size: 24px;
+  color: var(--color-primary);
+  padding: 0 60px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.arshine-advantage .tab ul li::before {
+  content: "";
+  width: 0;
+  height: 0;
+  line-height: 0;
+  border-width: 18px 24px;
+  border-style: dashed;
+  border-color: transparent;
+  border-bottom-style: solid;
+  border-bottom-color: var(--color-primary);
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 24px);
+  display: none;
+}
+
+.arshine-advantage .tab ul li.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.arshine-advantage .tab ul li.active::before {
+  display: block;
+}
+
+.scroll-wrapper {
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: relative;
+}
+.scroll-wrapper > .scroll-content {
+  border: none !important;
+  box-sizing: content-box !important;
+  height: auto;
+  left: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none !important;
+  overflow: scroll !important;
+  padding: 0 20px 0 0;
+  position: relative !important;
+  top: 0;
+  width: auto !important;
+}
+.scroll-wrapper > .scroll-content::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+.scroll-element {
+  display: none;
+}
+.scroll-element,
+.scroll-element div {
+  box-sizing: content-box;
+}
+.scroll-element.scroll-x.scroll-scrollx_visible,
+.scroll-element.scroll-y.scroll-scrolly_visible {
+  display: block;
+}
+.scroll-element .scroll-bar,
+.scroll-element .scroll-arrow {
+  cursor: default;
+}
+.scroll-textarea {
+  border: 1px solid #cccccc;
+  border-top-color: #999999;
+}
+.scroll-textarea > .scroll-content {
+  overflow: hidden !important;
+}
+.scroll-textarea > .scroll-content > textarea {
+  border: none !important;
+  box-sizing: border-box;
+  height: 100% !important;
+  margin: 0;
+  max-height: none !important;
+  max-width: none !important;
+  overflow: scroll !important;
+  outline: none;
+  padding: 2px;
+  position: relative !important;
+  top: 0;
+  width: 100% !important;
+}
+.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}
+
+.scrollbar-inner > .scroll-element,
+.scrollbar-inner > .scroll-element div {
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 10;
+}
+.scrollbar-inner > .scroll-element div {
+  display: block;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.scrollbar-inner > .scroll-element.scroll-x {
+  bottom: 2px;
+  height: 8px;
+  left: 0;
+  width: 100%;
+}
+.scrollbar-inner > .scroll-element.scroll-y {
+  height: 100%;
+  right: 0;
+  top: 0;
+  width: 8px;
+}
+.scrollbar-inner > .scroll-element .scroll-element_outer {
+  /*overflow:hidden;*/
+}
+.scrollbar-inner > .scroll-element .scroll-element_outer,
+.scrollbar-inner > .scroll-element .scroll-element_track,
+.scrollbar-inner > .scroll-element .scroll-bar {
+}
+.scrollbar-inner > .scroll-element .scroll-element_track {
+  background: #c7c7c7;
+}
+.scrollbar-inner > .scroll-element .scroll-bar {
+  background-color: #999;
+  width: 8px;
+  left: 0;
+}
+.scrollbar-inner > .scroll-element:hover .scroll-bar {
+  background-color: #919191;
+}
+.scrollbar-inner > .scroll-element.scroll-draggable .scroll-bar {
+  background-color: #919191;
+}
+/* update scrollbar offset if both scrolls are visible */
+.scrollbar-inner
+  > .scroll-element.scroll-x.scroll-scrolly_visible
+  .scroll-element_track {
+  left: -12px;
+}
+.scrollbar-inner
+  > .scroll-element.scroll-y.scroll-scrollx_visible
+  .scroll-element_track {
+  top: -12px;
+}
+.scrollbar-inner
+  > .scroll-element.scroll-x.scroll-scrolly_visible
+  .scroll-element_size {
+  left: -12px;
+}
+.scrollbar-inner
+  > .scroll-element.scroll-y.scroll-scrollx_visible
+  .scroll-element_size {
+  top: -12px;
+}
+
+@media screen and (max-width: 1500px) {
+  .arshine-advantage .list .scrollbar-inner {
+    height: 502px;
+  }
+
+  .arshine-advantage .tab ul li {
+    padding: 0 50px;
+  }
+
+  .arshine-advantage .item > .pic {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 1441px) {
+  .arshine-advantage h3 {
+    font-size: 48px;
+  }
+
+  .arshine-advantage .list .scrollbar-inner {
+    height: 471px;
+  }
+
+  .arshine-advantage .list {
+    padding: 0 0 0 25px;
+  }
+
+  .arshine-advantage .list ul li + li {
+    margin-top: 50px;
+  }
+
+  .arshine-advantage .list ul li .ico {
+    width: 100px;
+    height: 100px;
+  }
+
+  .arshine-advantage .list ul li .ico img {
+  }
+
+  .arshine-advantage .list ul li .txt h5 {
+    font-size: 30px;
+  }
+
+  .arshine-advantage .list ul li .txt p {
+    line-height: 22px;
+  }
+
+  .arshine-advantage .item > .pic {
+    width: 750px;
+  }
+
+  .arshine-advantage .tab ul li {
+    padding: 0 40px;
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .arshine-advantage h3 {
+    font-size: 44px;
+  }
+
+  .arshine-advantage .list .scrollbar-inner {
+    height: 439px;
+  }
+
+  .arshine-advantage .item > .pic {
+    width: 700px;
+  }
+
+  .arshine-advantage {
+    padding: 60px 0;
+  }
+}
+
+@media screen and (max-width: 1281px) {
+  .arshine-advantage h3 {
+    font-size: 40px;
+  }
+
+  .arshine-advantage .tab ul li {
+    padding: 0 30px;
+    font-size: 20px;
+  }
+
+  .arshine-advantage .list ul li .ico {
+    width: 80px;
+    height: 80px;
+  }
+
+  .arshine-advantage .list ul li .ico img {
+    max-width: 60%;
+    max-width: 60%;
+  }
+
+  .arshine-advantage .list ul li .txt h5 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1171px) {
+  .arshine-advantage h3 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .arshine-advantage h3 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arshine-advantage h3 {
+    font-size: 28px;
+  }
+
+  .arshine-advantage {
+    padding: 30px 0;
+  }
+
+  .arshine-advantage .content {
+    margin: 30px 0 0;
+  }
+
+  .arshine-advantage .item {
+    display: none;
+  }
+
+  .arshine-advantage .item.active {
+    display: block;
+  }
+
+  .arshine-advantage .list {
+    -webkit-flex: 1;
+    flex: 1;
+    background: #f0f0f0;
+    padding: 0 0 0 10px;
+  }
+
+  .arshine-advantage .list .scrollbar-inner {
+    height: auto;
+  }
+
+  .arshine-advantage .list ul {
+    padding: 10px 0 30px;
+  }
+
+  .arshine-advantage .list ul li {
+    display: block;
+    position: relative;
+  }
+
+  .arshine-advantage .list ul li + li {
+    margin-top: 20px;
+  }
+
+  .arshine-advantage .list ul li .pic {
+    display: block;
+  }
+
+  .arshine-advantage .list ul li .ico {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background: var(--color-primary);
+    opacity: 0.7;
+  }
+
+  .arshine-advantage .list ul li .txt {
+    margin: 20px 0 0;
+    text-align: center;
+  }
+
+  .arshine-advantage .list ul li.active .ico {
+    background: var(--color-primary);
+    opacity: 0.7;
+  }
+
+  .arshine-advantage .list ul li.active .txt {
+    color: #333;
+  }
+
+  .arshine-advantage .item > .pic {
+    display: none;
+  }
+
+  .arshine-advantage .tab {
+    margin-top: 10px;
+    border: none;
+  }
+
+  .arshine-advantage .tab ul {
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+  }
+
+  .arshine-advantage .tab ul li {
+    width: 48%;
+    height: 60px;
+    font-size: 20px;
+    padding: 0 10px;
+    border: 2px solid #f1f1f1;
+    margin: 10px 0 0;
+  }
+
+  .arshine-advantage .tab ul li::before {
+    border-width: 10px 14px;
+    top: -20px;
+    left: calc(50% - 14px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .arshine-advantage h3 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-advantage h3 {
+    font-size: 24px;
+  }
+
+  .arshine-advantage .tab ul li {
+    font-size: 16px;
+  }
+
+  .arshine-advantage .list ul li .txt p {
+    font-size: 15px;
+  }
+}

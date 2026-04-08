@@ -1,0 +1,118 @@
+.arshine-pic-list {
+  padding: 60px 0;
+}
+.arshine-pic-list h3 {
+  font-size: 50px;
+  color: var(--color-primary);
+  line-height: 1;
+  font-family: var(--font-family1);
+  text-align: center;
+}
+.arshine-pic-list h3::after {
+  content: "";
+  background: var(--color-primary);
+  width: 40px;
+  height: 4px;
+  margin: 11px auto 0;
+  display: block;
+}
+
+.arshine-pic-list .list {
+  position: relative;
+  margin: 50px 0 0;
+}
+.arshine-pic-list .list .swiper-slide a {
+  display: block;
+  width: 100%;
+}
+.arshine-pic-list .list .swiper-slide a img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
+.arshine-pic-list .swiper-pagination {
+  position: static;
+  width: 100%;
+  margin-top: 35px;
+  font-size: 0;
+}
+.arshine-pic-list .swiper-pagination-bullet {
+  width: 16px;
+  height: 16px;
+  margin: 0 10px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  opacity: 1;
+}
+.arshine-pic-list .swiper-pagination-bullet-active {
+  background: #999;
+}
+
+
+@media screen and (max-width: 1441px) {
+  .arshine-pic-list h3{
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .arshine-pic-list h3 {
+    font-size: 44px;
+  }
+
+  .arshine-pic-list {
+    padding: 50px 0;
+  }
+}
+
+@media screen and (max-width: 1281px) {
+  .arshine-pic-list h3 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1171px) {
+  .arshine-pic-list h3 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .arshine-pic-list h3 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arshine-pic-list h3 {
+    font-size: 28px;
+  }
+
+  .arshine-pic-list {
+    padding: 30px 0;
+  }
+  .arshine-pic-list .list {
+    margin: 25px 0 0;
+  }
+  .arshine-pic-list .swiper-pagination {
+    margin-top: 25px;
+  }
+  .arshine-pic-list .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .arshine-pic-list h3 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-pic-list h3 {
+    font-size: 24px;
+  }
+}

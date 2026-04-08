@@ -1,0 +1,122 @@
+.arshine-about {
+  padding: 75px 0 0;
+}
+.arshine-about h2 {
+  font-size: 50px;
+  color: var(--color-primary);
+  line-height: 1;
+  font-family: var(--font-family1);
+  text-align: center;
+}
+.arshine-about h2::after {
+  content: "";
+  background: var(--color-primary);
+  width: 40px;
+  height: 4px;
+  margin: 11px auto 0;
+  display: block;
+}
+
+.arshine-about .txt {
+  margin: 50px 0 0;
+  line-height: 24px;
+  font-size: 16px;
+  color: #666666;
+  overflow: hidden;
+}
+.arshine-about .txt p ~ p {
+  margin-top: 15px;
+}
+.arshine-about .v {
+  width: 44.5%;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  float: right;
+  margin: 0 0 20px 50px;
+}
+.arshine-about .v img {
+  width: 100%;
+  display: block;
+  transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+}
+.arshine-about .v .play{
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arshine-about .v:hover img {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+}
+
+@media screen and (max-width: 1441px) {
+  .arshine-about h2 {
+    font-size: 48px;
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .arshine-about h2 {
+    font-size: 44px;
+  }
+  .arshine-about {
+    padding: 60px 0 0;
+  }
+}
+
+@media screen and (max-width: 1281px) {
+  .arshine-about h2 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 1171px) {
+  .arshine-about h2 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .arshine-about h2 {
+    font-size: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .arshine-about h2 {
+    font-size: 28px;
+  }
+
+  .arshine-about {
+    padding: 30px 0 0;
+  }
+  .arshine-about .txt {
+    margin: 20px 0;
+  }
+  .arshine-about .txt p ~ p {
+    margin-top: 10px;
+  }
+  .arshine-about .v {
+    width: 100%;
+    float: none;
+    margin: 0 0 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .arshine-about h2 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .arshine-about h2 {
+    font-size: 24px;
+  }
+}

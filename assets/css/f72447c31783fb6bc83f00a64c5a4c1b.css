@@ -1,0 +1,15 @@
+.derun-side-bar{top:calc(50% - 106px);position:fixed;right:5px;z-index:999;border-radius:6px;background:#fff;box-shadow:0 0 15px rgba(1,1,1,0.1);}
+.derun-side-bar a{display:block;cursor:pointer;width:48px;height:48px;display:-webkit-flex;display:flex;-webkit-justify-content:center;justify-content:center;-webkit-align-items:center;align-items:center;position:relative;color:var(--color-primary);}
+.derun-side-bar a+a{border-top:1px solid rgba(218,37,28,0.5);}
+.derun-side-bar a i{display:inline-block;font-size:28px;color:inherit;}
+.derun-side-bar a:hover{background:var(--color-primary);color:#fff;}
+
+.derun-side-bar .wx-box{width:150px;position:absolute;right:50px;top:-50px;display:none;z-index:100;}
+.derun-side-bar .wx-box .box{width:140px;padding:5px;border:1px solid #D6D7D7;text-align:center;background:#fff;overflow:hidden;}
+.derun-side-bar .wx-box .box img{width:100%;}
+
+.derun-side-bar .wx-box .arrowPanel{width:12px;height:20px;position:absolute;right:0;top:calc(50% - 5px);}
+.derun-side-bar .wx-box .arrowPanel .arrow01{width:0;height:0;font-size:0;line-height:0;position:absolute;bottom:0;left:2px;top:0;border-top:10px dashed transparent;border-right:10px dashed transparent;border-bottom:10px dashed transparent;border-left:10px solid #ddd;}
+.derun-side-bar .wx-box .arrowPanel .arrow02{width:0;height:0;font-size:0;line-height:0;position:absolute;bottom:0;left:0;top:0;border-top:10px dashed transparent;border-right:10px dashed transparent;border-bottom:10px dashed transparent;border-left:10px solid #fff;}
+
+.derun-side-bar a:hover .wx-box{display:block;}

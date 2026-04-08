@@ -1,0 +1,128 @@
+.sung_goods_list {
+  padding: 80px 0 60px;
+}
+
+.sung_goods_list .main-left {
+  float: left;
+  width: 340px;
+}
+
+.sung_goods_list .main-right {
+  margin-left: 370px;
+}
+
+.sung_goods_list .prolist li {
+  /* padding: 0 10px 20px; */
+  text-align: center;
+  /* cursor: pointer; */
+  /* border-radius: 5px; */
+  /* overflow: hidden; */
+}
+
+.sung_goods_list .prolist li .box {
+  transition: all .3s cubic-bezier(0,0,.5,1);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.sung_goods_list .prolist li .box:hover {
+  box-shadow: 0px 10px 30px 0px #00000033;
+  transform: scale3d(1.01, 1.01, 1.01);
+}
+
+.sung_goods_list .prolist li .pic {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative
+}
+
+.sung_goods_list .prolist li .pic img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.sung_goods_list .prolist li h6 {
+  padding: 12px 12px 0;
+  font-size: 18px;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: var(--title-text-color);
+  
+}
+
+.sung_goods_list .prolist li .txt-box {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sung_goods_list .prolist li:hover .pic::after {
+  opacity: 1
+}
+
+
+@media screen and (max-width: 1340px) {
+  .sung_goods_list .prolist-top p {
+    margin: 25px 0 0;
+    font-size: 17px;
+  }
+
+  .sung_goods_list .prolist li h6 {
+    font-size: 16px;
+  }
+
+  .sung_goods_list .prolist li .txt-box {
+    min-height: 56px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .sung_goods_list .main-left {
+    width: 250px;
+  }
+
+  .sung_goods_list .main-right {
+    margin-left: 280px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sung_goods_list {
+    padding: 30px 15px;
+  }
+
+  .sung_goods_list .main-left {
+    float: none;
+    width: 100%;
+  }
+
+  .sung_goods_list .main-right {
+    margin-left: 0;
+  }
+
+  .sung_goods_list .prolist-top {
+    margin-bottom: 30px;
+  }
+
+  .sung_goods_list .prolist-top h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .sung_goods_list .prolist-top p {
+    margin: 15px 0 0;
+    font-size: 16px;
+  }
+
+  .sung_goods_list .prolist li h6 {
+    font-size: 15px;
+  }
+}

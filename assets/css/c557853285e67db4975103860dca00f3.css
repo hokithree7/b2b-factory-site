@@ -1,0 +1,574 @@
+.arshine2-foot {
+  background: #24272F;
+  padding: 90px 0;
+}
+
+.arshine2-foot .container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.arshine2-foot h5 {
+  font-size: 30px;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 40px;
+}
+
+.arshine2-foot .foot-contact {
+  width: 500px;
+}
+
+.arshine2-foot .foot-contact p {
+  color: #fff;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.arshine2-foot .foot-contact p~p {
+  margin-top: 15px;
+}
+
+.arshine2-foot .foot-contact p:nth-of-type(1) {}
+
+.arshine2-foot .foot-contact p a {
+  color: inherit;
+}
+
+.arshine2-foot .foot-contact p:hover {
+  color: var(--color-primary);
+}
+
+.arshine2-foot .foot-contact .share {
+  font-size: 0;
+  margin: 17px 0 0;
+}
+
+.arshine2-foot .foot-contact .share a {
+  display: inline-block;
+  color: #92959D;
+  width: 38px;
+  height: 38px;
+  line-height: 34px;
+  border: 2px solid #92959D;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.arshine2-foot .foot-contact .share a+a {
+  margin-left: 20px;
+}
+
+.arshine2-foot .foot-contact .share a i {
+  font-size: 20px;
+  line-height: inherit;
+}
+
+.arshine2-foot .foot-contact .share a:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.arshine2-foot .foot-link {
+  margin-top: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.arshine2-foot .foot-link .list {
+  width: 100%;
+  position: relative;
+  transition: all 500ms;
+}
+
+.arshine2-foot .foot-link .list h6 {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 46px;
+  text-indent: 20px;
+  transition: all 500ms;
+  margin: 0;
+}
+
+.arshine2-foot .foot-link .list ul {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 46px;
+  background-color: #fff;
+  overflow: hidden;
+  height: 0;
+  transition: all 500ms;
+}
+
+.arshine2-foot .foot-link .list ul li a {
+  display: block;
+  font-size: 15px;
+  color: #333;
+  line-height: 40px;
+  padding-left: 20px;
+}
+
+.arshine2-foot .foot-link .list ul li:hover a {
+  background: var(--color-primary);
+  color: #fff
+}
+
+.arshine2-foot .foot-link .select_icon {
+  width: 55px;
+  height: 46px;
+  line-height: 46px;
+  color: #fff;
+  text-align: center;
+  display: block;
+  position: relative;
+  background-color: rgba(92, 92, 92, 0.6);
+  transition: all 500ms;
+}
+
+.arshine2-foot .foot-link .select_icon i {
+  font-size: 26px;
+  display: inline-block;
+  transition: all 500ms;
+  line-height: inherit;
+}
+
+.arshine2-foot .foot-link:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.arshine2-foot .foot-link:hover .list h6 {
+  color: rgba(29, 29, 29, 0.8);
+}
+
+.arshine2-foot .foot-link:hover .list ul {
+  height: 200px;
+}
+
+.arshine2-foot .foot-link:hover .select_icon {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.arshine2-foot .foot-link:hover .select_icon i {
+  color: #000;
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.arshine2-foot .foot-nav ul {}
+
+.arshine2-foot .foot-nav ul li {
+  font-size: 18px;
+  line-height: 30px;
+  color: #9d9d9d;
+}
+
+.arshine2-foot .foot-nav ul li+li {
+  margin-top: 15px;
+}
+
+.arshine2-foot .foot-nav ul li a:hover {
+  opacity: rgba(255, 255, 255, 0.8);
+}
+
+
+.arshine2-foot .foot-form {
+  width: 345px;
+}
+
+.arshine2-foot .foot-form p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #9d9d9d;
+}
+
+.arshine2-foot .foot-form .inquirbox {
+  margin-top: 20px;
+}
+
+.arshine2-foot .foot-form .input-box {
+  position: relative;
+}
+
+.arshine2-foot .foot-form .input-box~.input-box {
+  margin-top: 25px;
+}
+
+.arshine2-foot .foot-form .inquirbox input[type="text"],
+.foot-form .inquirbox textarea {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 35px;
+  background: #3B414F;
+  color: #fff;
+}
+
+.arshine2-foot .foot-form .inquirbox .submit {
+  line-height: 46px;
+  background: #fff;
+  color: var(--color-primary);
+  border-radius: 35px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.arshine2-foot .foot-form .inquirbox .submit i {
+  font-size: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: -2px;
+}
+
+.arshine2-foot .foot-form .inquirbox .submit:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 40px 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.copyright p {
+  color: #eeeeee;
+  font-size: 18px;
+  font-family: var(--font-family);
+}
+
+
+#arshine2-gotop {
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: var(--color-primary);
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  z-index: 1000;
+  cursor: pointer;
+  display: none;
+  border-radius: 5px;
+}
+
+#arshine2-gotop i {
+  color: #fff;
+  font-size: 18px;
+}
+
+#arshine2-gotop:hover {
+  background: #353535;
+}
+
+.inquirbox h5 {
+  background: #F0B323;
+}
+
+.inquirbox .row {
+  margin-bottom: 15px;
+}
+
+.inquirbox .row:last-of-type {
+  margin-bottom: 0;
+}
+
+.inquirbox input[type="text"],
+.inquirbox textarea {
+  padding: 10px 10px;
+  font-size: 16px;
+  border: 1px solid #D2D2CF;
+  width: 100%;
+  line-height: 22px;
+  text-align: left;
+  color: #111;
+  box-sizing: border-box;
+}
+
+.inquirbox textarea {
+  max-width: 100%;
+  width: 100%;
+  resize: none;
+}
+
+.inquirbox input[type="text"]:focus,
+.inquirbox textarea:focus {
+  outline: 0;
+  box-shadow: 0 0 10px rgba(63, 62, 62, 0.2);
+}
+
+.inquirbox .red {
+  color: #f00;
+  font-weight: bold;
+}
+
+
+.inquirbox img {
+  cursor: pointer;
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inquirbox .submit {
+  margin: 0 auto;
+  width: 100%;
+  line-height: 42px;
+  background: var(--color-primary);
+  border-radius: var(--button-radius);
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.inquirbox .submit:hover {
+  background: none;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.crm-form .inquirbox input[type="text"],
+.crm-form .inquirbox textarea {
+  padding: 10px 12px;
+  font-size: 16px;
+}
+
+.crm-form .inquirbox .submit {
+  margin: 0 auto;
+  line-height: 45px;
+  background: var(--color-primary);
+  border-radius: var(--button-radius);
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.crm-form .inquirbox .submit i {
+  font-size: 22px;
+}
+
+.crm-form .inquirbox .submit:hover {
+  background: none;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+@media screen and (max-width:1500px) {
+
+  .arshine2-foot {
+    padding: 80px 0;
+  }
+
+  .arshine2-foot h5 {
+    font-size: 28px;
+    margin-bottom: 35px;
+  }
+}
+
+@media screen and (max-width:1441px) {
+
+  .pro_view_inner .btn-box a {
+    width: 220px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 21px;
+  }
+
+  .arshine2-foot h5 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width:1367px) {
+
+  .arshine2-foot {
+    padding: 70px 0;
+  }
+
+  .arshine2-foot h5 {
+    font-size: 24px;
+  }
+
+  .arshine2-foot .foot-contact p {
+    line-height: 28px;
+  }
+
+  .arshine2-foot .foot-contact p {
+    font-size: 17px;
+  }
+
+  .arshine2-foot .foot-nav ul li,
+  .arshine2-foot .foot-form p {
+    line-height: 28px;
+  }
+
+  .arshine2-foot .foot-nav ul li,
+  .arshine2-foot .foot-form p {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width:1281px) {
+
+  .pro_view_inner .btn-box a {
+    width: 220px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width:1171px) {
+  .arshine2-foot .foot-contact p {
+    font-size: 16px;
+  }
+
+  .arshine2-foot .foot-nav ul li,
+  .arshine2-foot .foot-form p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width:992px) {
+
+  .arshine2-foot .foot-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  .arshine2-foot {
+    padding: 30px 0;
+  }
+
+  .arshine2-foot .container {
+    display: block;
+  }
+
+  .arshine2-foot h5 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .arshine2-foot .foot-contact {
+    width: 100%;
+    text-align: center;
+  }
+
+  .arshine2-foot .foot-contact p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .arshine2-foot .foot-contact p~p {
+    margin-top: 10px;
+  }
+
+  .arshine2-foot .foot-contact .share {
+    font-size: 0;
+    margin: 15px 0 0;
+  }
+
+  .arshine2-foot .foot-contact .share a+a {
+    margin-left: 15px;
+  }
+
+  .arshine2-foot .foot-contact form {
+    margin: 25px auto 0;
+  }
+
+  .arshine2-foot .foot-form {
+    width: 100%;
+    margin: 30px 0 0;
+  }
+
+  .arshine2-foot .foot-form p {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  .arshine2-foot .foot-form .inquirbox {
+    margin-top: 20px;
+  }
+
+  .arshine2-foot .foot-form .input-box~.input-box {
+    margin-top: 15px;
+  }
+
+  .arshine2-foot .foot-form .inquirbox input[type="text"],
+  .arshine2-foot .foot-form .inquirbox textarea {
+    padding: 10px 15px;
+  }
+
+  .arshine2-foot .foot-form .inquirbox .submit {
+    margin: 0 auto;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  .pro_view_inner .btn-box a {
+    width: 200px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 18px;
+  }
+
+  .arshine2-foot .foot-link {
+    margin: 25px auto 0;
+  }
+}
+
+@media screen and (max-width:600px) {
+
+  .arshine2-foot .foot-contact p {
+    font-size: 15px;
+  }
+
+  .arshine2-foot .foot-contact p {
+    line-height: 24px;
+  }
+
+  .arshine2-foot .foot-nav ul li,
+  .arshine2-foot .foot-form p {
+    font-size: 15px;
+  }
+
+  .arshine2-foot .foot-nav ul li,
+  .arshine2-foot .foot-form p {
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width:480px) {
+
+  .arshine2-foot h5 {
+    font-size: 22px;
+  }
+
+  .arshine2-foot .foot-contact form {
+    width: 100%;
+  }
+}

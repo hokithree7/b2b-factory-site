@@ -1,0 +1,124 @@
+.arshine2-indicator_card {
+  padding: 50px 0;
+}
+
+.arshine2-indicator_card ul {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.arshine2-indicator_card ul li {
+  text-align: center;
+}
+
+.arshine2-indicator_card ul li h5 {
+  color: var(--color-primary);
+  font-size: 60px;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+}
+
+.arshine2-indicator_card ul li h5::after {
+  content: attr(date-txt);
+  position: relative;
+  left: 10px;
+  top: -20px;
+  color: var(--color-primary);
+  font-size: 24px;
+}
+
+.arshine2-indicator_card ul li p {
+  font-size: 24px;
+  color: #333;
+  line-height: 24px;
+  margin: 5px 0 0;
+}
+
+@media screen and (max-width:1500px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 23px;
+  }
+
+  .arshine2-indicator_card ul li h5 {
+    font-size: 56px;
+  }
+}
+
+@media screen and (max-width:1441px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 22px;
+  }
+
+  .arshine2-indicator_card ul li h5 {
+    font-size: 52px;
+  }
+
+  .arshine2-indicator_card ul li h5::after {
+    font-size: 23px;
+  }
+}
+
+@media screen and (max-width:1367px) {
+  .arshine2-indicator_card ul li h5 {
+    font-size: 48px;
+  }
+
+  .arshine2-indicator_card ul li p {
+    font-size: 21px;
+  }
+
+  .arshine2-indicator_card ul li h5::after {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width:1281px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 20px;
+  }
+
+  .arshine2-indicator_card ul li h5::after {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width:1171px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 19px;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .arshine2-indicator_card ul li p {
+    font-size: 17px;
+  }
+
+  .arshine2-indicator_card ul li h5 {
+    font-size: 40px;
+  }
+
+
+  .arshine2-indicator_card {
+    padding: 10px 0 20px;
+  }
+
+  .arshine2-indicator_card ul li {
+    width: 50%;
+    padding: 10px 0;
+  }
+
+  .arshine2-indicator_card ul li h5::after {
+    font-size: 18px;
+  }
+}

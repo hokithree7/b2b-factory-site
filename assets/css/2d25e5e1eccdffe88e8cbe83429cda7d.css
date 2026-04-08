@@ -1,0 +1,38 @@
+/* ===== 19. Brand Area CSS ===== */
+.bt_brand_area {
+  background: #f6f6f6;
+  padding: 85px 0 100px 0;
+}
+.slide_items {
+  text-align: center;
+}
+
+.bt_brand_area h3 {
+    font-size: 50px;
+    color: var(--color-primary);
+    line-height: 1;
+    font-family: var(--font-family1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1281px) {
+  .bt_brand_area h3 {
+    font-size: 40px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .bt_brand_area h3 {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .bt_brand_area h3 {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .bt_brand_area h3 {
+    font-size: 26px;
+  }
+}
