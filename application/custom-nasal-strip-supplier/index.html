@@ -451,7 +451,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }</style></head>
+  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
   <body>
       <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W6D672RK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1145,7 +1145,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#89eeece6fbeeecfefca7eee3c9eee4e8e0e5a7eae6e4" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#abcccec4d9cccedcde85ccc1ebccc6cac2c785c8c4c6" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1275,7 +1275,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#83e4e6ecf1e4e6f4f6ade4e9c3e4eee2eaefade0ecee"><span class="__cf_email__" data-cfemail="99fefcf6ebfefceeecb7fef3d9fef4f8f0f5b7faf6f4">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#6e090b011c090b191b4009042e09030f0702400d0103"><span class="__cf_email__" data-cfemail="7215171d00151705075c151832151f131b1e5c111d1f">[email&#160;protected]</span></a>
       </p>
       <p>
         Mobile: <a>+86-18876210077</a>
@@ -1339,7 +1339,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1450,17 +1450,20 @@
     </script>
   
   
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.querySelectorAll("form").forEach(function(form) {
-                    form.action = "https://formspree.io/f/maqlkzwa";
-                    form.method = "POST";
-                    var newForm = form.cloneNode(true);
-                    form.parentNode.replaceChild(newForm, form);
-                });
-            }, 1200);
-        });
-        </script>
-        </body>
+    <script>
+    (function() {
+        var clean = function() {
+            document.querySelectorAll("form").forEach(function(f) {
+                if (f.action.indexOf("formspree") === -1) {
+                    f.action = "https://formspree.io/f/maqlkzwa";
+                    f.method = "POST";
+                    f.onsubmit = null; 
+                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
+                }
+            });
+        };
+        setTimeout(clean, 500); setTimeout(clean, 2000);
+    })();
+    </script>
+    </body>
 </html>

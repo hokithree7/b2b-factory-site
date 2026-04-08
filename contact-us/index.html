@@ -476,7 +476,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }</style></head>
+  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -975,7 +975,7 @@
       </li>
       <li>
         <i class="qico qico-youxiang"></i>
-        Email: <a aria-label="email" href="/cdn-cgi/l/email-protection#eb988a878e98868a858a8c8e99ab8387809f8a9b8ec5888486"><span class="__cf_email__" data-cfemail="e390828f86908e828d82848691a38b8f8897829386cd808c8e">[email&#160;protected]</span></a>
+        Email: <a aria-label="email" href="/cdn-cgi/l/email-protection#6b180a070e18060a050a0c0e192b0307001f0a1b0e45080406"><span class="__cf_email__" data-cfemail="d6a5b7bab3a5bbb7b8b7b1b3a496bebabda2b7a6b3f8b5b9bb">[email&#160;protected]</span></a>
       </li>
       <li>
 <i class="qico qico-shouji2"></i> WhatsApp: <a target="_blank" href="https://wa.me/+8619805957675">+86-19805957675</a>
@@ -1006,7 +1006,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#3043515c55435d515e5157554270585c5b445140551e535f5d" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#cdbeaca1a8bea0aca3acaaa8bf8da5a1a6b9acbda8e3aea2a0" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1136,7 +1136,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#d4a7b5b8b1a7b9b5bab5b3b1a694bcb8bfa0b5a4b1fab7bbb9"><span class="__cf_email__" data-cfemail="1261737e77617f737c73757760527a7e79667362773c717d7f">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#7201131e17011f131c13151700321a1e19061302175c111d1f"><span class="__cf_email__" data-cfemail="8ffceee3eafce2eee1eee8eafdcfe7e3e4fbeeffeaa1ece0e2">[email&#160;protected]</span></a>
       </p>
       <p>
         WhatsApp: <a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
@@ -1200,7 +1200,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1311,17 +1311,20 @@
     </script>
   
   
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.querySelectorAll("form").forEach(function(form) {
-                    form.action = "https://formspree.io/f/maqlkzwa";
-                    form.method = "POST";
-                    var newForm = form.cloneNode(true);
-                    form.parentNode.replaceChild(newForm, form);
-                });
-            }, 1200);
-        });
-        </script>
-        </body>
+    <script>
+    (function() {
+        var clean = function() {
+            document.querySelectorAll("form").forEach(function(f) {
+                if (f.action.indexOf("formspree") === -1) {
+                    f.action = "https://formspree.io/f/maqlkzwa";
+                    f.method = "POST";
+                    f.onsubmit = null; 
+                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
+                }
+            });
+        };
+        setTimeout(clean, 500); setTimeout(clean, 2000);
+    })();
+    </script>
+    </body>
 </html>

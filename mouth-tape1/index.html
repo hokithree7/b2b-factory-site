@@ -476,7 +476,7 @@
       
       </script>
     
-  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }</style></head>
+  <style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style></head>
 
   <body>
       <!-- Google Tag Manager (noscript) -->
@@ -898,7 +898,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#9ae9fbf6ffe9f7fbf4fbfdffe8daf2f6f1eefbeaffb4f9f5f7" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#aeddcfc2cbddc3cfc0cfc9cbdceec6c2c5dacfdecb80cdc1c3" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1028,7 +1028,7 @@
       </p>
       <p>
         E-mail:
-        <a href="/cdn-cgi/l/email-protection#45362429203628242b24222037052d292e312435206b262a28"><span class="__cf_email__" data-cfemail="d7a4b6bbb2a4bab6b9b6b0b2a597bfbbbca3b6a7b2f9b4b8ba">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#bccfddd0d9cfd1ddd2dddbd9cefcd4d0d7c8ddccd992dfd3d1"><span class="__cf_email__" data-cfemail="55263439302638343b34323027153d393e213425307b363a38">[email&#160;protected]</span></a>
       </p>
       <p>
         WhatsApp: <a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
@@ -1092,7 +1092,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMATION</h5>
       <p>Sign up to receive our weekly newsletter</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Email Address">
         </div>
@@ -1203,17 +1203,20 @@
     </script>
   
   
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.querySelectorAll("form").forEach(function(form) {
-                    form.action = "https://formspree.io/f/maqlkzwa";
-                    form.method = "POST";
-                    var newForm = form.cloneNode(true);
-                    form.parentNode.replaceChild(newForm, form);
-                });
-            }, 1200);
-        });
-        </script>
-        </body>
+    <script>
+    (function() {
+        var clean = function() {
+            document.querySelectorAll("form").forEach(function(f) {
+                if (f.action.indexOf("formspree") === -1) {
+                    f.action = "https://formspree.io/f/maqlkzwa";
+                    f.method = "POST";
+                    f.onsubmit = null; 
+                    var n = f.cloneNode(true); f.parentNode.replaceChild(n, f);
+                }
+            });
+        };
+        setTimeout(clean, 500); setTimeout(clean, 2000);
+    })();
+    </script>
+    </body>
 </html>
