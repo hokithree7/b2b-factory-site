@@ -1,4 +1,4 @@
-name: Full Site Migration v4
+name: Full Site Migration v5 - Total Independence
 
 on:
   workflow_dispatch:
@@ -12,11 +12,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Migrate and Repair Pages
+      - name: Migrate, Clean and Localize Assets
         run: |
           cat << 'EOF' > migrate.py
-          import os, requests, re, json, time
-          from urllib.parse import urlparse
+          import os, requests, re, json, time, hashlib
+          from urllib.parse import urlparse, urljoin
 
           urls = [
             'https://www.hlktape.com/', 'https://www.hlktape.com/about-us', 'https://www.hlktape.com/custom', 
@@ -32,6 +32,38 @@ jobs:
           ]
 
           headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+          asset_dir = "assets"
+          os.makedirs(asset_dir, exist_ok=True)
+          
+          # Map to track downloaded assets to avoid duplicates
+          asset_map = {}
+
+          def download_asset(url, subfolder):
+              if not url or url.startswith('data:') or url.startswith('javascript:'): return url
+              if url in asset_map: return asset_map[url]
+              
+              try:
+                  parsed = urlparse(url)
+                  ext = os.path.splitext(parsed.path)[1]
+                  if not ext: ext = ".bin"
+                  filename = hashlib.md5(url.encode()).hexdigest() + ext
+                  
+                  folder_path = os.path.join(asset_dir, subfolder)
+                  os.makedirs(folder_path, exist_ok=True)
+                  local_path = os.path.join(folder_path, filename)
+                  
+                  print(f"  Downloading asset: {url}")
+                  r = requests.get(url, headers=headers, timeout=20)
+                  if r.status_code == 200:
+                      with open(local_path, 'wb') as f:
+                          f.write(r.content)
+                      # Return relative path for HTML
+                      rel_path = f"/assets/{subfolder}/{filename}"
+                      asset_map[url] = rel_path
+                      return rel_path
+              except Exception as e:
+                  print(f"  Failed to download {url}: {e}")
+              return url
 
           for url in urls:
               parsed = urlparse(url)
@@ -44,26 +76,53 @@ jobs:
                   r = requests.get(url, headers=headers, timeout=30)
                   html = r.text
                   
-                  # 1. 修复头部乱套 (通过CSS隐藏垃圾代码，而不是删除HTML)
+                  # 1. 修复头部布局与隐藏冗余
                   fix_css = '<style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }</style>'
                   html = html.replace('</head>', fix_css + '</head>')
                   
-                  # 2. 注入 Formspree 最新接口 maqlkzwa
+                  # 2. 本地化资源 (CSS, JS, Images, Videos)
+                  # Localize Images
+                  images = re.findall(r'src="([^"]*\.(?:png|jpg|jpeg|gif|svg|webp)[^"]*)"', html, re.I)
+                  for img_url in images:
+                      full_url = urljoin(url, img_url)
+                      local_img = download_asset(full_url, "images")
+                      html = html.replace(f'src="{img_url}"', f'src="{local_img}"')
+                  
+                  # Localize Stylesheets
+                  css_files = re.findall(r'<link[^>]*href="([^"]*\.css[^"]*)"', html, re.I)
+                  for css_url in css_files:
+                      full_url = urljoin(url, css_url)
+                      local_css = download_asset(full_url, "css")
+                      html = html.replace(f'href="{css_url}"', f'href="{local_css}"')
+                      
+                  # Localize Scripts
+                  js_files = re.findall(r'<script[^>]*src="([^"]*\.js[^"]*)"', html, re.I)
+                  for js_url in js_files:
+                      full_url = urljoin(url, js_url)
+                      local_js = download_asset(full_url, "js")
+                      html = html.replace(f'src="{js_url}"', f'src="{local_js}"')
+
+                  # Localize Videos
+                  videos = re.findall(r'<source[^>]*src="([^"]*\.(?:mp4|webm|ogg)[^"]*)"', html, re.I)
+                  for vid_url in videos:
+                      full_url = urljoin(url, vid_url)
+                      local_vid = download_asset(full_url, "videos")
+                      html = html.replace(f'src="{vid_url}"', f'src="{local_vid}"')
+
+                  # 3. Formspree 接口对接 maqlkzwa
                   html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/maqlkzwa" method="POST"')
                   html = re.sub(r'<form([^>]*)action="[^"]*"', r'<form \1 action="https://formspree.io/f/maqlkzwa" method="POST"', html)
                   
-                  # 3. 补全表单字段 (确保邮件内容不为空)
+                  # 4. 字段补全与链接清理
                   html = html.replace('id="fileInput"', 'name="attachment" id="fileInput"')
                   html = html.replace('id="inquiry_email"', 'name="email" id="inquiry_email"')
                   html = html.replace('id="inquiry_name"', 'name="name" id="inquiry_name"')
                   html = html.replace('id="inquiry_company"', 'name="company" id="inquiry_company"')
                   html = html.replace('id="inquiry_mobile"', 'name="whatsapp" id="inquiry_mobile"')
                   html = html.replace('id="inquiry_message"', 'name="message" id="inquiry_message"')
-                  
-                  # 4. 修复链接与脚本劫持
-                  html = html.replace('https://https://', 'https://')
                   html = html.replace('https://www.hlktape.com/', '/')
                   
+                  # 5. 注入防劫持脚本
                   fix_script = """
                   <script>
                   document.addEventListener("DOMContentLoaded", function() {
@@ -74,7 +133,7 @@ jobs:
                               var newForm = form.cloneNode(true);
                               form.parentNode.replaceChild(newForm, form);
                           });
-                      }, 1000);
+                      }, 1200);
                   });
                   </script>
                   """
@@ -82,7 +141,7 @@ jobs:
                   
                   with open(target, "w", encoding="utf-8") as f:
                       f.write(html)
-                  time.sleep(0.3)
+                  time.sleep(0.2)
               except Exception as e:
                   print(f"Error: {e}")
           EOF
@@ -93,5 +152,5 @@ jobs:
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Layout repair and new Formspree ID maqlkzwa" || echo "No changes"
+          git commit -m "Full local asset migration - 100% Independent" || echo "No changes"
           git push
