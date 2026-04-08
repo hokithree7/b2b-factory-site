@@ -1,4 +1,4 @@
-name: Full Site Migration v3
+name: Full Site Migration v4
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Migrate and Clean Pages
+      - name: Migrate and Repair Pages
         run: |
           cat << 'EOF' > migrate.py
           import os, requests, re, json, time
@@ -44,15 +44,15 @@ jobs:
                   r = requests.get(url, headers=headers, timeout=30)
                   html = r.text
                   
-                  # 1. 清除旧弹窗
-                  html = re.sub(r"<link[^>]*lang_selector2_[^>]*>", "", html)
-                  html = re.sub(r"<div[^>]*lang-selector[^>]*>.*?</div>", "", html, flags=re.DOTALL)
+                  # 1. 修复头部乱套 (通过CSS隐藏垃圾代码，而不是删除HTML)
+                  fix_css = '<style>.lang-selector, .header-lang, .lang-box, #CountrySelect, .skiptranslate { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }</style>'
+                  html = html.replace('</head>', fix_css + '</head>')
                   
-                  # 2. 注入 Formspree 接口并强制设为 POST
-                  html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/mjvndzoy" method="POST"')
-                  html = re.sub(r'<form([^>]*)action="[^"]*"', r'<form \1 action="https://formspree.io/f/mjvndzoy" method="POST"', html)
+                  # 2. 注入 Formspree 最新接口 maqlkzwa
+                  html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/maqlkzwa" method="POST"')
+                  html = re.sub(r'<form([^>]*)action="[^"]*"', r'<form \1 action="https://formspree.io/f/maqlkzwa" method="POST"', html)
                   
-                  # 3. 强制注入 name 属性（确保邮件不为空）
+                  # 3. 补全表单字段 (确保邮件内容不为空)
                   html = html.replace('id="fileInput"', 'name="attachment" id="fileInput"')
                   html = html.replace('id="inquiry_email"', 'name="email" id="inquiry_email"')
                   html = html.replace('id="inquiry_name"', 'name="name" id="inquiry_name"')
@@ -60,20 +60,21 @@ jobs:
                   html = html.replace('id="inquiry_mobile"', 'name="whatsapp" id="inquiry_mobile"')
                   html = html.replace('id="inquiry_message"', 'name="message" id="inquiry_message"')
                   
-                  # 4. 修复 YouTube 双协议头
+                  # 4. 修复链接与脚本劫持
                   html = html.replace('https://https://', 'https://')
-                  html = html.replace('www.youtube.com/@HLKTape', 'https://www.youtube.com/@HLKTape')
+                  html = html.replace('https://www.hlktape.com/', '/')
                   
-                  # 5. 注入“劫持清除器”脚本
                   fix_script = """
                   <script>
                   document.addEventListener("DOMContentLoaded", function() {
                       setTimeout(function() {
                           document.querySelectorAll("form").forEach(function(form) {
+                              form.action = "https://formspree.io/f/maqlkzwa";
+                              form.method = "POST";
                               var newForm = form.cloneNode(true);
                               form.parentNode.replaceChild(newForm, form);
                           });
-                      }, 2000);
+                      }, 1000);
                   });
                   </script>
                   """
@@ -81,9 +82,9 @@ jobs:
                   
                   with open(target, "w", encoding="utf-8") as f:
                       f.write(html)
-                  time.sleep(0.5)
+                  time.sleep(0.3)
               except Exception as e:
-                  print(f"Error processing {url}: {e}")
+                  print(f"Error: {e}")
           EOF
           python3 migrate.py
 
@@ -92,5 +93,5 @@ jobs:
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Comprehensive migration v3 - FINAL FIX" || echo "No changes"
+          git commit -m "Layout repair and new Formspree ID maqlkzwa" || echo "No changes"
           git push
