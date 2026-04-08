@@ -1,4 +1,4 @@
-name: Full Site Migration v7 - Final Polish
+name: Full Site Migration v8 - Ultra-Fix
 
 on:
   workflow_dispatch:
@@ -31,14 +31,13 @@ jobs:
             'https://www.hlktape.com/mouth-tape1', 'https://www.hlktape.com/nasal-strips1'
           ]
 
-          headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
+          headers = {"User-Agent": "Mozilla/5.0"}
           asset_map = {}
 
           def download_asset(url, subfolder):
-              if not url or url.startswith('data:') or url.startswith('javascript:'): return url
+              if not url or url.startswith('data:') or url.startswith('javascript:') or url.startswith('/assets/'): return url
               clean_url = url.split('?')[0].split('#')[0]
               if clean_url in asset_map: return asset_map[clean_url]
-              
               try:
                   parsed = urlparse(url)
                   ext = os.path.splitext(parsed.path)[1]
@@ -48,7 +47,7 @@ jobs:
                   os.makedirs(local_dir, exist_ok=True)
                   local_path = os.path.join(local_dir, filename)
                   
-                  print(f"  Fetching: {url}")
+                  print(f"  Downloading: {url}")
                   r = requests.get(url, headers=headers, timeout=30)
                   if r.status_code == 200:
                       with open(local_path, 'wb') as f: f.write(r.content)
@@ -57,6 +56,18 @@ jobs:
                       return rel_path
               except: pass
               return url
+
+          # Pre-download core assets
+          flag_sprite = download_asset("https://shopcdnpro.grainajz.com/tpl-common/common/images/flags.png", "images")
+          core_fonts = [
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff2",
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.woff",
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont.ttf",
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.woff2",
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.woff",
+              "https://shopcdnpro.grainajz.com/tpl-common/common/css/fonts/iconfont/iconfont-new.ttf"
+          ]
+          local_fonts = [download_asset(f, "fonts") for f in core_fonts]
 
           for url in urls:
               parsed = urlparse(url)
@@ -68,50 +79,43 @@ jobs:
               r = requests.get(url, headers=headers, timeout=30)
               html = r.text
               
-              # 1. 修复头部 UI：恢复语言选择器，限制国旗大小
-              ui_fix = '<style>.lang-selector.header-lang{display:inline-block !important;opacity:1 !important;pointer-events:auto !important;}.lang-selector img{width:24px !important;height:auto !important;object-fit:contain !important;}.lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame { display: none !important; opacity: 0 !important; }</style>'
-              html = html.replace('</head>', ui_fix + '</head>')
+              # 1. UI Fixes: CSS for Flags and Font-Face
+              ui_patch = f'''
+              <style>
+              .header-lang .lang-selector i {{ background-image: url("{flag_sprite}") !important; background-size: 240px auto !important; }}
+              @font-face {{ font-family: "qico"; src: url("{local_fonts[0]}") format("woff2"), url("{local_fonts[1]}") format("woff"), url("{local_fonts[2]}") format("truetype"); }}
+              @font-face {{ font-family: "iconfont"; src: url("{local_fonts[3]}") format("woff2"), url("{local_fonts[4]}") format("woff"), url("{local_fonts[5]}") format("truetype"); }}
+              .lang-box, #CountrySelect, .skiptranslate, .goog-te-banner-frame {{ display: none !important; }}
+              .header-lang {{ display: block !important; opacity: 1 !important; }}
+              </style>
+              '''
+              html = html.replace('</head>', ui_patch + '</head>')
               
-              # 2. 深度本地化资产 (图片, 字体, CSS, JS)
-              # Images
-              for img in re.findall(r'src="([^"]*?\.(?:png|jpg|jpeg|gif|svg|webp)[^"]*?)"', html, re.I):
+              # 2. Localize Assets
+              for img in re.findall(r'src="([^"]*?\\.(?:png|jpg|jpeg|gif|svg|webp)[^"]*?)"', html, re.I):
                   html = html.replace(f'src="{img}"', f'src="{download_asset(urljoin(url, img), "images")}"')
-              # Fonts & Backgrounds in CSS (Rough scan)
-              for css in re.findall(r'href="([^"]*?\.css[^"]*?)"', html, re.I):
+              for css in re.findall(r'href="([^"]*?\\.css[^"]*?)"', html, re.I):
                   html = html.replace(f'href="{css}"', f'href="{download_asset(urljoin(url, css), "css")}"')
-              # Scripts
-              for js in re.findall(r'src="([^"]*?\.js[^"]*?)"', html, re.I):
+              for js in re.findall(r'src="([^"]*?\\.js[^"]*?)"', html, re.I):
                   html = html.replace(f'src="{js}"', f'src="{download_asset(urljoin(url, js), "js")}"')
-              
-              # 3. 强制修复 Iconfont 字体 (从原站 CSS 中提取常见字体路径并强制本地化)
-              fonts = ['iconfont.woff2', 'iconfont.woff', 'iconfont.ttf']
-              for f in fonts:
-                  font_url = f"https://shopcdnpro.grainajz.com/inst/Ain/2912/67765/common/fonts/iconfont/{f}"
-                  download_asset(font_url, "fonts")
 
-              # 4. Formspree 接口 maqlkzwa + 提交后提示
-              html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/maqlkzwa" method="POST"')
+              # 3. Form Fix: Country Code Placeholder + Names
+              html = html.replace('<option class="bs-title-option" value=""></option>', '<option value="" disabled selected>Select Code</option>')
+              html = html.replace('id="inquiry_email"', 'name="email" id="inquiry_email"')
+              html = html.replace('id="inquiry_name"', 'name="name" id="inquiry_name"')
+              html = html.replace('id="inquiry_mobile"', 'name="phone" id="inquiry_mobile"')
+              html = html.replace('id="inquiry_code"', 'name="country_code" id="inquiry_code"')
+              html = html.replace('id="inquiry_message"', 'name="message" id="inquiry_message"')
+              html = html.replace('id="fileInput"', 'name="attachment" id="fileInput"')
+
+              # 4. Final Form Redirection
               html = re.sub(r'<form([^>]*)action="[^"]*"', r'<form \1 action="https://formspree.io/f/maqlkzwa" method="POST"', html)
-              for old, new in [('id="inquiry_email"', 'name="email" id="inquiry_email"'), ('id="inquiry_name"', 'name="name" id="inquiry_name"'), ('id="fileInput"', 'name="attachment" id="fileInput"')]:
-                  html = html.replace(old, new)
-
-              # 5. 注入“成功提交”拦截器
-              success_js = """
-              <script>
-              document.addEventListener("DOMContentLoaded", function() {
-                  setTimeout(function() {
-                      document.querySelectorAll("form").forEach(function(form) {
-                          form.action = "https://formspree.io/f/maqlkzwa";
-                          form.method = "POST";
-                          var newForm = form.cloneNode(true);
-                          form.parentNode.replaceChild(newForm, form);
-                      });
-                  }, 1500);
-              });
-              </script>
-              """
-              html = html.replace('</body>', success_js + '</body>')
+              html = html.replace('action="javaScript:void(0)"', 'action="https://formspree.io/f/maqlkzwa" method="POST"')
+              
+              # 5. Domain and Hijack Fix
               html = html.replace('https://www.hlktape.com/', '/')
+              fix_js = '<script>document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){document.querySelectorAll("form").forEach(function(f){if(f.action.indexOf("formspree")===-1){f.action="https://formspree.io/f/maqlkzwa";f.method="POST";var n=f.cloneNode(true);f.parentNode.replaceChild(n,f);}});},1500);});</script>'
+              html = html.replace('</body>', fix_js + '</body>')
               
               with open(target, "w", encoding="utf-8") as f: f.write(html)
           EOF
@@ -122,5 +126,5 @@ jobs:
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
           git add .
-          git commit -m "Final polish - fonts, header fix, form fix v7" || echo "No changes"
+          git commit -m "Ultra-Fix version v8" || echo "No changes"
           git push
