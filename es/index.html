@@ -482,12 +482,11 @@
     
   
     <style>
-    .search-song.search-box-only { display: none !important; }
-    .header-lang .lang-selector i { background-image: url("/assets/images/55ec9ba593048fdad6f47cde3a907850.png") !important; background-size: 240px auto !important; }
+    .search-song.search-box-only, .search-box-only, .song-search-form { display: none !important; }
+    .header-lang .lang-selector i { background-image: url("/assets/images/55ec9ba593048fdad6f47cde3a907850.png") !important; background-size: 240px auto !important; display: inline-block !important; width: 24px !important; height: 16px !important; }
     .header-lang .lang-selector:hover .lang-box { display: block !important; opacity: 1 !important; visibility: visible !important; }
-    .lang-selector .current-lang { cursor: pointer !important; padding: 10px !important; }
-    @font-face { font-family: "qico"; src: url("/assets/fonts/b0c902b045fdf3cbbd6d9a8784386987.woff2") format("woff2"), url("/assets/fonts/e49a63e035312df22f75222d44115a87.woff") format("woff"), url("/assets/fonts/53b43545624c66199a80eefa6e3d239a.ttf") format("truetype"); }
-    @font-face { font-family: "iconfont"; src: url("/assets/fonts/b73058452e0788b25b12c1529f6b501f.woff2") format("woff2"), url("/assets/fonts/6db1fbd7d89b6d7bdff7a77e53dda676.woff") format("woff"), url("/assets/fonts/229e05b0a9377f57128fc726a7960db5.ttf") format("truetype"); }
+    .lang-selector .current-lang { cursor: pointer !important; }
+    @font-face { font-family: "iconfont"; src: url("/assets/fonts/b0c902b045fdf3cbbd6d9a8784386987.woff2") format("woff2"), url("/assets/fonts/e49a63e035312df22f75222d44115a87.woff") format("woff"), url("/assets/fonts/53b43545624c66199a80eefa6e3d239a.ttf") format("truetype"); }
     .skiptranslate, .goog-te-banner-frame { display: none !important; }
     </style>
     </head>
@@ -515,7 +514,7 @@
   </div>
 </div>
 <div class="mo-search-song search-box-only">
-  <form  role="search" id="searchform" class="cl song-cl" method="post"  action="https://formspree.io/f/maqlkzwa" method="POST">
+  <form role="search" id="searchform" class="cl song-cl" method="post" action="javascript:void(0)">
     <input type="hidden" name="type" value="product">
     <input type="text" class="form-control" placeholder="" name="keys">
     <input class="submit_btn" type="submit" value="GO">
@@ -621,7 +620,7 @@
           <em>
             <i class="qico qico-search2"></i>
           </em>
-          <form  class="serchbox" name="search" method="post"  action="https://formspree.io/f/maqlkzwa" method="POST">
+          <form class="serchbox" name="search" method="post" action="javascript:void(0)">
             <input type="hidden" name="type" value="news">
             <input class="submit_text" type="text" name="keys" placeholder="Buscar">
             <input class="submit_btn" type="submit" value="GO">
@@ -728,7 +727,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <form   action="https://formspree.io/f/maqlkzwa" method="POST" class="inqury-form form" id="inqury-form" novalidate>
+        <form action="javascript:void(0)" class="inqury-form form" id="inqury-form" novalidate>
           <input type="hidden" name="form_id" value="36791332117387" hidden>
           <input type="hidden" value="" id="pagetitle" name="pagetitle">
                   <div class="input-wrap text-wrap full">
@@ -1584,7 +1583,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <form   action="https://formspree.io/f/maqlkzwa" method="POST" class="inqury-form form" id="inqury-form" novalidate>
+        <form action="javascript:void(0)" class="inqury-form form" id="inqury-form" novalidate>
           <input type="hidden" name="form_id" value="36791332117387" hidden>
           <input type="hidden" value="" id="pagetitle" name="pagetitle">
                   <div class="input-wrap text-wrap full">
@@ -1684,7 +1683,7 @@
       <i class="qico qico-whatsapp"></i>
     
     </a>
-    <a href="/cdn-cgi/l/email-protection#a8dbc9c4cddbc5c9c6c9cfcddae8c0c4c3dcc9d8cd86cbc7c5" target="_blank" aria-label="email">
+    <a href="/cdn-cgi/l/email-protection#ff8c9e939a8c929e919e989a8dbf9793948b9e8f9ad19c9092" target="_blank" aria-label="email">
       <i class="qico qico-email"></i>
     </a>
 
@@ -1710,7 +1709,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <form   action="https://formspree.io/f/maqlkzwa" method="POST" class="inqury-form form" id="inqury-form" novalidate>
+        <form action="javascript:void(0)" class="inqury-form form" id="inqury-form" novalidate>
           <input type="hidden" name="form_id" value="36791332117387" hidden>
           <input type="hidden" value="" id="pagetitle" name="pagetitle">
                   <div class="input-wrap text-wrap full">
@@ -1858,7 +1857,7 @@
       <p>Add: No.299 Xingxian Road, Licheng District, Quanzhou City</p>
       <p>Tel.:<a href="tel:+86-19805957675">+86-19805957675</a>
       </p>
-      <p>Correo electrónico:<a href="/cdn-cgi/l/email-protection#7d0e1c11180e101c131c1a180f3d151116091c0d18531e1210"><span class="__cf_email__" data-cfemail="c2b1a3aea7b1afa3aca3a5a7b082aaaea9b6a3b2a7eca1adaf">[email&#160;protected]</span></a>
+      <p>Correo electrónico:<a href="/cdn-cgi/l/email-protection#fa899b969f89979b949b9d9f88ba9296918e9b8a9fd4999597"><span class="__cf_email__" data-cfemail="b7c4d6dbd2c4dad6d9d6d0d2c5f7dfdbdcc3d6c7d299d4d8da">[email&#160;protected]</span></a>
       </p>
       <p>WhatsApp:<a href="https://api.whatsapp.com/send?phone=8619805957675" rel="nofollow">+86-19805957675</a>
       </p>
@@ -1921,7 +1920,7 @@
     <div class="foot-form wow fadeInRight">
       <h5>INFORMACIÓN</h5>
       <p>Regístrese para recibir nuestro boletín semanal</p>
-      <form  method="post"  action="https://formspree.io/f/maqlkzwa" method="POST" id="contact" name="contact" class="inquirbox invite-form">
+      <form method="post" action="javaScript:void(0)" id="contact" name="contact" class="inquirbox invite-form">
         <div class="input-box">
           <input type="text" id="name" name="email" maxlength="20" class="c_name" placeholder="Dirección de correo electrónico">
         </div>
@@ -2091,25 +2090,23 @@
   <script type="text/javascript" src="/assets/js/b3b800b15383c80b873ad374d63ded86.js" defer></script><script type="text/javascript" src="/assets/js/7863a9385a2602b594297de812856345.js" defer></script><script type="text/javascript" src="/assets/js/f15a2ff00d7f337edca8322082b12bb0.js" defer></script><script type="text/javascript" src="/assets/js/bda8dcd81457f4ff09949614ac7f1b8b.js" defer></script><script type="text/javascript" src="/assets/js/bf75f29969329b9c023ad55bc15c9cb4.js" defer></script><script src="/assets/js/c22e9b84b62508b3be34b02f01706729.js" defer></script><script defer type="text/javascript" src="/assets/js/34a8c43a398731122b8b76b62d473a13.js"></script><script type="text/javascript" src="/assets/js/dc938a8b195663c591bd238b3ab0ceca.js" defer></script><script defer type="text/javascript" src="/assets/js/23de3222ee5ce55264dff68ffc1f4f1e.js"></script><script defer type="text/javascript" src="/assets/js/81006480cee3353919b46ef183f47a6d.js"></script><script type="text/javascript" src="/assets/js/bed4f76768a8fae628cba253972aaa55.js" defer></script><script defer type="text/javascript" src="/assets/js/cfaac83fb1f36b75352601b10e49066c.js"></script><script defer type="text/javascript" src="/assets/js/71d001d6c823a16d35db6c5c24d6fb37.js"></script><div id="shops-kit-container" style="width: 0; height: 0; left: -2px;"></div>
 <script src="/assets/js/d132806b2a3f16c05af7bc241b75d20b.js" defer></script>
 
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
     <script>
-    (function() {
-        var cleanForms = function() {
-            document.querySelectorAll("form").forEach(function(form) {
-                if (form.getAttribute('data-cleaned') === 'true') return;
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.querySelectorAll("form").forEach(function(form, index) {
+                form.id = "inquiry-form-" + index;
                 form.action = "https://formspree.io/f/maqlkzwa";
                 form.method = "POST";
-                form.onsubmit = null;
+                // 强制解除所有旧脚本的绑定
                 var newForm = form.cloneNode(true);
-                newForm.setAttribute('data-cleaned', 'true');
                 form.parentNode.replaceChild(newForm, form);
+                // 使用 Formspree AJAX 初始化
+                formspree('initForm', { formElement: '#' + newForm.id, formId: 'maqlkzwa' });
             });
-        };
-        // Run multiple times to beat late-loading scripts
-        cleanForms(); 
-        setTimeout(cleanForms, 500); 
-        setTimeout(cleanForms, 2000);
-        setTimeout(cleanForms, 5000);
-    })();
+        }, 2000);
+    });
     </script>
     </body>
 </html>
