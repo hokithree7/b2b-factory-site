@@ -1,10 +1,10 @@
-name: Full Site Migration v17 - Reliable WP Porter
+name: WordPress News Migration v21
 
 on:
   workflow_dispatch:
 
 jobs:
-  migrate:
+  generate-xml:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -12,71 +12,114 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Split XML Files
+      - name: Generate Blog WXR XML
         run: |
-          cat << 'EOF' > wp_split_gen.py
-          import os, re, datetime
+          cat << 'EOF' > wp_blog_gen.py
+          import os, re, datetime, html
 
-          def get_xml_item(title, content, ptype, pid, source_url=None):
-              date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
-              item = f"""
+          def get_xml_header():
+              return f"""<?xml version="1.0" encoding="UTF-8" ?>
+          <rss version="2.0"
+              xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+              xmlns:content="http://purl.org/rss/1.0/modules/content/"
+              xmlns:dc="http://purl.org/dc/elements/1.1/"
+              xmlns:wp="http://wordpress.org/export/1.2/"
+          >
+          <channel>
+              <title>HLK Blog Migration</title>
+              <link>https://lightpink-crab-936734.hostingersite.com/</link>
+              <description>Clean blog migration for news category</description>
+              <pubDate>{datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate>
+              <language>en-US</language>
+              <wp:wxr_version>1.2</wp:wxr_version>
+              <wp:category>
+                  <wp:term_id>100</wp:term_id>
+                  <wp:category_nicename><![CDATA[news]]></wp:category_nicename>
+                  <wp:category_parent><![CDATA[]]></wp:category_parent>
+                  <wp:cat_name><![CDATA[news]]></wp:cat_name>
+              </wp:category>
+          """
+
+          def get_xml_footer():
+              return "</channel></rss>"
+
+          def get_item_xml(title, content, date_str, slug, pid):
+              try:
+                  month_name = date_str.split(".")[0]
+                  day = date_str.split(".")[1]
+                  year = date_str.split(".")[2]
+                  dt = datetime.datetime.strptime(f"{month_name} {day} {year}", '%b %d %Y')
+                  post_date = dt.strftime('%Y-%m-%d %H:%M:%S')
+                  post_date_gmt = dt.strftime('%Y-%m-%d %H:%M:%S')
+                  pub_date = dt.strftime('%a, %d %b %Y %H:%M:%S +0000')
+              except:
+                  post_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                  post_date_gmt = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                  pub_date = datetime.datetime.now().strftime('%a, %d %b %Y %H:%M:%S +0000')
+
+              return f"""
               <item>
                   <title><![CDATA[{title}]]></title>
-                  <link>http://localhost/?p={pid}</link>
-                  <pubDate>{date}</pubDate>
+                  <link>https://lightpink-crab-936734.hostingersite.com/{slug}/</link>
+                  <pubDate>{pub_date}</pubDate>
                   <dc:creator><![CDATA[admin]]></dc:creator>
-                  <guid isPermaLink="false">http://localhost/?p={pid}</guid>
-                  <description></description>
+                  <guid isPermaLink="false">https://lightpink-crab-936734.hostingersite.com/?p={pid}</guid>
                   <content:encoded><![CDATA[{content}]]></content:encoded>
                   <wp:post_id>{pid}</wp:post_id>
-                  <wp:post_type><![CDATA[{ptype}]]></wp:post_type>
+                  <wp:post_date><![CDATA[{post_date}]]></wp:post_date>
+                  <wp:post_date_gmt><![CDATA[{post_date_gmt}]]></wp:post_date_gmt>
+                  <wp:post_name><![CDATA[{slug}]]></wp:post_name>
                   <wp:status><![CDATA[publish]]></wp:status>
-              """
-              if source_url:
-                  item += f"<wp:attachment_url><![CDATA[{source_url}]]></wp:attachment_url>\n"
-              item += "</item>"
-              return item
+                  <wp:post_type><![CDATA[post]]></wp:post_type>
+                  <category domain="category" nicename="news"><![CDATA[news]]></category>
+              </item>"""
 
-          base_site = "https://b2b-factory-site-hlk.pages.dev"
-          header = '<?xml version="1.0" encoding="UTF-8" ?><rss version="2.0" xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:wp="http://wordpress.org/export/1.2/"><channel><title>HLK Migration</title><wp:wxr_version>1.2</wp:wxr_version>'
-          footer = "</channel></rss>"
+          def get_attachment_xml(url, pid, parent_id):
+              filename = os.path.basename(url)
+              date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+              return f"""
+              <item>
+                  <title><![CDATA[{filename}]]></title>
+                  <link>https://lightpink-crab-936734.hostingersite.com/?attachment_id={pid}</link>
+                  <dc:creator><![CDATA[admin]]></dc:creator>
+                  <guid isPermaLink="false">{url}</guid>
+                  <wp:post_id>{pid}</wp:post_id>
+                  <wp:post_date><![CDATA[{date}]]></wp:post_date>
+                  <wp:post_name><![CDATA[{filename.split(".")[0]}]]></wp:post_name>
+                  <wp:status><![CDATA[inherit]]></wp:status>
+                  <wp:post_parent>{parent_id}</wp:post_parent>
+                  <wp:post_type><![CDATA[attachment]]></wp:post_type>
+                  <wp:attachment_url><![CDATA[{url}]]></wp:attachment_url>
+              </item>"""
 
-          pages_items = []
-          media_items = []
-          id_counter = 5000
+          blog_slugs = ["can-pre-sales-power-growth-for-facial-tape-brands", "oem-nose-strip-procurement-risk-control-guide-", "why-strategic-material-combination-in-facial-patches-matters", "how-to-choose-the-right-mouth-tape-supplier-for-your-business420", "stamped-nose-strips-how-small-prints-become-social-currency-for-youthful-brands", "are-nasal-strips-suitable-for-the-cross-border-e-commerce-market", "inventory-planning-for-standard-and-premium-nasal-strips", "nasal-strip-material-guide-non-woven-fabric-pe--satin", "common-challenges-in-face-tape-applications-a-technical-and-after-sales-perspective", "the-engineering-behind-nasal-strip-manufacturing-from-material-science-to-high-speed-production", "scented-nasal-strips-combining-better-breathing-with-aromatherapy-for-stress-relief", "mouth-tape-a-growing-innovation-in-sleep-and-personal-care"]
+          all_items = []
+          id_c = 60000
 
-          # 1. 扫描附件
-          for root, dirs, files in os.walk("assets"):
-              for file in files:
-                  if any(file.lower().endswith(ext) for ext in ['.jpg','.jpeg','.png','.gif','.webp','.mp4']):
-                      id_counter += 1
-                      rel = os.path.join(root, file).replace("\\", "/")
-                      media_items.append(get_xml_item(file, "", "attachment", id_counter, f"{base_site}/{rel}"))
+          for slug in blog_slugs:
+              path = f"migration_site/{slug}/index.html"
+              if not os.path.exists(path): continue
+              with open(path, "r", encoding="utf-8") as f: html = f.read()
+              title = (re.search(r'<h1>(.*?)</h1>', html).group(1) if re.search(r'<h1>(.*?)</h1>', html) else slug).strip()
+              date = (re.search(r'<div class="artInfo">.*?<span>(.*?)</span>', html, re.DOTALL).group(1) if re.search(r'<div class="artInfo">.*?<span>(.*?)</span>', html, re.DOTALL) else "Apr.12.2026").strip()
+              content = (re.search(r'<div class="myart">(.*?)</div>\s+<div class="new-share">', html, re.DOTALL) or re.search(r'<div class="myart">(.*?)</div>', html, re.DOTALL)).group(1).strip()
+              content = re.sub(r'\s+data-[^=]+="[^"]*"', '', content)
+              id_c += 1
+              p_id = id_c
+              for img in re.findall(r'src="(http[^"]+)"', content):
+                  id_c += 1
+                  all_items.append(get_attachment_xml(img, id_c, p_id))
+              all_items.append(get_item_xml(title, content, date, slug, p_id))
 
-          # 2. 扫描页面内容
-          for root, dirs, files in os.walk("."):
-              for file in files:
-                  if file == "index.html" and "assets" not in root and root != ".":
-                      id_counter += 1
-                      path = root.strip("./")
-                      with open(os.path.join(root, file), "r", encoding="utf-8") as f:
-                          html = f.read()
-                      title_match = re.search(r"<title>(.*?)</title>", html)
-                      title = title_match.group(1).replace(" | HLK Tape", "") if title_match else path
-                      content_match = re.search(r"<body[^>]*>(.*?)</body>", html, re.DOTALL)
-                      content = content_match.group(1) if content_match else html
-                      ptype = "post" if "newsblog" in path else "page"
-                      pages_items.append(get_xml_item(title, content, ptype, id_counter))
-
-          with open("hlk_pages.xml", "w", encoding="utf-8") as f: f.write(header + "\n".join(pages_items) + footer)
-          with open("hlk_media.xml", "w", encoding="utf-8") as f: f.write(header + "\n".join(media_items) + footer)
+          with open("wp_news_import.xml", "w", encoding="utf-8") as f:
+              f.write(get_xml_header() + "\n".join(all_items) + get_xml_footer())
           EOF
-          python3 wp_split_gen.py
+          python3 wp_blog_gen.py
 
       - name: Commit and Push
         run: |
           git config --global user.name "Migration Bot"
           git config --global user.email "bot@hlktape.com"
-          git add hlk_pages.xml hlk_media.xml
-          git commit -m "Fix typo and generate Split XML v17" || echo "No changes"
+          git add wp_news_import.xml
+          git commit -m "Final News Category Clean Export v21" || echo "No changes"
           git push
